@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts Premitive Data Types Conversion</h1>
+
+    <button onclick="test_boolean()">Test Boolean</button>
+    <script>
+        function test_boolean(){
+            let num1 = 20;
+            let num2 = 30;
+
+            if (num1 > num2 ){
+                console.log(`difference between ${num1} and ${num2} is ${num1 - num2} `);
+            }else {
+                console.log(`difference between ${num1} and ${num2} is ${num2 - num1} `);
+            }
+            console.log("--------------------------------");
+            console.log(`difference between ${num1} and ${num2} is ${num1 > num2 ? num1 - num2 : num2 - num1 } `);
+            console.log("--------------------------------");
+
+            let num3 = null;
+            console.log ( num3 != null ? 'num3 is not null' : ' num3 is null' );
+            console.log ( !(num3 != null) ? 'num3 is  null' : ' num3 is not null' );
+            console.log("--------------------------------");
+            console.log ( num3 == null ? 'num3 is null' : ' num3 is not null' );
+            console.log ( !(num3 == null) ? 'num3 is not null' : ' num3 is null' );
+
+            console.log("--------------------------------");
+            console.log(' !null :'+ !null);
+            console.log(' !!null :'+ !!null);
+
+            console.log("--------------------------------");
+
+            let var1 = "abc";
+            let var2 = "abd";
+            console.log ( var1 > var2 ? var1+' > '+var1 : var1+' <= '+var2 );
+
+            var1 = "ab1";
+            var2 = "abc";
+            console.log ( var1 > var2 ? var1+' > '+var1 : var1+' <= '+var2 );
+            
+            console.log("--------------------------------");
+            
+
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+    <style>
+        button {
+            margin: 5px;
+            
+        }
+        .active_button {
+            height: 40px;
+            background: #ebf34c;
+            border: 1px solid #e52e09;
+        }
+        div {
+            margin: 5px;
+            width: 100%;
+        }
+        .txtInput {
+            height: 20px;
+            font-size: 12px;
+            background: #f8f8f8;
+            border: 1px solid #00bfbf;
+            padding-left: 4px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic JavaScripts Testing</h1>
+    <div class="row">
+        <div >
+            <lable for="fname">First Name</lable> 
+            <input type="text" name="fname" id="fname" class="txtInput" width="10%"  onkeypress="updatefullname();"> 
+            <lable for="lname">Last Name</lable> 
+            <input type="text" name="lname" id="lname" class="txtInput" width="10%" onkeypress="updatefullname();"> 
+        </div>
+        <script>
+            function updatefullname (){
+                let fname = document.getElementById("fname").value;
+                let lname = document.getElementById("lname").value;
+                let fullname = fname +" "+lname;
+                console.log("fullname : "+fullname);
+                document.getElementById("fullname").value = fullname;
+            }
+        </script>
+        <div>
+            <lable for="fullname">Customer Name</lable> 
+            <input type="text" name="fullname" id="fullname" class="txtInput" width="50%" readonly> 
+        </div>
+        <div>
+            <lable for="dob">Date of Birth</lable> 
+            <input type="date" name="dob" id="dob" class="txtInput" width="10%" onkeypress="updateAge()" onchange="updateAge()"> 
+            <lable for="age">Age</lable> 
+            <input type="text" name="age" id="age" width="10%" class="txtInput" readonly> 
+        </div>
+        <div>
+            <button onclick="printCustomerNamenAge()" >Print Customer Name</button>
+            <div id = "printcname" style="color: green; font-weight: 900;"></div>
+        </div>
+        <script>
+            function printCustomerNamenAge(){
+                document.getElementById("printcname").innerHTML="Customer name: "+document.getElementById("fullname").value +" , Age: "+document.getElementById("age").value
+            }
+            function updateAge (){
+                let dobstr = document.getElementById("dob").value;
+                console.log("dobstr : "+dobstr);
+                let dob = new Date(dobstr);  
+                //calculate month difference from current date in time  
+                let month_diff = Date.now() - dob.getTime();  
+                console.log("month_diff : "+month_diff);
+                
+                //convert the calculated difference in date format  
+                let age_dt = new Date(month_diff);   
+                console.log("age_dt : "+age_dt);   
+                
+                let mon = age_dt.getUTCMonth();  
+                console.log("month : "+mon); 
+                
+                //extract year from date      
+                let year = age_dt.getUTCFullYear();  
+                console.log("year : "+year);   
+                
+                //now calculate the age of the user  
+                year = Math.abs(year - 1970);  
+                let age = (year > 0 ? year+" Years ":"") + (mon>0?mon+" Months":"");
+                console.log("age : "+age);   
+                //display the calculated age  
+                document.getElementById("age").value = age;
+            }
+        </script>
+    </div>
+</body>
+</html>

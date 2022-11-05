@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice JavaScripts </title>
+    <style>
+        button {
+            margin: 5px;
+            
+        }
+        .active_button {
+            height: 40px;
+            background: #ebf34c;
+            border: 1px solid #e52e09;
+        }
+        div {
+            margin: 5px;
+            width: 100%;
+        }
+        .txtInput {
+            height: 20px;
+            font-size: 12px;
+            background: #f8f8f8;
+            border: 1px solid #00bfbf;
+            padding-left: 4px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Practice JavaScripts </h1>
+    
+    
+
+    <div class="row">
+        
+        Ethnicity: <select name="EthnicityList" id="EthnicityList" onchange="selectEthnicity()">
+            <option value="1">Asian</option>
+            <option value="2">Middle East</option>
+            <option value="3">European</option>
+            <option value="4">African</option>
+            <option value="5">South American</option>
+        </select>
+        <div id="Ethnicity" ></div>
+        <script>
+            function selectEthnicity(){
+                let selectElement = document.getElementById("EthnicityList")
+                let value = selectElement.value;
+                let name = selectElement.options[selectElement.selectedIndex].innerHTML;
+                document.getElementById("Ethnicity").innerHTML = value +" ->  "+name;
+            }
+        </script>
+        <br>
+
+        <br>
+        Food Types: 
+        <input type="checkbox" name="food" id="Veg" value="Veg" onchange="selectFoodTypes()">
+        <label for="Veg">Veg</label>
+        <input type="checkbox" name="food" id="Dairy" value="Dairy" onchange="selectFoodTypes()" > 
+        <label for="Dairy">Dairy</label>
+        <input type="checkbox" name="food" id="Beef" value="Beef" onchange="selectFoodTypes()" >
+        <label for="Beef">Beef</label>
+        <input type="checkbox" name="food" id="Mutton" value="Mutton" onchange="selectFoodTypes()" >
+        <label for="Mutton">Mutton</label>
+        <input type="checkbox" name="food" id="Chicken" value="Chicken" onchange="selectFoodTypes()" >
+        <label for="Chicken">Chicken</label>  
+
+        <br>
+        <br>
+        <label for="selectedFoodTypes">Selected Food Types</label><p id="selectedFoodTypes" ></p>
+        <script>
+            function selectFoodTypes(){
+                const allChecked = document.querySelectorAll('input[name=food]:checked');
+                console.log(allChecked);
+                let selectedFoodTypes = (Array.from(allChecked).map(selectedObj => selectedObj.value));
+                console.log(selectedFoodTypes);
+                document.getElementById("selectedFoodTypes").innerHTML = selectedFoodTypes;                
+            }
+        </script>
+        <br>
+        <input type="text" id="ListOfValues" value="" width="500px">
+        <div id="mapList"></div>
+        <div id="evenList"></div>
+        <div id="oddList"></div>
+        <button onclick="ListEvens()">Even List</button>
+        
+        <script type="text/javascript">
+            function ListEvens(){
+                //let values = document.getElementById("ListOfValues").value;
+                //console.log(values);
+                //let valueList = Array.from() 
+                let valueList = [1,2,3,4,5,6,7,8,9,12,34,56,67,77]
+                let maplist = valueList.map(val => val%2==0 ? val:"");
+                let evenlist = valueList.filter(val => val%2==0);
+                let oddlist = valueList.filter(val => val%2!=0);
+                
+                document.getElementById("mapList").innerHTML = "Even Values: "+maplist;
+                document.getElementById("evenList").innerHTML = "Even Values: "+evenlist;
+                document.getElementById("oddList").innerHTML = "Odd Values: "+oddlist;
+
+            }
+        </script>
+        
+        <br>
+        <button onclick="testForLoop()">for loop</button>
+        <div id="forloop"></div>
+        <script type="text/javascript">
+
+            function testForLoop(){
+                let output ="";
+                for (count = 1;    count <= 20 ;   count += 1   ) {                  
+                    output = output+" "+count;
+                    console.log(count +" --> "+ output);
+                    //if (count > 15){
+                    //    console.log("returned my function")
+                    //    return;
+                    //}
+                    if (count > 18){
+                        console.log("breaking my function")
+                        break;
+                    }  
+                }
+                
+                document.getElementById("forloop").innerHTML = ": "+output;
+
+            }
+        </script>
+
+        <br>
+        <button onclick="testWhileLoop()">while loop</button>
+        <div id="forloop"></div>
+        <script type="text/javascript">
+
+            function testWhileLoop(){
+                let output ="";
+                let myPocket = 1000;
+                let myshoppingList = Array();
+                let items = [10, 20, 35, 45, 65, 79, 100, 150, 200, 250, 300];
+                let count=0;
+                while (myPocket > 10 ) { 
+                    count++; 
+                    let anItemIndex = Math.ceil(Math.random()*10);
+                    if (myPocket >= items[anItemIndex]) {
+                        myshoppingList.push(items[anItemIndex]);
+                        myPocket -= items[anItemIndex];
+                    }else if (myPocket > 65){
+                        continue;
+                    }else{
+                        break;
+                    }
+                    
+                    console.log(count+" - "+ anItemIndex +" --> "+ items[anItemIndex] +" --> "+myPocket);
+                    
+
+                }
+                
+                document.getElementById("forloop").innerHTML = ": "+myshoppingList;
+
+            }
+        </script>
+        
+        <br>
+        <button onclick="tableofMultiplication()">Multiplication Table</button>
+        <div id="multiTable"></div>
+        <script type="text/javascript">
+            function tableofMultiplication(){
+                var rows = prompt("How many rows for your multiplication table?");
+                //alert("number of rows entered :"+rows);
+                var cols = prompt("How many columns for your multiplication table?");
+                if(rows == "" || rows == null)
+                    rows = 10;
+                if(cols== "" || cols== null)
+                    cols = 10;
+                createTable(rows, cols);
+                
+            }//end of function
+            function createTable(rows, cols){
+                    var j=1;
+                    var output = "<table border='1' width='500' cellspacing='0'cellpadding='5'>";
+                    for(i=1;i<=rows;i++){
+                        output = output + "<tr>";
+                        while(j<=cols){
+                            output = output + "<td>" + i*j + "</td>";
+                            j = j+1;
+                        }
+                        output = output + "</tr>";
+                        j = 1;
+                    }
+                    output = output + "</table>";
+                    //document.write(output);
+                    document.getElementById("multiTable").innerHTML = output;
+                }
+        </script>
+
+        
+        <!-- 
+        <input type="radio" name="testr" id="testr" value="testr" onchange="selectradio()">
+        <label for="testr">testr</label>
+        <input type="radio" name="testr" id="testr1" value="testr1" onchange="selectradio()">
+        <label for="testr">testr</label>
+        <br>
+        <script>
+            function selectradio (){
+
+                console.log('i am in radio button function');
+            }
+
+        </script>
+
+        <label>Enter age</label>
+        <input type="text" name="age" id="ageid">
+        <button onclick="checkUserAge()">Check Age</button>
+        <script>
+            function   checkUserAge() {
+                
+                let age = document.getElementById('ageid').value;
+                console.log("age: "+age);
+                if (age >= 18){
+                    console.log('it is Adult');
+                }else{
+                    console.log('it is Non-Adult');
+                }
+            }
+            
+            function   checkUser(age) {
+                //alert('Test me');
+                
+                console.log('Test me at console ---- i am at 1');
+            }
+            //checkUserAge();
+
+        </script>
+        
+
+        -->
+  
+    
+    </div>
+
+    
+</body>
+</html>

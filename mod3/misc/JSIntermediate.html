@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate JavaScripts </title>
+    <style>
+        button {
+            margin: 5px;
+            
+        }
+        .active_button {
+            height: 40px;
+            background: #ebf34c;
+            border: 1px solid #e52e09;
+        }
+        div {
+            margin: 5px;
+            width: 100%;
+        }
+        .txtInput {
+            height: 20px;
+            font-size: 12px;
+            background: #f8f8f8;
+            border: 1px solid #00bfbf;
+            padding-left: 4px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Intermediate JavaScripts </h1>
+    
+    
+
+    <div class="row">
+        
+        
+        
+
+        <button onclick="methodOfPremitive()">Methods Of Premitive</button>
+        <script>
+            function methodOfPremitive(){
+                console.log("--------------Test 1 ------------------");
+                const anumber = 1.3456674;
+                console.log( " anumber.toFixed(2):  "+ anumber.toFixed(2));
+                console.log(" anumber.toString():  "+ anumber.toString());
+                console.log(" anumber.toPrecision(4):  "+ anumber.toPrecision(4)); 
+                console.log(" anumber.valueOf():  "+ anumber.valueOf()); 
+                console.log("\n-------------------------------");
+                let price = 300;
+
+                let hockey = {
+                    name: "hockey",
+                    price: 100,
+                    qty: 25,
+                    model: 2020,
+                    valueOf(){
+                        return this.qty * this.price;
+                    }
+
+                    
+                }
+                let Shirt = {
+                    name: "Shirt",
+                    price: "100",
+                    qty: 20,
+                    model: 2020
+                }
+                console.log(" hockey.valueOf():  "+ hockey.valueOf()); 
+                console.log(" hockey.toString():  "+ hockey.toString()); 
+
+                console.log(" Hello  "+ (hockey)  ); 
+
+                console.log(" Shirt.valueOf():  "+ JSON.stringify (   Shirt.valueOf()  )); 
+                console.log(" Shirt.toString():  "+ JSON.stringify (  Shirt.toString() ));
+                console.log("\n-------------------------------");
+                console.log("\n-------------------------------");
+
+                console.log(" anumber.toString(2):  "+ anumber.toString(2));
+                console.log(" anumber.toString(10):  "+ anumber.toString(10));
+                console.log(" anumber.toString(16):  "+ anumber.toString(16)) ;
+                console.log(" anumber.toString(36):  "+ anumber.toString(36)) ;
+                console.log("\n-------------------------------");
+                //hexadecimal
+                console.log(" 0xff: "+ 0xff);
+                console.log(" 0xff: "+ 0xFF);
+                console.log(" 0xcc: "+ 0xcc);
+                console.log(" 0xCC: "+ 0xCC);
+                //binary
+                console.log(" 0b1111111: "+ 0b1111111);
+                //octal
+                console.log(" 0o377: "+ 0o377);
+
+                console.log("\n--------------Test 2------------------");
+                const user = {
+                    fname : 'naveed',
+                    lname : 'alyas',
+                    salary : 150000
+                }
+                console.log(" user: "+ user);
+                console.log(" user.toString(): "+ user.toString());
+                console.log(" user.valueOf(): "+ user.valueOf());
+                console.log(" JSON.stringify (user): "+ JSON.stringify(user));
+                console.log(" user*4: "+ user*4);
+                console.log("\n--------------------------------");
+                const user1 = {
+                    fname : 'naveed',
+                    lname : 'alyas',
+                    salary : 150000,
+                    toString(){
+                        return this.fname+' '+this.lname;
+                    },
+                    valueOf(){
+                        return this.salary;
+                    }
+                }
+                
+                console.log(" user1: "+ user1);
+                console.log(" user1.toString(): "+ user1.toString());
+                console.log(" user1.valueOf(): "+ user1.valueOf());
+                console.log(" user1*4: "+ user1*4);
+                
+                console.log(" JSON.stringify (user1): "+ JSON.stringify (user1));
+                console.log("\n--------------Test 3------------------");
+
+                const user3 = {
+                    fname : 'naveed',
+                    lname : 'alyas',
+                    salary : 150000,
+                    
+                    [Symbol.toPrimitive]( hint ){
+                        console.log('hint: '+hint);
+                    return   hint !== 'number'?   '{ name: '+this.fname+' '+this.lname+'}'    :    this.salary;
+                    }
+                }
+                
+                console.log(" user3: "+ user3);
+                console.log(" (+user3): "+ (+user3));
+                console.log(" (user3 + 500 ): "+ (   user3 + 500    ));
+                
+                console.log(" user3.toString(): "+ user3.toString());
+                console.log(" user3.valueOf(): "+ (user3.valueOf()));
+                console.log(" user3*4: "+ user3*4);
+
+                
+            }
+        </script>
+        <br><button onclick="numberCalc()">Numbers</button>
+        <script>
+            function numberCalc(){
+                console.log("\n--------------Test 1------------------");
+                console.log(" 1e500 : "+ (1e500));
+                console.log(" 0.1 + 0.2 : "+ (0.1+0.3));
+                console.log(" 9999 9999 9999 9999 : "+ (9999999999999999));
+
+                console.log("\n--------------Test 2------------------");
+
+                console.log(" +100px : "+ (      +'100px'     ));
+                console.log(" Number(100px) : "+ (    Number('100px')   ));
+
+                console.log(" parseInt(a100) : "+ (    parseInt('a100')   ));
+                console.log(" parseInt(100px) : "+ (    parseInt('100px')   ));
+                console.log(" parseFloat(100px) : "+ (    parseFloat('100px')   ));
+                console.log(" parseFloat(100.34em) : "+ (    parseFloat('100.34em')   ));
+                console.log(" parseFloat(100.34.45) : "+ (    parseFloat('100.34.45')   ));
+            }
+        </script>
+
+        <br><button onclick="stringFunc()">Strings</button>
+        <script>
+            function stringFunc(){
+
+                console.log("\n--------------Test 1------------------");
+                const guestList = "Guests: \n * John\n * Pete\n * Mary";
+                console.log(" guestList : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+ 
+                console.log(" str.codePointAt(0) : "+  (   "str".codePointAt(0) )  );
+                console.log(" s.codePointAt(26) : "+ (  "s".codePointAt(0)    ));
+                console.log(" S.codePointAt(pos) : "+ (  "S".codePointAt(0)   ));
+                console.log(" Z.codePointAt(pos) : "+ (  "Z".codePointAt(0)   ));
+
+                console.log(" String.fromCodePoint(90) : "+ (  String.fromCodePoint(90)   ));
+                console.log(" String.fromCodePoint(70) : "+ (  String.fromCodePoint(70)   ));
+
+                console.log(" '𝒳'.length : "+ (  '𝒳'.length   ));
+                console.log(" '𩷶'.length : "+ (  '𩷶'.length   ));
+     
+            }
+        </script>
+
+        <br><button onclick="arrayFunc()">Array</button>
+        <script>
+            function arrayFunc(){
+
+                console.log("\n--------------Test 1 - length -------");
+                const guestList = new Array('John','Pete', 'Mary');
+                console.log(" guestList : "+ guestList);
+                console.log(" guestList.includes('John') : "+ guestList.includes('John'));
+                console.log(" guestList.length : "+ guestList.length);
+
+                console.log("\n--------------Test 2 - copied by reference -----");
+                let guestList1 = guestList ; 
+                guestList1.push('mike', 'steve', 'pasha');    
+                console.log(" guestList  : "+ guestList);
+                console.log(" guestList1 : "+ guestList1);
+
+                console.log("\n--------------Test 3 - push / shift / unshift ---------");
+                guestList.push('naveed', 'kevin');    
+                console.log(" guestList after push : "+ guestList);
+                let shiftedItem = guestList.shift();    
+                console.log(" guestList after shift: "+ guestList);
+                console.log(" shiftedItem: "+ shiftedItem);
+
+                guestList.unshift(shiftedItem);    
+                console.log(" guestList after unshift: "+ guestList);
+
+                console.log("\n--------------Test 4 - pop -----------------");
+                let popedItem = guestList.pop();    
+                console.log(" guestList after pop: "+ guestList);
+                console.log(" popedItem: "+ popedItem);
+
+                console.log("\n--------------Test 5 - splice ------------------");
+                guestList.splice(0, 3, "study","game","school", "testing");
+                console.log(" guestList  : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+
+
+            }
+        </script>
+
+
+        <br><button onclick="mdarrayFunc()">Multidimensional Array</button>
+        <script>
+            function mdarrayFunc(){
+
+                console.log("\n--------------Test 1------------------");
+                const guestList = [
+                                ['John','Pete', 'Mary'],
+                                ['camel','cat', 'dog'],
+                                ['sparow','dove', 'crook'],
+                                ['apple','orang', 'banana'],
+                            ];
+                console.log(" guestList : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+                console.log(" guestList[0][0] : "+ guestList[0][0]);
+                console.log(" guestList[0][1] : "+ guestList[0][1]);
+                console.log(" guestList[1][1] : "+ guestList[1][1]);
+                
+                guestList.push(['naveed'], ['kevin']);    
+                console.log(" guestList after push : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+                let shiftedItem = guestList.shift();    
+                console.log(" guestList after shift: "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+                console.log(" shiftedItem: "+ shiftedItem);
+
+                guestList.unshift(shiftedItem);    
+                console.log(" guestList after unshift: "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+
+                let popedItem = guestList.pop();    
+                console.log(" guestList after pop: "+ guestList);
+                console.log(" popedItem: "+ popedItem);
+                console.log(" guestList.length : "+ guestList.length);
+
+                guestList.push(['mike', 'steve'], ['pasha']);    
+                console.log(" guestList  : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+
+                guestList.splice(0, 2, ["study","game"],["school"], ["testing"]);
+                console.log(" guestList  : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+            }
+        </script>
+
+        <br><button onclick="arrayMethodsFunc()">Array Method </button>
+        <script>
+            function arrayMethodsFunc(){
+
+                console.log("----------- forEach Function ---------");
+                let mylist = ["ab", "cdefrtr", "efgt", "gh", "ijsdff", "gh","klssd", "gh"];
+                let count=0;
+                mylist.forEach( (element, index, mylist) => {
+                    console.log("item "+element+" is at index " +index+" in array ["+mylist+"]");
+                });
+
+                console.log("----------- Find Function ---------");
+                let myReVal = mylist.find((element) => {return element == "gh"});
+                console.log("myReVal with find: "+myReVal);
+
+                console.log("----------- filter Function ---------");
+                let filteredList = mylist.filter((element) => {return element == "gh"});
+                console.log("filteredList: "+filteredList);
+
+                console.log("----------- filter Function ---------");
+                let mappedList = mylist.map((element) => {return element.length});
+                console.log("mappedList: "+mappedList);
+
+                console.log("----------- Slice Function ---------");
+                console.log("mylist.slice(1,3): "+mylist.slice(1,3));
+                console.log("mylist.slice(2): "+mylist.slice(2));
+                console.log("mylist.slice(-2): "+mylist.slice(-2));
+
+                console.log("----------- Sort / Reverse Function ---------");
+                let myNumberValues = [10,5,20, 10, 30, 25, 40,5, 50];
+                console.log("myNumberValues.sort(a, b): "+myNumberValues.sort( (a,b) => a - b ) );
+                console.log("myNumberValues.reverse(): "+myNumberValues.reverse() );
+
+                console.log("----------- Reduce Function ---------");
+                let sum = myNumberValues.reduce( (sum, aValue) => {return sum+aValue } , 50);
+                console.log("sum: "+sum);
+
+                console.log("----------- Other Iteration Function ---------");
+                let arrayLikeObject = { 0:1, 1:4, 2: 10, 3:5, 5:50, name:"naveed", age:30, length: 10}
+                let result = Array.prototype.reduce.call(arrayLikeObject,  (sum, aValue) => {return sum+aValue });
+                console.log("Array.prototype.reduce.call : "+result);
+                console.log("Array.prototype.join.call : "+ displayAurgments('bc', 2, 4, 56, 'cf'));
+            }
+            function displayAurgments(a,b,c, d, e, f, g, h){
+                return Array.prototype.join.call(arguments);
+            }
+        </script>
+
+        <br><button onclick="testingLoops()">Test Loops  </button>
+        <script>
+            function testingLoops(){
+
+                let myList = [1,2,3,4,5,66,77,88,77,89,34,232,556];
+
+                let myListStr = ["apple", "orange", "banana"]
+                
+                let aname = "abcdrfgttt";
+                console.log(aname);
+                let anameList = Array.from(aname);
+                console.log(anameList);
+
+                /*
+                for(let count = 1;  count < myList.length; count++){
+
+                    console.log(count+" -> "+myList[count])
+                
+                }
+                console.log("---------------------------------- ")
+                
+                let itr = 1
+                while (itr < myList.length ){
+                    console.log(itr+" -> "+myList[itr])
+                    itr++
+                }
+                console.log("---------------------------------- ");
+                
+                myList.forEach((item) => {
+                    console.log(item)
+                })
+                */
+            }
+        </script>
+
+        <br><button onclick="iterablesMethodsFunc()">Iterables  </button>
+        <script>
+            function iterablesMethodsFunc(){
+
+                const range1 = {
+                    from: 1,
+                    to: 5
+                }
+                const range = {
+                    from: 1,
+                    to: 5,
+                    [Symbol.iterator](){
+                        this.current = this.from;
+                        return this;
+                    },
+                    next() {
+                        if(this.current <= this.to){
+                            return {done: false, value: this.current++ };
+                        }else{
+                            return {done: true};
+                        }
+                    }
+                }
+                for( let anum of range){    
+                    console.log(anum);    
+                }    
+                console.log(" ------------------------- ");
+                let myNumber = {
+                    n : 0,
+                    increment : function(){
+                        this.n += 10;
+                        return {value: this.n, done: false};
+                    }
+                }
+                //const n = myNumber();
+                console.log(myNumber.increment().value);
+                console.log(myNumber.increment().value);
+                console.log(myNumber.increment().value);
+                console.log(" ------------------------- ");
+                
+                
+                let myNumberList ={};
+                myNumberList[Symbol.iterator] = function(){
+                    let n=0;
+                    done=false;
+                    return {
+                        next() {
+                            n += 10;
+                            if (n ==100 ){done = true};
+                            return {value: n, done: done}
+                        }
+                    };
+                }
+                for (const num of myNumberList){
+                    console.log("num :"+num);
+                }
+            };
+        </script>
+
+        <br><button onclick="mapsMethodsFunc()">Map & WeakMap</button>
+        <script>
+            function mapsMethodsFunc(){
+
+                console.log(" ------------ Objects ------------- ");
+                let vegies = {
+                    id: 1,
+                    name: "spanish"
+                }
+                     
+                let userObj = {
+                    id : 1,
+                    name: "myname",
+                    age: 20,
+                    favMeals: ['dairy', 'chicken', 'beef'],
+                    vegi: vegies,
+                    3210: "postcode "
+                }
+                
+                userObj.myinterest = "test";
+
+                for( let key in userObj){
+                    console.log(key+" -> "+userObj[key]);
+                }
+                console.log(" ----------- Maps -------------- ");
+
+                let myMap = new Map();
+                myMap.set('id' , 1);
+                myMap.set('name', "myname");
+                myMap.set('age', 20);
+                myMap.set(userObj, userObj);
+                myMap.set(['we3', 'gt5'], "i am testing it");
+                myMap.set(3210, "testing post code");
+                for( let key of myMap.keys()){
+                    console.log(key+" -> "+myMap.get(key) +" \n\t-->"+ JSON.stringify(myMap.get(key)));
+                }
+
+                console.log("myMap.has(userObj) -> "+myMap.has(userObj))
+                console.log("myMap.has(3210) -> "+myMap.has(3210))
+                //console.log("myMap.get(3210) -> "+myMap.get(3210))
+                
+
+
+                console.log(" -----2------- ");
+
+                let myMap2 = new Map(Object.entries(userObj));
+                for( let key of myMap2.keys()){
+                    console.log(key+" -> "+myMap2.get(key) +" \n\t-->"+ JSON.stringify(myMap2.get(key)));
+                }
+                
+
+                console.log(" -----3------- ");
+
+                let userMap = new Map([
+                    ['id' , 1],
+                    ["name", "myname"],
+                    ["age", 20],
+                    [3210,  "testing value"],
+                    ["favMeals", ['dairy', 'chicken', 'beef']],
+                    ["vegi", vegies],
+                    [['hamilton', 'auckland'] , ["3210", "2121"] ]
+                ]);
+                
+                for( let key of userMap.keys()){
+                    console.log(key+" -> "+userMap.get(key) +" \n\t-->"+ JSON.stringify(userMap.get(key)));
+                }
+                console.log(" -----3-1 ------- ");
+                for( let entry of userMap){
+                    console.log(entry +" \n\t-->"+ JSON.stringify(entry));
+                }
+
+                console.log(" -----WeakMaps ------- ");
+                const myweakMap = new WeakMap();
+                //myweakMap.set('id' , 1); //only objects
+                //myweakMap.set('name', "myname");
+                //myweakMap.set('age', 20);
+                myweakMap.set(userObj, userObj);
+
+                mytestObj ={name:"test"}
+                myweakMap.set(mytestObj, userObj);
+                //myweakMap.set(3210, "testing post code");
+                
+                console.log("myweakMap.has({name:test}) -> "+myweakMap.has(mytestObj))
+                console.log("myweakMap.has(userObj) -> "+myweakMap.has(userObj))
+                userObj = {};
+                console.log("myweakMap.has(userObj) -> "+myweakMap.has(userObj))
+                
+            }
+        </script>
+
+        <br><button onclick="setsMethodsFunc()">Set & WeakSet</button>
+        <script>
+            function setsMethodsFunc(){
+
+                console.log(" ------------ Objects ------------- ");
+                let vegies = {
+                    id: 1,
+                    name: "spanish"
+                }
+                    
+                let userObj = {
+                    id : 1,
+                    name: "myname",
+                    age: 20,
+                    favMeals: ['dairy', 'chicken', 'beef'],
+                    vegi: vegies
+                }
+                for( let key in userObj){
+                    console.log(key+" -> "+userObj[key]);
+                }
+                console.log(" -----Sets ------- ");
+                const visitors = new Set();
+                visitors.add({name:"john"});
+                visitors.add(11);
+                visitors.add(11);
+                visitors.add(true);
+                visitors.add(false);
+                visitors.add(true);
+                visitors.add(userObj);
+                visitors.add(userObj);
+                visitors.add({name:"mike"});
+                visitors.add({name:"dave"});
+                visitors.add({name:"dave"});
+                visitors.add({name:"gary", age: 20});
+                visitors.add({name:"gary", age: 20});
+                for( let entry of visitors){
+                    console.log(entry +" \n\t-->"+ JSON.stringify(entry));
+                }
+                console.log("size: "+visitors.size);
+                console.log(" ----------- ");
+                visitors.forEach((entry, entry2, visitors1) => {
+                    console.log("entry: "+JSON.stringify(entry));
+                    console.log("entry2: "+JSON.stringify(entry2));
+                    console.log("visitors1: "+visitors1.size);
+                    
+                })
+
+
+                console.log(" -----WeakSets ------- ");
+                const myweakSet = new WeakSet();
+                let dav = {name:"dave"};
+
+                myweakSet.add({name:"john"});
+                //myweakSet.add(11); // only objects
+                //myweakSet.add(11);
+                //myweakSet.add(true);
+                //myweakSet.add(false);
+                //myweakSet.add(true);
+                myweakSet.add({name:"mike"});
+                myweakSet.add({name:"dave"});
+                myweakSet.add({name:"dave"});
+                myweakSet.add({name:"gary", age: 20});
+                myweakSet.add({name:"gary", age: 20});
+                myweakSet.add({name:"dave"});
+                console.log("myweakSet.has({name:dave}): "+myweakSet.has({name:"dave"}));
+                myweakSet.add(dav);
+                console.log("myweakSet.has(dav): "+myweakSet.has(dav));
+                console.log("size: "+myweakSet.size);
+            }
+        </script>
+
+
+        <br><button onclick="arrayDestructionFunc()">Array Destruction</button>
+        <script>
+            function arrayDestructionFunc(){
+                let arr = ['abc-1', 'def-2', 'lmn-3', 'xyz-4'];
+                let [name1, name2, name3, name4] = arr;
+                console.log("name1 :"+name1);
+                console.log("name2 :"+name2);
+                console.log("name3 :"+name3);
+                console.log("name4 :"+name4);
+                console.log(" ----------- ");
+                let [person, desc] = arr;
+                console.log("person :"+person);
+                console.log("desc :"+desc);
+
+                console.log(" ----------- ");
+                let [person2, , desc2] = arr;
+                console.log("person2 :"+person2);
+                console.log("desc2 :"+desc2);
+
+                console.log(" ----------- ");
+                let [person3, ...desc3] = arr;
+                console.log("person3 :"+person3);
+                console.log("desc3 :"+desc3);
+
+                console.log(" ------ from set to variables ----- ");
+                let [one, two, three, others ] = new Set([1,2,3, 4,5,6,7]);
+                console.log("one :"+one);
+                console.log("two :"+two);
+                console.log("three :"+three);
+                console.log("others :"+others);
+
+                console.log(" ------- from map to variables ---- ");
+                let [personname, personage ] = new Map([ ["name","mike"], ["age", 30]]);
+                console.log("personname :"+personname);
+                console.log("personage :"+personage);
+
+                console.log(" --------from String to an object --- ");
+                let user = {};
+                [user.fname, user.lname ] = "Naveed Alyas".split(" ");
+                console.log("user.fname :"+user.fname);
+                console.log("user.lname :"+user.lname);
+                
+                console.log(" ------- swaping ---- ");
+                [user.fname, user.lname ] = [ user.lname, user.fname ]
+                console.log("user.fname :"+user.fname);
+                console.log("user.lname :"+user.lname);
+                
+                let a=10; 
+                let b=20;
+                console.log("a :"+a+"  -- b :"+b);
+                [a, b] = [b, a]
+                console.log("a :"+a+"  -- b :"+b);
+                
+                console.log(" ------- order of values  ---- ");
+                let { height, width, title } = { title: "menu", height: 200, width: 100  }
+                console.log("height :"+height);
+                console.log("width :"+width);
+                console.log("title :"+title);
+                console.log(" ------- renaming of variables  ---- ");
+                let options = {
+                    width1: 100,
+                    height1: 200
+                }
+                let {height1, width1 } = options;
+                let h = height1;
+                let w = width1;
+                //console.log("height1 :"+height1);
+                console.log("h :"+h);
+                //console.log("width1 :"+width1);
+                console.log("w :"+w);
+
+                let options1 = {
+                    width: 100,
+                    height: 200,
+                    title1:"my testing"
+                }
+
+                let {title1, ...rest1} = options1;
+                console.log("title1 :"+title1);
+                console.log("rest1.width :"+rest1.width);
+                console.log("rest1.height :"+rest1.height);
+            }
+
+        </script>
+
+        <br><button onclick="dateTimeFunc()">Date & Time</button>
+        <script>
+            function dateTimeFunc(){
+                let now = new Date();
+                console.log("current date/time :"+now);
+
+                let Jan011970 = new Date(0);
+                console.log("Jan 01 1970 date/time :"+Jan011970);
+                let Jan021970 = new Date(24 * 3600 * 1000);
+                console.log("Jan 02 1970 date/time :"+Jan021970);
+
+                let Date20220813 = new Date("2022-08-13");
+                console.log("2022-09-13 date/time :"+Date20220813);
+                console.log(" ----------- ");
+                let Date20220813_a = new Date(2022, 08, 13, 13, 15, 40, 290);
+                console.log("2022-09-13 date/time :"+Date20220813_a);
+
+                console.log("2022-09-13 year :"+Date20220813_a.getFullYear());
+                console.log("2022-09-13 Month :"+Date20220813_a.getMonth());
+                console.log("2022-09-13 Date :"+Date20220813_a.getDate());
+                console.log("2022-09-13 Day :"+Date20220813_a.getDay());
+                console.log("2022-09-13 Hour :"+Date20220813_a.getHours());
+                console.log("2022-09-13 Minute :"+Date20220813_a.getMinutes());
+                console.log("2022-09-13 Second :"+Date20220813_a.getSeconds());
+                console.log("2022-09-13 MilliSeconds :"+Date20220813_a.getMilliseconds());
+                console.log(" ----------- ");
+                console.log("2022-09-13 year - UCT :"+Date20220813_a.getUTCFullYear());
+                console.log("2022-09-13 Month - UCT :"+Date20220813_a.getUTCMonth());
+                console.log("2022-09-13 Date - UCT :"+Date20220813_a.getUTCDate());
+                console.log("2022-09-13 Day - UCT :"+Date20220813_a.getUTCDay());
+                console.log("2022-09-13 Hour - UCT :"+Date20220813_a.getUTCHours());
+                console.log("2022-09-13 Minute - UCT :"+Date20220813_a.getUTCMinutes());
+                console.log("2022-09-13 Second - UCT :"+Date20220813_a.getUTCSeconds());
+                console.log("2022-09-13 MilliSeconds - UCT :"+Date20220813_a.getUTCMilliseconds());
+
+                //number of minutes between local time and UTC time (Coordinated Universal Time )
+                console.log(" ----------- ");
+                console.log("2022-08-13 TimezoneOffset (minutes):"+Date20220813_a.getTimezoneOffset());
+                console.log(" ----------- ");
+                //timestamp, a number of milliseconds passed from jan 1st 1970
+                console.log("2022-08-13 Time (timestamp milliseconds) :"+Date20220813_a.getTime());
+
+            }
+        </script>
+
+        <br><button onclick="jsonFunc()">JSON</button>
+        <script>
+            function jsonFunc(){
+               let user = {
+                    sayHi(){
+                        console.log("Hello");
+                    },
+                    [Symbol("id")]:123,
+                    something: undefined,
+                    name: "mike"
+               } 
+               console.log(user);
+               console.log(JSON.stringify(user));
+               console.log(" ----------- ");
+
+               let room = {
+                number: 23
+               };
+               let meetup = {
+                title: "Conference",
+                participants: ["mike", "david"]
+               };
+
+               meetup.place = room;
+               //room.occupiedBy = meetup;
+               console.log(JSON.stringify(room));
+               console.log("meetup: "+JSON.stringify(meetup));
+               console.log(" ----------- ");
+
+
+               room.occupiedBy = meetup;
+               console.log("meetup: "+ JSON.stringify(meetup, ['title', 'participants']));
+
+               let meetup1 = {
+                title: "Conference",
+                participants: [ {name: "mike"}, {name: "david"}],
+                place: room
+               };
+               room.occupiedBy = meetup1;
+               console.log("meetup 1: "+ JSON.stringify(meetup1, ['title', 'participants'], 3));
+
+               console.log(" ----------- ");
+               let schedule = `{
+                    
+                    "meetups": [
+
+                        {"title": "birthday", "date": "2022-08-13T12:00:00.000Z"},
+
+                        {"title": "Party", "date": "2022-08-11T12:22:11.000Z"}
+                    ]
+               }`;
+
+               schedule= JSON.parse(schedule, (key, value) => {
+                    if (key === 'date'){
+                        return new Date(value);
+                    }
+                    return value;
+               });
+               console.log("Date of 1st MeetUp: "+schedule.meetups[0].date.getDate());
+               console.log("Date of 1st MeetUp: "+schedule.meetups[1].date.getDate());
+
+               console.log ( "11+12 1: "+ "11+12" );
+               console.log ( "11+12 2: "+ "11"+"12" );
+               console.log ( "11+12 3: "+ 11+12 );
+               console.log ( "11+12 4: "+ (11+12) );
+               
+
+
+            }
+        </script>
+
+
+    </div>
+
+
+    
+</body>
+</html>

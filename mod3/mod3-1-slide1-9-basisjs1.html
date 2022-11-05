@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>Basic JavaScripts Testing</h1>
+
+    <div>
+        <button onclick="displayInfo('Mike')" >Display Information</button>
+        <div id = "disArea" style="color: green; font-weight: 900;"></div>
+    </div>
+
+    <script>
+        //first message 
+    
+        alert('pop-up: hello world'); 
+        //this is my second message
+        console.log('console: hello world');
+        //multi line comments
+        /* 
+        i am testing this
+        comments 
+        */
+    </script>
+
+    <script>
+        // function declaration
+        function displayInfo(name){
+            console.log('i am testing my function : '+name);
+
+            console.log('hello world 1'); 
+            console.log('hello world 2'); console.log('hello world 3'); 
+            console.log('hello world 4')
+            console.log('hello world 5');
+            
+        }
+        //calling function 
+        //displayInfo("ABCFDDDDDDD");
+    </script>
+    
+    <script>
+        // function declaration
+        function func_name(name){
+            //single quotes
+            console.log('Welcome : '+name);
+            //double quotes
+            console.log("Welcome : "+name);
+            //backticks
+            console.log(`Welcome : ${ name } `);
+        }
+        //calling function 
+        //func_name('naveed');
+    </script>
+</body>
+</html>

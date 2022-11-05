@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts String Comparison</h1>
+
+    <br><button class="active_button" onclick="testObjectExpFunc()">Exp Function</button>
+<script> 
+    
+    function testObjectExpFunc(){
+        console.clear();
+        const user = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 20,
+            fullname: function() { return this.firstName + " " + this.lastName}, 
+            sayHi: function () { console.log("Hi "+ this.fullname())},
+            sayHiMethod() { console.log("Hi, greetings to "+ this.fullname())}
+        }
+
+        
+        console.log('--- Testing Expression function -------\n');
+        console.log("user.firstName :"+ user.firstName);
+        console.log("user.fullname :"+ user.fullname());
+        user.sayHi();
+        user.sayHiMethod;
+        user.sayHiMethod();
+
+        console.log('----- object properties user obj -----\n');
+
+        const othersParam = () => { return "Telephone" } ;
+        
+        user[othersParam()] = "3454353210";
+        user[othersParam] = "345353210";
+
+        user[2] = "i am a value 2"; 
+        user['2f3'] = "i am a value 23";
+        user.country = "New Zealand"; 
+
+
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+
+        
+        delete user[2]; 
+        delete user['23'];
+        delete user.country ;
+        console.log('------after deletion---------\n');
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+
+        console.log('-----------------------------------\n');
+        console.log( 'user.firstName === undefined: '+ (user.firstName === undefined));
+        console.log( 'user.noSuchProperty === undefined: '+ (user.noSuchProperty === undefined));
+        console.log( 'user.color === undefined: '+ (user.color === undefined));
+        console.log( 'firstName in user: '+ ('firstName' in user));
+
+    }
+</script>
+
+<br><button class="active_button" onclick="testObjectCopy()">Copy, Clone, Assign, __proto__, Create</button>
+<script> 
+    
+    function testObjectCopy(){
+        console.clear();
+        const user = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 20
+        }
+        console.log('----- Copy object by reference ---------\n');
+        //objects copied by reference
+        let copiedUser = user;
+        copiedUser.firstName = "david";
+        copiedUser.lastName = "webb";
+        copiedUser.age = 50;
+        copiedUser.tel = "4433553343";
+        
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+        console.log('***********************\n');
+        for (key in copiedUser){
+            console.log(`copiedUser.${key}: ${copiedUser[key]}\n`);
+        }
+
+        console.log('----- Clone User ---------\n');
+        // with spread function
+        let cloneUser = {...user};
+        //cloneUser.email = "clone email";
+        //cloneUser.firstName = "michal"
+        //with assign function
+
+        console.log('-------------Object comparison --------\n');
+        cloneUser == user ? console.log('Same object ') : console.log('Not Same object ');
+        cloneUser === user ? console.log('Same object ') : console.log('Not Same object ')
+
+        let assignUser = Object.assign({}, user);
+        assignUser.firstName = "Dave"
+        assignUser.email = "assign email";
+
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+        console.log('***********************\n');
+        for (key in cloneUser){
+            console.log(`cloneUser.${key}: ${cloneUser[key]}\n`);
+        }
+        console.log('***********************\n');
+        for (key in assignUser){
+            console.log(`assignUser.${key}: ${assignUser[key]}\n`);
+        }
+
+
+        console.log('------- Testing __proto__  & create function --------\n');
+        let anotherUserWithProto = {};
+        let anotherUserWithCreate = {};
+        anotherUserWithProto.__proto__ = user;
+        anotherUserWithProto.address = "114 address";
+        const citycode = () => { return "Hamilton" } ;
+        anotherUserWithProto[citycode()] = "3210";
+        //user[othersParam] = "3210";
+        user.country = "New Zealand";
+
+        anotherUserWithCreate = Object.create(user);
+        anotherUserWithCreate.address = "114 address";
+        console.log('-----------User------\n');
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+        console.log('-----------copiedUser------\n');
+        for (key in copiedUser){
+            console.log(`copiedUser.${key}: ${copiedUser[key]}\n`);
+        }
+        
+        console.log('-----------anotherUserWithProto------\n');
+        for (key in anotherUserWithProto){
+            console.log(`anotherUserWithProto.${key}: ${anotherUserWithProto[key]}\n`);
+        }
+        
+        console.log('-------------anotherUserWithCreate--------\n');
+        for (key in anotherUserWithCreate){
+            console.log(`anotherUserWithCreate.${key}: ${anotherUserWithCreate[key]}\n`);
+        }
+    }
+</script>
+
+
+<script src="./resources/lodash.js"></script>
+
+<br><button onclick="testCloneDeepFunc()">Clone Deep</button>
+<script> 
+    
+    function testCloneDeepFunc(){
+        console.clear(); 
+        const user = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 40,
+            cell: "345435435435",
+            email: "test@test.coomo",
+            add: "114 address"
+        }
+
+
+        const anotherUserwithCloneDeep = _.cloneDeep(user);
+        anotherUserwithCloneDeep.firstName = "derek";
+        anotherUserwithCloneDeep.lastName = "webb";
+        anotherUserwithCloneDeep.add = "114 address";
+
+        for (let key in user) {
+            console.log("user."+key +" : "+user[key]);
+        }
+        console.log("----------------------------------------");
+        for (let key in anotherUserwithCloneDeep) {
+            console.log("anotherUserwithCloneDeep."+key +" : "+anotherUserwithCloneDeep[key]);
+        }
+
+        console.log('-------------Object comparison --------\n');
+        anotherUserwithCloneDeep == user ? console.log('Same object ') : console.log('Not Same object ');
+        anotherUserwithCloneDeep === user ? console.log('Same object ') : console.log('Not Same object ')
+    }
+</script>
+
+<br><button onclick="testSpreadFunc()">Spread Func</button>
+<script> 
+    
+    function testSpreadFunc(){
+        console.clear();
+        const numbersOne = [1, 2, 3];
+        const numbersTwo = [4, 5, 6];
+        const StringThree = ['abc', 'def', 'lkm'];
+        const Combined = [...numbersOne, ...numbersTwo, ...StringThree];
+        console.log("Result of Combined Array: "+ Combined);
+
+        const user_basic = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 40
+        }
+        const user_contact = {
+            cell: "345435435435",
+            email: "test@test.coomo",
+            add: "my address in new zealand"
+        }
+        
+        const user_full = { ...user_basic, ...user_contact };
+        for (let key in user_full) {
+            //console.log(key);
+            console.log("user_full."+key +" : "+user_full[key]);
+        }
+        //console.log("Result of Object user: "+ user_full.toString());
+    }
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts Object & Symbol Data Type</h1>
+
+ 
+    <br><button onclick="test_objectType()">Object</button>
+    <script>
+
+        function test_objectType(){
+            console.clear();
+            let person = {
+                first_name: "Dave",
+                last_name: "hayman",
+                age: 30,
+            };
+            console.log("1- person : "+ person);
+            console.log("1- person : "+ JSON.stringify(person));
+            console.log("1- person.first_name :"+ person.first_name);
+            console.log("1- person.last_name :"+ person.last_name);
+            console.log("--------------------------------");
+            person.first_name = 'naveed';
+            person.last_name = 'alyas';
+            person.age = 45;
+            // using for...in
+            for (let abc in person) {
+                console.log("2- person."+abc +" --> "+person[abc]);
+            }
+            console.log("--------------------------------");
+            person = {
+                first_name: "derek",
+                last_name: "david",
+                age: 30,
+            };
+            for (let key in person) {
+                console.log("3- person."+key +" --> "+person[key]);
+            }
+            console.log("--------------------------------");
+        
+        }
+
+        
+    </script>
+
+    <br><button onclick="test_symbolType()">Test Symbol</button>
+    <script>
+
+        function test_symbolType(){
+            console.clear();
+            const x = Symbol();
+            console.log(x);
+            console.log('typeof x: '+ typeof x);
+
+            const y = Symbol("it is test");
+            console.log("y : "+y.toString());
+            console.log("y.description : "+y.description);
+            console.log("y.toString() : "+y.toString());
+            console.log(Symbol() == Symbol());
+
+            console.log("--------------------------------");
+            let id = Symbol("id");
+            let person = {
+                name: "David",
+                age: 30,
+                [id]: 10
+            };
+            console.log("person : "+ person);
+            console.log("person.toString() : "+ person.toString());
+            console.log("person : "+ JSON.stringify(person));
+            console.log("person[id] :"+ person[id]);
+            // using for...in
+            console.log("--------------------------------");
+            for (let key in person) {
+                //console.log(key);
+                console.log("person."+key +" --> "+person[key]);
+            }
+            console.log("--------------------------------");
+          
+        }
+    </script>
+
+</body>
+</html>

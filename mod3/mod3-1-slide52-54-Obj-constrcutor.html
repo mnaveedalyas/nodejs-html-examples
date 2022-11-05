@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts String Comparison</h1>
+
+    <br><button onclick="testConstructor()">Constructor Func</button>
+<script> 
+    
+    function testConstructor(){
+
+        const user1 = new User_Function("naveed", "alyas", 45);
+        const user2 = new User_Function("derek", "webb", 40);
+        
+        for (let key in user1) {
+            //console.log(key);
+            console.log("user1."+key +" : "+user1[key]);
+        }
+        console.log("user1.fullname :"+user1.fullname());
+        console.log("----------------------------------------");
+        for (let key in user2) {
+            //console.log(key);
+            console.log("user2."+key +" : "+user2[key]);
+        }
+        console.log("user2.fullname :"+user2.fullname());
+    }
+    function User_Function (fname, lname, age){
+        this.fname = fname;
+        this.lname = lname;
+        this.age = age;
+        this.fullname = function(){return this.fname+" "+this.lname};
+    }
+</script>
+
+<br><button onclick="testClassConstructor()">Class Constructor</button>
+<script> 
+    
+    function testClassConstructor(){
+
+        const user1 = new User_Class("naveed", "alyas", 45);
+        const user2 = new User_Class("derek", "webb", 40);
+        
+        for (let key in user1) {
+            //console.log(key);
+            console.log("user1."+key +" : "+user1[key]);
+        }
+        console.log("user1.fullname :"+user1.fullname());
+        console.log("----------------------------------------");
+        for (let key in user2) {
+            //console.log(key);
+            console.log("user2."+key +" : "+user2[key]);
+        }
+        console.log("user2.fullname :"+user2.fullname());
+    }
+
+    class User_Class {
+        fname = "";
+        lname = "";
+        age = 0;
+        fullname = "";
+        constructor(fname, lname, age){
+            this.fname = fname;
+            this.lname = lname;
+            this.age = age;
+            this.fullname = function(){return this.fname+" "+this.lname};
+        }
+    }
+    
+</script>
+    
+</body>
+</html>

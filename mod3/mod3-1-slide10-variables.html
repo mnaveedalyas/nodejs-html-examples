@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts Variables</h1>
+
+    <button onclick="testvar()" >Test var</button>
+    <script>
+        
+        function testvar(){
+            var greetings = 'welcome to javascript world!'
+            console.log("1 --> "+ greetings);
+            var counter = 1;
+            if (counter > 0){
+                var greetings = 'hi it is testing'
+                console.log("2 --> "+ greetings);
+            }
+            var greetings = 'hi it is testing'
+            console.log("3 --> "+ greetings);
+            console.log("------------------------------------")
+        }
+    </script>
+    <button onclick="testlet()">Test let</button>
+    <script>
+        function testlet(){
+            let greetings = 'welcome to javascript world!'
+            console.log("1 --> "+ greetings);
+            var counter = 1;
+            if (counter > 0){
+                let greetings = 'hi it is testing'
+                console.log("2 --> "+ greetings);
+            }
+            //let greetings = 'welcome to javascript world!';
+            console.log("3 --> "+ greetings);
+            //Can not declare this again
+            //let greetings = 'hi it is testing'
+            console.log("------------------------------------")
+        }
+    </script>
+
+
+    <button onclick="testconst()">Test const</button>
+    <script>
+        function testconst(){
+            const greetings = 'welcome to javascript world!'
+            console.log("1 --> "+ greetings);
+            //greetings = "const vallue is modified";
+            var counter = 1;
+            if (counter > 0){
+                const greetings = 'hi it is testing'
+                console.log("2 --> "+ greetings);
+            }
+            //greetings = "it is 3nd value";
+            console.log("3 --> "+ greetings);
+            //Can not declare this again
+            //const greetings = 'hi it is testing'
+            console.log("------------------------------------")
+        }
+    </script>
+    
+
+</body>
+</html>

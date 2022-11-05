@@ -1,0 +1,634 @@
+<html lang="en">
+<head>
+    <style>
+        .row {
+            display: flex;
+            flex-direction: row;
+            align-items: left;
+        }
+
+        .col {
+            margin: 10px;
+            width: 25%;
+        }
+
+        button {
+            width: 160px
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Advance JavaScript</title>
+</head>
+<body>
+    
+
+    <div class="row">
+        <div class="col"><button onclick="testGetterSetter1()">Getter / Setter </button></div>
+        <div class="col"><button onclick="testGetterSetterWithDescriptor()">Getter / Setter / Descriptor</button></div>
+        <div class="col"><button onclick="testFunctConstructor()">Functional Descriptor</button></div>
+    </div>
+    <script>
+
+        function testGetterSetter1(){
+            console.clear();
+
+            const foo = {
+
+                bar(){
+                
+                    return this._bar || 1;
+                
+                }
+            };
+            console.log('foo.bar :'+foo.bar);
+            console.log('foo.bar :'+foo.bar());
+            console.log('---------------------- ')
+
+            const fooWithGetSet = {
+                
+                print() {
+                    return this._bar;
+                },
+
+                get bar(){
+                    return this._bar;
+                },
+                
+                set bar(value) {
+                    this._bar = value;
+                }
+            }
+            console.log('foo.bar :'+fooWithGetSet._bar);
+            fooWithGetSet.bar = 20;
+            console.log('foo.bar :'+fooWithGetSet._bar);
+            //console.log('foo.bar() :'+fooWithGetSet.bar());
+            console.log('foo.print() :'+fooWithGetSet.print());
+
+            console.log('---------------------- ')
+            for (key in fooWithGetSet){
+                console.log(key+' --> '+fooWithGetSet[key] + ' --> '+ typeof(fooWithGetSet[key]));
+            }
+        }    
+        
+        function testGetterSetterWithDescriptor(){
+            console.clear();
+
+
+            const user = {
+                _fName: "Dave",
+                _lName: "Hyman",
+                _age: 55,
+
+                get FirstName(){
+                    return this._fName;
+                },
+                set FirstName(fname){
+                    this._fName = fname;
+                },
+                get LastName(){
+                    return this._lName;
+                },
+                set LastName(lname){
+                    this._lName = lname;
+                },
+                get Age(){
+                    return this._age;
+                },
+                set Age(years){
+                    this._age = years
+                },
+
+                greet(){
+                    console.log('Hi! '+this.FirstName+" "+this.LastName);
+                }
+
+            }
+            console.log('user.FirstName : '+user.FirstName);
+            console.log('user.LastName : '+user.LastName);
+            console.log('user.Age : '+user.Age);
+            console.log('---------------------- ')
+            user.FirstName = 'Nelson';
+            user.LastName = 'Medina';
+            user.Age = 44;
+            console.log('user.FirstName : '+user.FirstName);
+            console.log('user.LastName : '+user.LastName);
+            console.log('user.Age : '+user.Age);
+            user.greet();
+
+            console.log('---------------------- ')
+            for (let key in user){
+                console.log( key+ "-->"+ user[key]+" --> "+JSON.stringify(Object.getOwnPropertyDescriptor(user, key)))
+            }
+        }
+         
+  
+        function testFunctConstructor(){
+            console.clear();
+            // constructor function
+            function Person (person_name, person_age, person_gender) {
+
+                // assigning  parameter values to the calling object
+                this.name = person_name,
+                this.age = person_age,
+                this.gender = person_gender,
+
+                this.greet = function () {
+                    return ('Hi' + ' ' + this.name);
+                }
+            }
+            // creating objects
+            const person1 = new Person('John', 23, 'male');
+            const person2 = new Person('Sam', 25, 'female');
+
+            for (let key in person1){
+                console.log( key+ "-->"+ person1[key]+" --> "+JSON.stringify(Object.getOwnPropertyDescriptor(person1, key)))
+            }
+            
+        }
+            
+        
+    </script>
+    <div class="row">
+        <div class="col"><button onclick="testFuncConstuctor()">Function Constructor</button></div>
+        <div class="col"><button onclick="testConstuctor2()"> Constructor Function Vs Object Literal</button></div>
+    </div>
+    <script>
+        
+        function testFuncConstuctor(){
+            console.clear();
+
+            // constructor function
+            function Person (person_name, person_age, person_gender) {
+
+                // assigning  parameter values to the calling object
+                this.name = person_name,
+                this.age = person_age,
+                this.gender = person_gender,
+                this.greet = function () {
+                    return ('Hi' + ' ' + this.name);
+                }
+            }
+            // creating objects
+            const person1 = new Person('John', 23, 'male');
+            const person2 = new Person('Sam', 25, 'female');
+
+            // accessing properties
+            console.log("person1.name: "+person1.name); // "John"
+            console.log("person2.name: "+person2.name); // "Sam"
+
+            console.log("person1.greet: "+person1.greet());
+            console.log("person2.greet: "+person2.greet());
+        }
+        
+        function testConstuctor2(){
+            console.clear();
+
+            // using object lateral
+            let person = {
+                name: 'Sam'
+            }
+            console.log("person.name: "+person.name); //sam 
+            let student = person;
+            // changes the property of an object
+            student.name = 'John';
+            console.log("student.name: "+student.name);  //John
+            console.log("person.name: "+person.name); //sam 
+            console.log('---------------------------');
+            // using constructor function
+
+
+            function PersonCon () {
+                this.name = 'Sam'
+            }
+
+            let person1 = new PersonCon();
+            let person2 = new PersonCon();
+            console.log("person1.name: "+person1.name);
+            console.log("person2.name: "+person2.name);
+            console.log('-----------------');
+            person1.name = 'John';
+            console.log("person1.name: "+person1.name);
+            console.log("person2.name: "+person2.name);
+            console.log('-----------------');
+            // adding new property to person1
+            person1.age = 20;
+            console.log("person1.age: "+person1.age);
+            console.log("person2.age: "+person2.age);
+
+            console.log('-----------------');
+            person1.greet = function () {
+                console.log('hello');
+            }
+
+            person1.greet();
+            //person2.greet();
+
+            // adding new property to constructor function
+            PersonCon.prototype.gender = 'Male';
+
+            console.log("person1.gender: "+person1.gender);
+            console.log("person2.gender: "+person2.gender);
+        }
+
+
+
+    </script>
+
+    <div class="row">
+        <div class="col"><button onclick="testPrototype()">Prototype</button></div>
+        <div class="col"><button onclick="testProto()">__Proto__</button></div>
+        <div class="col"><button onclick="testFProto()">F.Prototype</button></div>
+    </div>
+    <script>
+        function testPrototype(){
+            console.clear();
+
+            function Person () {
+                this.name = 'John',
+                this.age = 23
+            }
+
+            const person = new Person();
+
+            // checking the prototype value
+            console.log("Person.prototype: "+Person.prototype); // { ... }
+            console.log("Person.prototype-JSON: "+ JSON.stringify(Person.prototype)  );
+
+            
+
+            // adding property to constructor function
+            Person.prototype.gender = 'male';
+            Person.prototype.race = 'human';
+
+
+            // prototype value of Person
+            console.log("Person.prototype: "+Person.prototype);
+            console.log("Person.prototype-JSON: "+ JSON.stringify(Person.prototype)  );
+            console.log('-----------------');
+
+            console.log("person.prototype: "+person.prototype);
+            console.log("person.prototype-JSON: "+ JSON.stringify(person.prototype)  );
+            console.log('-----------------');
+
+            // accessing prototype property
+            console.log("person.__proto__: "+person.__proto__);
+            console.log("person.__proto__: "+JSON.stringify(person.__proto__));
+            console.log('-----------------');
+
+            // creating objects
+            const person1 = new Person();
+            const person2 = new Person();
+            // inheriting the property from prototype
+            console.log("person1.gender: "+person1.gender);
+            console.log("person2.gender: "+person2.gender);
+            //console.log(person1);
+            //console.dir(person1);
+
+        }
+
+        function testProto(){
+            console.clear();
+
+            const animal = {
+                eats: true
+            }
+
+            const rabbit = {
+                jump: true,
+                color: 'white'
+            }
+
+            console.log("animal: "+animal+"  --> "+JSON.stringify(animal));
+            console.log("rabbit: "+rabbit+"  --> "+JSON.stringify(rabbit));
+            console.log('-----------------');
+            rabbit.__proto__ = animal;
+            console.log("rabbit: "+rabbit+"  --> "+JSON.stringify(rabbit));
+            console.log('-----------------');
+            for (let key in rabbit){
+                console.log(key+" --> "+rabbit[key])
+            }
+            
+            console.log('-----------------');
+            console.log("Object.keys(rabbit): "+Object.keys(rabbit));
+            console.log('rabbit.eats: '+rabbit.eats)
+
+        }
+
+        function testFProto(){
+            console.clear();
+            const animal = {
+                eats: true
+            }
+
+            function Rabbit (name) {
+                this.name =  name
+            }
+
+            console.log("animal: "+animal+"  --> "+JSON.stringify(animal));
+            console.log("Rabbit: "+Rabbit+"  --> "+JSON.stringify(Rabbit));
+            console.log("Rabbit.prototype: "+Rabbit.prototype+"  --> "+JSON.stringify(Rabbit.prototype));
+            console.log('-----------------');
+            Rabbit.prototype = animal;
+            console.log("Rabbit: "+Rabbit+"  --> "+JSON.stringify(Rabbit));
+            console.log("Rabbit.prototype: "+Rabbit.prototype+"  --> "+JSON.stringify(Rabbit.prototype));
+            console.log('-----------------');
+            const rabbit = new Rabbit('white rabbit');
+
+            console.log("rabbit: "+rabbit+"  --> "+JSON.stringify(rabbit));
+            console.log("rabbit.prototype: "+rabbit.prototype+"  --> "+JSON.stringify(rabbit.prototype));
+            console.log("rabbit.__proto__: "+rabbit.__proto__+"  --> "+JSON.stringify(rabbit.__proto__));
+            console.log('-----------------');
+            for (let key in rabbit){
+                console.log(key+" --> "+rabbit[key])
+            }
+
+            console.log('-----------------');
+            console.log("Object.keys(rabbit): "+Object.keys(rabbit));
+
+            console.log('-----------------');
+            console.log("rabbit.eats: "+rabbit.eats);
+            console.log("rabbit.__proto__.eats: "+rabbit.__proto__.eats);
+            
+        }
+    </script>
+
+    <div class="row">
+        <div class="col"><button onclick="testClass()">Class</button></div>
+        <div class="col"><button onclick="testClassInheritance()">Class Inheritance</button></div>
+        <div class="col"><button onclick="testPrivateClass()">Private Class</button></div>
+    </div>
+    <script>
+        function testClass(){
+            class Person {
+                constructor(fname, lname) {
+                 this.fName = fname;
+                 this.lName = lname; 
+                }
+                // defining method
+                greet() {
+                    console.log(`Hello ${this.fName} ${this.lName}`);
+                }
+            }
+
+            let person1 = new Person('John', 'Dave');
+
+            // accessing property
+            console.log('person1.fName :'+person1.fName); // John
+            console.log('person1.lName :'+person1.lName)
+
+            // accessing method
+            person1.greet(); // Hello John
+        }
+        function testClassInheritance(){
+            console.clear();
+            class Animal{
+
+                NoOfLegs = 4;
+                static Height = 45;
+                constructor(name, weight){
+                    this.name = name;
+                    this.speed = 0;
+                    this.Weight= weight;
+                    //console.log("Weight : "+weight);
+                    //console.log("this.Weight : "+this.Weight)
+                }
+                run(speed){
+                    this.speed = speed;
+                    console.log(`${this.name} runs with speed ${this.speed} `);
+                }
+                stop(){
+                    this.speed = 0;
+                    console.log(`${this.name} stands still`);
+                }
+                weight(){
+                    console.log(`${this.name} has weight of ${this.Weight} Height: ${this.Height}`);
+                }
+                static displayInfo(){
+                    console.log(` Name: ${this.name},  \ncolor: ${this.color}, \nweight: ${this.Weight}, \nNoOfLegs: ${this.NoOfLegs}, \nHeight: ${this.Height}  `);
+                }
+
+            }
+
+            class Rabbit extends Animal {
+                constructor(name, color, weight){
+                    super(name, weight);
+                    this.color = color;
+                }
+                hide(){
+                    console.log(`${this.name} of color ${this.color} hides`);
+                }
+                
+                stop(){
+                    console.log('---------------------');
+                    super.stop();
+                    this.hide();
+                }
+                
+            }
+
+            const rabbit = new Rabbit('Nick-rabbit', 'white', 10);
+            rabbit.run(5);
+            rabbit.stop();
+            console.log('---------------------');
+            rabbit.weight();
+            //rabbit.hide();
+            console.log('---------------------');
+            Animal.displayInfo();
+
+        }
+
+        function testProtectedClass(){
+
+            class CoffeeMachine {
+                _waterAmount = 0;
+
+                set waterAmount(value) {
+                    if (value < 0) {
+                        value = 0;
+                    }
+                    this._waterAmount = value;
+                }
+
+                get waterAmount() {
+                    return this._waterAmount;
+                }
+
+                constructor(power) {
+                    this._power = power;
+                }
+
+            }
+
+            // create the coffee machine
+            let coffeeMachine = new CoffeeMachine(100);
+            console.log('coffeeMachine._waterAmount : '+coffeeMachine._waterAmount);
+            console.log('coffeeMachine.waterAmount : '+coffeeMachine.waterAmount);
+            coffeeMachine.waterAmount = 20; 
+            console.log('coffeeMachine._waterAmount : '+coffeeMachine._waterAmount);
+            console.log('coffeeMachine.waterAmount : '+coffeeMachine.waterAmount);     
+        }
+
+        function testPrivateClass(){
+
+            class CoffeeMachine {
+                #waterLimit = 200;
+
+                #fixWaterAmount(value) {
+                    //console.log('new limit :'+value);
+                    if (value < 0) return 0;
+                    if (value > this.#waterLimit) return value;
+                }
+
+                set WaterAmount(value) {
+                    //console.log('1 new limit :'+value);
+                    this.#waterLimit = this.#fixWaterAmount(value);
+                    //console.log('2 new limit :'+this.#waterLimit);
+                }
+
+                displayInfo(){
+                    console.log('this.#waterLimit :'+this.#waterLimit);
+                }
+
+            }
+
+            let coffeeMachine = new CoffeeMachine();
+
+            // can't access privates from outside of the class
+            //coffeeMachine.#fixWaterAmount(123); // Error
+            //console.log( coffeeMachine.#waterLimit);
+            coffeeMachine.WaterAmount = 1000; 
+            coffeeMachine.displayInfo();
+        }
+    </script>
+
+    <div class="row">
+        <div class="col"><button onclick="testTryCatch()">Try/Catch/Finally</button></div>
+        <div class="col"><button onclick="testCallback()">CallBack</button></div>
+        <div class="col"><button onclick="testPromise()">Promise</button></div>
+    </div>
+    <script>
+        function testTryCatch(){
+
+            try{
+                throw "ErrorCode-2322";
+            }catch (err){
+                console.log("Some errors : "+err)
+                console.log("err.message : "+err.message)
+            }finally{
+                console.log("i am in finally block")
+            }
+            console.log('---------------------');
+
+            const json = '{ "age" : 30, "na3e": "naveed" }';
+            try{
+                const user = JSON.parse(json);
+                if (!user.name){
+                    throw new SyntaxError("Incomplete data: no name ");
+                }
+                console.log("user.name: "+user.name);
+            }catch(err){
+                console.log("JSON Error: "+ err.message);
+            }finally{
+                console.log(" Stopping application ");
+            }
+
+        }
+
+        function testCallback(){
+
+            function executeClock(processName, delayTime, callback) {
+                setTimeout( ()=>{
+                    console.log("I am inside executeClock :"+processName);
+                    if (callback)
+                        callback(processName);
+                }, delayTime, processName)
+            }
+
+            executeClock("1", 2000, function(processName){
+                console.log("I am inside callback "+processName);
+                executeClock("2", 2000, function(processName){
+                    console.log("I am inside callback "+processName);
+                    executeClock("3", 2000, (processName) =>{
+                        console.log("I am inside callback "+processName);
+                    });
+                });
+            });
+            
+            
+            executeClock("4", 2000, null);
+            executeClock("5", 2000);
+            executeClock("6", 2000);
+        }
+
+        function testPromise(){
+
+            
+            let promise = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    console.log('---------------------');
+                    resolve("success")
+                }, 1000);
+            });
+
+            promise.then(
+                result => console.log("result: "+ result), // doesn't run
+                error => console.log("error: "+ error)
+            )
+            
+            let promise1 = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    console.log('---------------------');
+                    reject(new Error("Whoops!"))
+                }, 2000);
+            });
+
+            promise1.then(
+                result => console.log("result: "+ result), // doesn't run
+                error => console.log("error: "+ error)
+            )
+            
+            let promise2 = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    console.log('---------------------');
+                    resolve("success")
+                }, 3000);
+            }).then(
+                result => console.log("result: "+ result), // doesn't run
+                error => console.log("error: "+ error)
+
+            );
+
+        }
+    </script>
+
+    <div class="row">
+        <div class="col"><button onclick="testAsyncAwait()">async / await</button></div>
+        <div class="col"><button onclick="testAsyncAwait()">2</button></div>
+        <div class="col"><button onclick="testAsyncAwait()">3</button></div>
+    </div>
+    <script>
+        function testAsyncAwait(){
+
+            async function myfunc(){
+                console.log(" in progress .... ");
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(()=>{
+                        console.log("inside promise");
+                        resolve ("done");
+                    }, 2000)
+                })
+
+                const result = await promise;
+                console.log("final result: "+result);
+            }
+            myfunc();
+        }
+    </script>
+
+</body>
+</html>
+
+

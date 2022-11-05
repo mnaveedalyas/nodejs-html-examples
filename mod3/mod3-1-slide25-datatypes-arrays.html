@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts Arrays</h1>
+
+    <br><button onclick="test_array()">Test Array</button>
+    <script>
+        function test_array(){
+            const stringArray = ['a', 'b', 'c'];
+            const numberArray = [1, 2, 3];
+            console.log (stringArray);
+            console.log (numberArray);
+            console.log(stringArray.concat(numberArray));
+
+            console.log(typeof stringArray);
+            console.log(stringArray[0] +" --> "+typeof stringArray[0]);
+            console.log(stringArray[0] +" --> "+typeof(stringArray[0]));
+            console.log(numberArray[0] +" --> "+typeof numberArray[0]);     
+        }
+    </script>
+    
+</body>
+</html>

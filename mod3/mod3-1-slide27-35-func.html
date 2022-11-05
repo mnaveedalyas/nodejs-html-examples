@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts  Functions</h1>
+
+    <br><button onclick="funcCall()">Func Call</button>
+    <script>
+
+        function funcCall(){
+            console.clear();
+
+            let age = 10;
+            let status = checkAge(age);
+            console.log('person is '+status);
+        }
+        function checkAge(age){
+            console.log('age to check : '+age);
+            
+            //return ;
+            if (age >= 18){
+                return 'adult';
+            }else{
+                return 'non-adult';
+            }
+            //return age >= 18 ? 'adult' : 'non-adult';
+        }
+    </script>
+    <br><button onclick="testFuncAsExp()">Func as Expression</button>
+    <script>    
+        function testFuncAsExp(){
+            console.clear();
+
+            const sayhi = function (){
+                console.log('Hello, i am testing it');
+            }
+            let test = sayhi;
+            sayhi();
+            test();
+            console.log("value of variable sayhi : "+sayhi);
+        }
+    </script>
+    <br><button onclick="testFuncHoist()">Func Hoist</button>
+    <script> 
+        
+        function testFuncHoist(){
+            console.clear();
+            sayhi("naveed");
+            sayhi1("naveed");
+
+            function sayhi(name){
+                console.log("Hello "+name+"!");
+            }
+            sayhi1 = function  (name) {
+                console.log("Hello from expression: "+name+"!");
+            }
+        }
+
+        //sayhia("naveed");
+        //sayhi1a("naveed");
+        function sayhia(name){
+            console.log("Hello "+name+"!");
+        }
+        sayhi1a = (name) => {
+            console.log("Hello from expression: "+name+"!");
+        }
+
+    </script>
+
+    <br><button onclick="arrowFuncCall()">Arrow Func</button>
+    <script> 
+        
+        function arrowFuncCall(){
+            console.clear();
+            sayhi("naveed");
+        }
+        
+        sayhi = (name) => {
+            console.log("Hello from Arrow Function : "+name+"!");
+            console.log('1- Sum of 3 , 5 ='+ sum(3, 5));
+            console.log('1- Addition of 3 , 5 ='+ Addition(3, 5));
+            console.log('1- product of 3 , 5 ='+ multiply(3, 5));
+
+            let myadd = new Addition(3, 4);
+            console.log('myadd : '+ myadd);
+            console.log('Addition : '+ Addition(3, 5));
+            let mymulti = new multiplicationExp(3, 5);
+            console.log('mymulti : '+ mymulti)
+            console.log('multiplicationExp : '+ multiplicationExp(3,5))
+
+        }
+        sum = (a, b) => (a + b);
+        multiply = (a, b) => (a * b);
+
+        
+        function Addition(a, b){
+            return (a + b)
+        }
+        multiplicationExp = function (a, b){
+            return ( a + b);
+        }
+
+        
+    </script>
+
+    
+</body>
+</html>

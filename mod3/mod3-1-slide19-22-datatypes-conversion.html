@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts Premitive Data Types Conversion</h1>
+
+    <button  onclick="premitive_datatypes_conversion()">Premitive Types Conversion</button>
+    <script>
+        function premitive_datatypes_conversion(){
+            
+            let count=1;
+            console.log ((count++)+" --> 4 / 0 --> "+ (4/0));
+            console.log ((count++)+" --> 0 / 4 --> "+ (0/4));
+            //Nan (Not-a-Number)
+            console.log ((count++)+" --> ab / 4 --> "+ ("ab"/0));
+            console.log("--------------------------------");
+
+            console.log ((count++)+" --> 4 * 0 --> "+ (4*0));
+            console.log ((count++)+" --> 0 * 4 --> "+ (0*4));
+            console.log ((count++)+" --> ab * 4 --> "+ ("ab"*0));
+            console.log("--------------------------------");
+            
+
+            console.log ((count++)+" --> 4 + 1 --> "+ (4 + 1));
+            console.log ((count++)+" --> \"4\" + 1 --> "+ ("4" + 1));
+            console.log ((count++)+" --> 4 + \"1\" --> "+ (4 + "1"));
+            console.log ((count++)+" --> 4 + 5 + \"1\" --> "+ (4 + 5 + "1"));
+            
+            console.log("--------------------------------");
+            console.log ((count++)+" --> 4 - 1 --> "+ (4 - 1));
+            console.log ((count++)+" --> \"4\" - 1 --> "+ ("4" - 1));
+            console.log ((count++)+" --> 10 - 4 - \"1\" --> "+ (10 - 4 - "1"));
+            console.log("--------------------------------");
+
+            console.log ((count++)+" --> \"\" -->  "+  (+"") + " --  "+  (-""));
+            console.log ((count++)+" --> \"10\" --> "+  (+"10") + " --  "+  (-"10"));
+
+            console.log("--------------------------------");
+            let anum = 12;
+            console.log (`${count++} --> ${typeof anum } --> ${anum}`);
+            console.log (`${count++} --> ${typeof (Boolean(anum))} --> ${Boolean(anum)}`);
+            console.log (`${count++} --> ${typeof (String(anum))} --> ${String(anum)}`);
+            console.log("--------------------------------");
+            anum = "12ab";
+            console.log (`${count++} --> ${typeof anum } --> ${anum}`);
+            console.log (`${count++} --> ${typeof (Boolean(anum))} --> ${Boolean(anum)}`);
+            console.log (`${count++} --> ${typeof (Number(anum))} --> ${Number(anum)}`);
+            console.log("--------------------------------");
+            anum = "";
+            console.log (`${count++} --> ${typeof anum } --> ${anum}`);
+            console.log (`${count++} --> ${typeof (Boolean(anum))} --> ${Boolean(anum)}`);
+            console.log (`${count++} --> ${typeof (Number(anum))} --> ${Number(anum)}`);
+        }
+    </script>
+    
+</body>
+</html>

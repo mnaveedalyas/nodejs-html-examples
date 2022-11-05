@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+    <style>
+        button {
+            margin: 5px;
+            
+        }
+        .active_button {
+            height: 40px;
+            background: #ebf34c;
+            border: 1px solid #e52e09;
+        }
+        div {
+            margin: 5px;
+            width: 100%;
+        }
+        .txtInput {
+            height: 20px;
+            font-size: 12px;
+            background: #f8f8f8;
+            border: 1px solid #00bfbf;
+            padding-left: 4px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic JavaScripts Testing</h1>
+    
+    
+
+    <div class="row">
+        <div >
+            <lable for="fname">First Name</lable> 
+            <input type="text" name="fname" id="fname" class="txtInput" width="10%"  onkeypress="updatefullname();"> 
+            <lable for="lname">Last Name</lable> 
+            <input type="text" name="lname" id="lname" class="txtInput" width="10%" onkeypress="updatefullname();"> 
+        </div>
+        <script>
+            function updatefullname (){
+                let fname = document.getElementById("fname").value;
+                let lname = document.getElementById("lname").value;
+                let fullname = fname +" "+lname;
+                console.log("fullname : "+fullname);
+                document.getElementById("fullname").value = fullname;
+            }
+        </script>
+        <div>
+            <lable for="fullname">Customer Name</lable> 
+            <input type="text" name="fullname" id="fullname" class="txtInput" width="50%" readonly> 
+        </div>
+        <div>
+            <lable for="dob">Date of Birth</lable> 
+            <input type="date" name="dob" id="dob" class="txtInput" width="10%" onkeypress="updateAge()" onchange="updateAge()"> 
+            <lable for="age">Age</lable> 
+            <input type="text" name="age" id="age" width="10%" class="txtInput" readonly> 
+        </div>
+        <script>
+            function updateAge (){
+                let dobstr = document.getElementById("dob").value;
+                console.log("dobstr : "+dobstr);
+                let dob = new Date(dobstr);  
+                //calculate month difference from current date in time  
+                let month_diff = Date.now() - dob.getTime();  
+                console.log("month_diff : "+month_diff);
+                
+                //convert the calculated difference in date format  
+                let age_dt = new Date(month_diff);   
+                console.log("age_dt : "+age_dt);   
+                
+                let mon = age_dt.getUTCMonth();  
+                console.log("month : "+mon); 
+                
+                //extract year from date      
+                let year = age_dt.getUTCFullYear();  
+                console.log("year : "+year);   
+                
+                //now calculate the age of the user  
+                year = Math.abs(year - 1970);  
+                let age = (year > 0 ? year+" Years ":"") + (mon>0?mon+" Months":"");
+                console.log("age : "+age);   
+                //display the calculated age  
+                document.getElementById("age").value = age;
+            }
+        </script>
+    </div>
+
+    <script>
+        //first message 
+    
+        //alert('hello world 1'); 
+        //this is my second message
+        //alert('hello world 2');
+        
+        //alert('hello world 3'); alert('hello world 31'); 
+        //alert('hello world 32')
+        //alert('hello world 4');
+        //multi line comments
+        /* 
+        i am testing this
+        comments 
+        */
+    </script>
+
+    <script>
+        // function declaration
+        function func_name(name){
+            console.log('i am testing my function : '+name);
+        }
+        //calling function 
+        //func_name("ABCFDDDDDDD");
+    </script>
+    
+    <script>
+        // function declaration
+        function func_name(name){
+            //single quotes
+            console.log('Welcome : '+name);
+            //double quotes
+            console.log("Welcome : "+name);
+            //backticks
+            console.log(`Welcome : ${ name } `);
+        }
+        //calling function 
+        //func_name('naveed');
+    </script>
+    
+    <button onclick="testvar()" >Test var</button>
+    <script>
+        
+        function testvar(){
+            var greetings = 'welcome to javascript world!'
+            console.log("1 --> "+ greetings);
+            var counter = 1;
+            if (counter > 0){
+                var greetings = 'hi it is testing'
+                console.log("2 --> "+ greetings);
+            }
+            var greetings = 'hi it is testing'
+            console.log("3 --> "+ greetings);
+        }
+    </script>
+    <button onclick="testlet()">Test let</button>
+    <script>
+        function testlet(){
+            let greetings = 'welcome to javascript world!'
+            console.log("1 --> "+ greetings);
+            var counter = 1;
+            if (counter > 0){
+                let greetings = 'hi it is testing'
+                console.log("2 --> "+ greetings);
+            }
+            //let greetings = 'welcome to javascript world!';
+            console.log("3 --> "+ greetings);
+            //Can not declare this again
+            //let greetings = 'hi it is testing'
+        }
+    </script>
+
+
+    <button onclick="testconst()">Test const</button>
+    <script>
+        function testconst(){
+            const greetings = 'welcome to javascript world!'
+            console.log("1 --> "+ greetings);
+            //greetings = "const vallue is modified";
+            var counter = 1;
+            if (counter > 0){
+                const greetings = 'hi it is testing'
+                console.log("2 --> "+ greetings);
+            }
+            //greetings = "it is 3nd value";
+            console.log("3 --> "+ greetings);
+            //Can not declare this again
+            //const greetings = 'hi it is testing'
+        }
+    </script>
+
+    <br><button  onclick="premitive_datatypes()">Premitive Types</button>
+    <script>
+        function premitive_datatypes(){
+            
+            let count=1;
+            let res = 12;
+
+            //Integer abc = 44;
+
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            res = 12.23;
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            res = 9935435543534n;
+            console.log ((count++)+" --> "+ typeof res +" --> "+ res);
+
+            console.log("--------------------------------");
+            res = "12" ;
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            
+            res = "a12";
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            
+            res = "a12" + "abcfv";
+            console.log (`${count++} -->  ${typeof res} --> ${ res } `);
+            
+            console.log("--------------------------------");
+
+            console.log (`${count++} --> ${typeof (10 > 9)} --> ${10 > 9}`);
+            console.log (`${count++} --> ${typeof (10 < 9)} --> ${10 < 9}`);
+            //res = 10 > 9;
+            //console.log ((count++)+" --> "+ (typeof res)+" --> "+ (10 > 9));
+            //console.log ((count++)+" --> "+ (typeof 10 < 9)+" --> "+ (10 < 9));   let abc = "";
+            console.log("--------------------------------");
+            let age = null;
+            console.log (`${count++} --> ${typeof age} --> ${age}`);
+            console.log (`${count++} --> ${typeof (age * 3)} --> ${age * 3}`);
+            age = 10;
+            console.log (`${count++} --> ${typeof (age * 3)} --> ${age * 3}`);
+
+            console.log("--------------------------------");
+            let price = 0;
+            console.log (`${count++} --> ${typeof price} --> ${price}`);
+            console.log (`${count++} --> ${typeof (price * 3)} --> ${price * 3}`);
+            price = 20;
+            console.log (`${count++} --> ${typeof (price * 3)} --> ${price * 3}`);
+
+
+        }
+    </script>
+
+    <br><button  onclick="premitive_datatypes_conversion()">Premitive Types Conversion</button>
+    <script>
+        function premitive_datatypes_conversion(){
+            
+            let count=1;
+            console.log ((count++)+" --> 4 / 0 --> "+ (4/0));
+            console.log ((count++)+" --> 0 / 4 --> "+ (0/4));
+            //Nan (Not-a-Number)
+            console.log ((count++)+" --> ab / 4 --> "+ ("ab"/0));
+            console.log("--------------------------------");
+
+            console.log ((count++)+" --> 4 * 0 --> "+ (4*0));
+            console.log ((count++)+" --> 0 * 4 --> "+ (0*4));
+            console.log ((count++)+" --> ab * 4 --> "+ ("ab"*0));
+            console.log("--------------------------------");
+            
+
+            console.log ((count++)+" --> 4 + 1 --> "+ (4 + 1));
+            console.log ((count++)+" --> \"4\" + 1 --> "+ ("4" + 1));
+            console.log ((count++)+" --> 4 + \"1\" --> "+ (4 + "1"));
+            console.log ((count++)+" --> 4 + 5 + \"1\" --> "+ (4 + 5 + "1"));
+            
+            console.log("--------------------------------");
+            console.log ((count++)+" --> 4 - 1 --> "+ (4 - 1));
+            console.log ((count++)+" --> \"4\" - 1 --> "+ ("4" - 1));
+            console.log ((count++)+" --> 10 - 4 - \"1\" --> "+ (10 - 4 - "1"));
+            console.log("--------------------------------");
+
+            console.log ((count++)+" --> \"\" -->  "+  (+"") + " --  "+  (-""));
+            console.log ((count++)+" --> \"10\" --> "+  (+"10") + " --  "+  (-"10"));
+
+            console.log("--------------------------------");
+            let anum = 12;
+            console.log (`${count++} --> ${typeof anum } --> ${anum}`);
+            console.log (`${count++} --> ${typeof (Boolean(anum))} --> ${Boolean(anum)}`);
+            console.log (`${count++} --> ${typeof (String(anum))} --> ${String(anum)}`);
+            console.log("--------------------------------");
+            anum = "12ab";
+            console.log (`${count++} --> ${typeof anum } --> ${anum}`);
+            console.log (`${count++} --> ${typeof (Boolean(anum))} --> ${Boolean(anum)}`);
+            console.log (`${count++} --> ${typeof (Number(anum))} --> ${Number(anum)}`);
+            console.log("--------------------------------");
+            anum = "";
+            console.log (`${count++} --> ${typeof anum } --> ${anum}`);
+            console.log (`${count++} --> ${typeof (Boolean(anum))} --> ${Boolean(anum)}`);
+            console.log (`${count++} --> ${typeof (Number(anum))} --> ${Number(anum)}`);
+        }
+    </script>
+
+    <br><button onclick="test_objectType()">Object</button>
+    <script>
+
+        function test_objectType(){
+            let person = {
+                first_name: "Dave",
+                last_name: "hayman",
+                age: 30,
+            };
+            console.log("1- person : "+ person);
+            console.log("1- person.first_name :"+ person.first_name);
+            console.log("1- person.last_name :"+ person.last_name);
+            console.log("--------------------------------");
+            person.first_name = 'naveed';
+            person.last_name = 'alyas';
+            person.age = 45;
+            // using for...in
+            for (let abc in person) {
+                console.log("2- person."+abc +" --> "+person[abc]);
+            }
+            console.log("--------------------------------");
+            person = {
+                first_name: "derek",
+                last_name: "david",
+                age: 30,
+            };
+            for (let key in person) {
+                console.log("3- person."+key +" --> "+person[key]);
+            }
+            console.log("--------------------------------");
+        
+        }
+
+        
+    </script>
+
+   <br><button onclick="test_symbolType()">Test Symbol</button>
+    <script>
+
+        function test_symbolType(){
+            const x = Symbol();
+            console.log(x);
+            console.log(typeof x);
+
+            const y = Symbol("it is test");
+            console.log("y : "+y.toString());
+            console.log("y.description : "+y.description);
+            console.log("y.toString() : "+y.toString());
+            console.log(Symbol() == Symbol());
+
+            console.log("--------------------------------");
+            let id = Symbol("id");
+            let person = {
+                name: "David",
+                age: 30,
+                [id]: 10
+            };
+            console.log("person : "+ person);
+            console.log("person.toString() : "+ person.toString());
+            console.log("person[id] :"+ person[id]);
+            // using for...in
+            for (let key in person) {
+                //console.log(key);
+                console.log("person."+key +" --> "+person[key]);
+            }
+            console.log("--------------------------------");
+          
+        }
+    </script>
+
+    <br><button onclick="test_array()">Test Array</button>
+    <script>
+        function test_array(){
+            const stringArray = ['a', 'b', 'c'];
+            const numberArray = [1, 2, 3];
+            console.log (stringArray);
+            console.log (numberArray);
+            console.log(stringArray.concat(numberArray));
+
+            console.log(typeof stringArray);
+            console.log(stringArray[0] +" --> "+typeof stringArray[0]);
+            console.log(stringArray[0] +" --> "+typeof(stringArray[0]));
+            console.log(numberArray[0] +" --> "+typeof numberArray[0]);     
+        }
+    </script>
+
+    <br><button onclick="test_boolean()">Test Boolean</button>
+    <script>
+        function test_boolean(){
+            let num1 = 20;
+            let num2 = 30;
+
+            if (num1 > num2 ){
+                console.log(`difference between ${num1} and ${num2} is ${num1 - num2} `);
+            }else {
+                console.log(`difference between ${num1} and ${num2} is ${num2 - num1} `);
+            }
+            console.log("--------------------------------");
+            console.log(`difference between ${num1} and ${num2} is ${num1 > num2 ? num1 - num2 : num2 - num1 } `);
+            console.log("--------------------------------");
+
+            let num3 = null;
+            console.log ( num3 != null ? 'num3 is not null' : ' num3 is null' );
+            console.log ( !(num3 != null) ? 'num3 is  null' : ' num3 is not null' );
+            console.log("--------------------------------");
+            console.log ( num3 == null ? 'num3 is null' : ' num3 is not null' );
+            console.log ( !(num3 == null) ? 'num3 is not null' : ' num3 is null' );
+
+            console.log("--------------------------------");
+            console.log(' !null :'+ !null);
+            console.log(' !!null :'+ !!null);
+
+            console.log("--------------------------------");
+
+            let var1 = "abc";
+            let var2 = "abd";
+            console.log ( var1 > var2 ? var1+' > '+var1 : var1+' <= '+var2 );
+
+            var1 = "ab1";
+            var2 = "abc";
+            console.log ( var1 > var2 ? var1+' > '+var1 : var1+' <= '+var2 );
+            
+            console.log("--------------------------------");
+            
+
+        }
+    </script>
+
+<br><button onclick="funcCall()">Func Call</button>
+<script>
+    function funcCall(){
+        let age = 10;
+        let status = checkAge(age);
+        console.log('person is '+status);
+    }
+    function checkAge(age){
+        console.log('age to check : '+age);
+        
+        //return ;
+        if (age >= 18){
+            return 'adult';
+        }else{
+            return 'non-adult';
+        }
+        //return age >= 18 ? 'adult' : 'non-adult';
+    }
+</script>
+<br><button onclick="testFuncAsExp()">Func as Expression</button>
+<script>    
+    function testFuncAsExp(){
+        
+
+        const sayhi = function (){
+            console.log('Hello, i am testing it');
+        }
+        let test = sayhi;
+        sayhi();
+        test();
+        console.log("value of variable sayhi : "+sayhi);
+    }
+</script>
+<br><button onclick="testFuncHoist()">Func Hoist</button>
+<script> 
+    
+    function testFuncHoist(){
+        sayhi("naveed");
+        sayhi1("naveed");
+    }
+    
+    function sayhi(name){
+        console.log("Hello "+name+"!");
+    }
+
+    
+    
+    sayhi1 = (name) => {
+        console.log("Hello "+name+"!");
+    }
+    
+
+</script>
+<br><button class="active_button" onclick="testObjectExpFunc()">Exp Function</button>
+<script> 
+    
+    function testObjectExpFunc(){
+        const user = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 20,
+            fullname: function() { return this.firstName + " " + this.lastName}, 
+            sayHi: function () { console.log("Hi "+ this.fullname())},
+            sayHiMethod() { console.log("Hi, greetings to "+ this.fullname())}
+        }
+
+        
+        console.log('--- Testing Expression function -------\n');
+        console.log("user.firstName :"+ user.firstName);
+        console.log("user.fullname :"+ user.fullname());
+        user.sayHi();
+        user.sayHiMethod;
+        user.sayHiMethod();
+
+        console.log('----- object properties user obj -----\n');
+
+        const othersParam = () => { return "Telephone" } ;
+        
+        user[othersParam()] = "3454353210";
+        user[othersParam] = "345353210";
+
+        user[2] = "i am a value 2"; 
+        user['2f3'] = "i am a value 23";
+        user.country = "New Zealand"; 
+
+
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+
+        
+        delete user[2]; 
+        delete user['23'];
+        delete user.country ;
+        console.log('------after deletion---------\n');
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+
+        console.log('-----------------------------------\n');
+        console.log( 'user.firstName === undefined: '+ (user.firstName === undefined));
+        console.log( 'user.noSuchProperty === undefined: '+ (user.noSuchProperty === undefined));
+        console.log( 'user.color === undefined: '+ (user.color === undefined));
+        console.log( 'firstName in user: '+ ('firstName' in user));
+
+    }
+</script>
+
+<br><button class="active_button" onclick="testObjectCopy()">Copy, Clone, Assign, __proto__, Create</button>
+<script> 
+    
+    function testObjectCopy(){
+        const user = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 20
+        }
+        console.log('----- Copy object by reference ---------\n');
+        //objects copied by reference
+        let copiedUser = user;
+        copiedUser.firstName = "david";
+        copiedUser.lastName = "webb";
+        copiedUser.age = 50;
+        copiedUser.tel = "4433553343";
+        
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+        console.log('***********************\n');
+        for (key in copiedUser){
+            console.log(`copiedUser.${key}: ${copiedUser[key]}\n`);
+        }
+
+        console.log('----- Clone User ---------\n');
+        // with spread function
+        let cloneUser = {...user};
+        //cloneUser.email = "clone email";
+        //cloneUser.firstName = "michal"
+        //with assign function
+
+        console.log('-------------Object comparison --------\n');
+        cloneUser == user ? console.log('Same object ') : console.log('Not Same object ');
+        cloneUser === user ? console.log('Same object ') : console.log('Not Same object ')
+
+        let assignUser = Object.assign({}, user);
+        assignUser.firstName = "Dave"
+        assignUser.email = "assign email";
+
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+        console.log('***********************\n');
+        for (key in cloneUser){
+            console.log(`cloneUser.${key}: ${cloneUser[key]}\n`);
+        }
+        console.log('***********************\n');
+        for (key in assignUser){
+            console.log(`assignUser.${key}: ${assignUser[key]}\n`);
+        }
+
+
+        console.log('------- Testing __proto__  & create function --------\n');
+        let anotherUserWithProto = {};
+        let anotherUserWithCreate = {};
+        anotherUserWithProto.__proto__ = user;
+        anotherUserWithProto.address = "114 address";
+        const citycode = () => { return "Hamilton" } ;
+        anotherUserWithProto[citycode()] = "3210";
+        //user[othersParam] = "3210";
+        user.country = "New Zealand";
+
+        anotherUserWithCreate = Object.create(user);
+        anotherUserWithCreate.address = "114 address";
+        console.log('-----------User------\n');
+        for (key in user){
+            console.log(`user.${key}: ${user[key]}\n`);
+        }
+        console.log('-----------copiedUser------\n');
+        for (key in copiedUser){
+            console.log(`copiedUser.${key}: ${copiedUser[key]}\n`);
+        }
+        
+        console.log('-----------anotherUserWithProto------\n');
+        for (key in anotherUserWithProto){
+            console.log(`anotherUserWithProto.${key}: ${anotherUserWithProto[key]}\n`);
+        }
+        
+        console.log('-------------anotherUserWithCreate--------\n');
+        for (key in anotherUserWithCreate){
+            console.log(`anotherUserWithCreate.${key}: ${anotherUserWithCreate[key]}\n`);
+        }
+         
+        
+
+
+    
+    }
+</script>
+
+
+<script src="../js/lodash.js"></script>
+<br><button onclick="testCloneDeepFunc()">Clone Deep</button>
+<script> 
+    
+    function testCloneDeepFunc(){
+        
+        const user = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 40,
+            cell: "345435435435",
+            email: "test@test.coomo",
+            add: "114 address"
+        }
+
+
+        const anotherUserwithCloneDeep = _.cloneDeep(user);
+        anotherUserwithCloneDeep.firstName = "derek";
+        anotherUserwithCloneDeep.lastName = "webb";
+        anotherUserwithCloneDeep.add = "114 address";
+
+        for (let key in user) {
+            console.log("user."+key +" : "+user[key]);
+        }
+        console.log("----------------------------------------");
+        for (let key in anotherUserwithCloneDeep) {
+            console.log("anotherUserwithCloneDeep."+key +" : "+anotherUserwithCloneDeep[key]);
+        }
+
+        console.log('-------------Object comparison --------\n');
+        anotherUserwithCloneDeep == user ? console.log('Same object ') : console.log('Not Same object ');
+        anotherUserwithCloneDeep === user ? console.log('Same object ') : console.log('Not Same object ')
+    }
+</script>
+
+<br><button onclick="testSpreadFunc()">Spread Func</button>
+<script> 
+    
+    function testSpreadFunc(){
+        const numbersOne = [1, 2, 3];
+        const numbersTwo = [4, 5, 6];
+        const StringThree = ['abc', 'def', 'lkm'];
+        const Combined = [...numbersOne, ...numbersTwo, ...StringThree];
+        console.log("Result of Combined Array: "+ Combined);
+
+        const user_basic = {
+            firstName: "naveed",
+            lastName: "alyas",
+            age: 40
+        }
+        const user_contact = {
+            cell: "345435435435",
+            email: "test@test.coomo",
+            add: "my address in new zealand"
+        }
+        
+        const user_full = { ...user_basic, ...user_contact };
+        for (let key in user_full) {
+            //console.log(key);
+            console.log("user_full."+key +" : "+user_full[key]);
+        }
+        //console.log("Result of Object user: "+ user_full.toString());
+    }
+</script>
+<br><button onclick="testConstructor()">Constructor Func</button>
+<script> 
+    
+    function testConstructor(){
+
+        const user1 = new User_Function("naveed", "alyas", 45);
+        const user2 = new User_Function("derek", "webb", 40);
+        
+        for (let key in user1) {
+            //console.log(key);
+            console.log("user1."+key +" : "+user1[key]);
+        }
+        console.log("user1.fullname :"+user1.fullname());
+        console.log("----------------------------------------");
+        for (let key in user2) {
+            //console.log(key);
+            console.log("user2."+key +" : "+user2[key]);
+        }
+        console.log("user2.fullname :"+user2.fullname());
+    }
+    function User_Function (fname, lname, age){
+        this.fname = fname;
+        this.lname = lname;
+        this.age = age;
+        this.fullname = function(){return this.fname+" "+this.lname};
+    }
+</script>
+
+<br><button onclick="testClassConstructor()">Class Constructor</button>
+<script> 
+    
+    function testClassConstructor(){
+
+        const user1 = new User_Class("naveed", "alyas", 45);
+        const user2 = new User_Class("derek", "webb", 40);
+        
+        for (let key in user1) {
+            //console.log(key);
+            console.log("user1."+key +" : "+user1[key]);
+        }
+        console.log("user1.fullname :"+user1.fullname());
+        console.log("----------------------------------------");
+        for (let key in user2) {
+            //console.log(key);
+            console.log("user2."+key +" : "+user2[key]);
+        }
+        console.log("user2.fullname :"+user2.fullname());
+    }
+
+    class User_Class {
+        fname = "";
+        lname = "";
+        age = 0;
+        fullname = "";
+        constructor(fname, lname, age){
+            this.fname = fname;
+            this.lname = lname;
+            this.age = age;
+            this.fullname = function(){return this.fname+" "+this.lname};
+        }
+    }
+    
+</script>
+</body>
+</html>

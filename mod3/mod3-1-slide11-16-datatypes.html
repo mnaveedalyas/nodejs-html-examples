@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Fundamentals</title>
+</head>
+<body>
+    <h1>JavaScripts Premitive Data Types</h1>
+
+    <br><button  onclick="premitive_datatypes()">Premitive Types</button>
+    <script>
+        function premitive_datatypes(){
+            
+            let count=1;
+            let res = 12;
+
+            //Integer abc = 44;
+
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            res = 12.23;
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            res = 9935435543534n;
+            console.log ((count++)+" --> "+ typeof res +" --> "+ res);
+
+            console.log("--------------------------------");
+            res = "12" ;
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            
+            res = "a12";
+            console.log ((count++)+" --> "+ typeof res+" --> "+ res);
+            
+            res = "a12" + "abcfv";
+            console.log (`${count++} -->  ${typeof res} --> ${ res } `);
+            
+            console.log("--------------------------------");
+
+            console.log (`${count++} --> ${typeof (10 > 9)} --> ${10 > 9}`);
+            console.log (`${count++} --> ${typeof (10 < 9)} --> ${10 < 9}`);
+            
+            isDark = true;
+            if (isDark){
+                console.log('It is Evening or Night')
+            } else{
+                console.log('It is Day time')
+            }
+
+            console.log("--------------------------------");
+            let age ;
+            console.log (`${count++} --> ${typeof age} --> ${age}`);
+            age = null
+            console.log (`${count++} --> ${typeof age} --> ${age}`);
+            console.log (`${count++} --> ${typeof (age * 3)} --> ${age * 3}`);
+            age = 10;
+            console.log (`${count++} --> ${typeof (age * 3)} --> ${age * 3}`);
+
+            console.log("--------------------------------");
+            let price = 0;
+            console.log (`${count++} --> ${typeof price} --> ${price}`);
+            console.log (`${count++} --> ${typeof (price * 3)} --> ${price * 3}`);
+            price = 20;
+            console.log (`${count++} --> ${typeof (price * 3)} --> ${price * 3}`);
+
+
+        }
+    </script>
+</body>
+</html>

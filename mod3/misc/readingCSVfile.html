@@ -1,0 +1,64 @@
+<!DOCTYPE html>  
+<html>  
+    <body>
+        <h1>Title!</h1>
+        <p>Please enter the subject(s) that you wish to search for:</p>
+        
+        
+
+        <p>Select local CSV File:</p>
+        <input id="csv" type="file">
+        <button onclick="myFunction()">readAsBinaryString </button>
+
+        <button onclick="myFunctionArray()">readAsText </button>
+        <br>
+        <output id="out">
+            file contents will appear here
+        </output>
+
+        <script>
+            function myFunction() {
+                document.getElementById('out').innerHTML = '';
+                console.log("reading file");
+                let myarrayList = Array();
+                var fileInput = document.getElementById("csv"),
+                readFile = function () {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        document.getElementById('out').innerHTML = reader.result;
+                    };
+                    // start reading the file. When it is done, calls the onload event defined above.
+                    reader.readAsBinaryString(fileInput.files[0]);
+                };
+                readFile();
+                //fileInput.addEventListener('change', readFile);
+            }
+
+            function myFunctionArray() {
+                document.getElementById('out').innerHTML = '';
+                console.log("reading file");
+                let myarrayList = Array();
+                var fileInput = document.getElementById("csv"),
+                readFile = function () {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        let data = reader.result.split("\r\n");
+                        for (let i in data) {
+                            data[i] = data[i].split(",");
+                        }
+                        console.log("data.length :"+data.length);
+                        console.log(data);
+                        document.getElementById('out').innerHTML = reader.result;
+                    };
+                    // start reading the file. When it is done, calls the onload event defined above.
+                    reader.readAsText(fileInput.files[0]);
+                };
+                readFile();
+                //fileInput.addEventListener('change', readFile);
+            }
+
+            
+
+        </script>
+    </body>
+</html>
