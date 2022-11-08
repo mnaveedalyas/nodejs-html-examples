@@ -29,7 +29,7 @@
 
     <script>
         // function declaration
-        function displayInfo(name){
+        function displayInfo(name, id, sd, fsdf,sdfsdfd,ssdfsdfds){
             console.log('i am testing my function : '+name);
 
             console.log('hello world 1'); 
@@ -44,16 +44,16 @@
     
     <script>
         // function declaration
-        function func_name(name){
+        function func_name(name, tel, email, address){
             //single quotes
-            console.log('Welcome : '+name);
+            console.log('Welcome: '+name+' tel: '+tel);
             //double quotes
             console.log("Welcome : "+name);
             //backticks
-            console.log(`Welcome : ${ name } `);
+            console.log(`Welcome : ${ name } , tel: ${ tel }, email: ${ email } , address: ${ address } `);
         }
         //calling function 
-        //func_name('naveed');
+        func_name('naveed', '4354353');
     </script>
 </body>
 </html>
