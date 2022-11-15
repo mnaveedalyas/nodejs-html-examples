@@ -15,6 +15,59 @@
 
         function test_objectType(){
             console.clear();
+
+            /*
+            let student1_firstName = 'alyas';
+            let student1_lastName = 'name';
+            let student1_age = 40;
+            let student1_Tel = '234323 street';
+            let student1_streetAddress = '134 streeta';
+            let student1_city = 'hamilton';
+            
+            let student2_firstName = 'alyas';
+            let student2_lastName = 'name';
+            let student2_age = 40;
+            let student2_Tel = '234323 street';
+            let student2_streetAddress = '134 streeta';
+            let student2_city = 'hamilton';
+            
+            let student3_firstName = 'alyas';
+            let student3_lastName = 'name'
+            let student3_age = 40
+            let student3_Tel = '234323 street';
+            let student3_streetAddress = '134 streeta';
+            let student3_city = 'hamilton';
+            */            
+
+            let student1 = {
+                firstName : 'alyas',
+                lastName : 'name',
+                age : 40,
+                Tel : '234323 street',
+                streetAddress : '134 streeta', 
+                city : 'hamilton',
+            };
+
+            let student2 = {
+                firstName : 'alyas', lastName : 'name', age : 40,
+                Tel : '234323 street',
+                streetAddress : '134 streeta',
+                city : 'hamilton'
+            };
+
+            let student3 = {
+                firstName : 'alyas',
+                lastName : 'name',
+                age : 40,
+                Tel : '234323 street',
+                streetAddress : '134 streeta',
+                city : 'hamilton',
+                isFemale : true
+            }
+
+            //console.log(student.firstName);
+
+
             let person = {
                 first_name: "Dave",
                 last_name: "hayman",
@@ -29,9 +82,36 @@
             person.last_name = 'alyas';
             person.age = 45;
             // using for...in
-            for (let abc in person) {
-                console.log("2- person."+abc +" --> "+person[abc]);
+            for (let property in person) {
+
+                console.log("2- person."+property +" --> "+person[property]);
+            
             }
+            /*
+            let count = 0 ;
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            console.log(count++);
+            
+
+            for (let count=0;       count < 12;        count++){
+
+                console.log(count);
+            
+            }
+            */
+
+
+
             console.log("--------------------------------");
             person = {
                 first_name: "derek",
@@ -57,7 +137,10 @@
             console.log(x);
             console.log('typeof x: '+ typeof x);
 
+            console.log("--------------------------------");
             const y = Symbol("it is test");
+            console.log(y);
+            
             console.log("y : "+y.toString());
             console.log("y.description : "+y.description);
             console.log("y.toString() : "+y.toString());

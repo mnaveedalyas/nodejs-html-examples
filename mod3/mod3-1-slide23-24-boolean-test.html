@@ -11,9 +11,93 @@
 
     <button onclick="test_boolean()">Test Boolean</button>
     <script>
+
+        function isGreater(num1, num2){
+            if (num1 != null  && num2 != null && num1 >=0 && num2 >= 0){
+                if (num1 > num2 ){
+                    return true;
+                }
+            }  
+            return false;
+        }
+
+        function isLesser(num1, num2){
+            if (num1 != null  && num2 != null && num1 >=0 && num2 >= 0){
+                if (num1 < num2 ){
+                    return true;
+                }
+            }  
+            return false;
+        }
+
         function test_boolean(){
-            let num1 = 20;
+            let num1 = 40;
             let num2 = 30;
+            let num3 = 20;
+            let num4 = 60;
+            /*
+            if (num1 != null  && num2 != null && num1 >=0 && num2 >= 0){
+                if (num1 > num2 ){
+                    console.log(" in block 1");
+                }
+            }
+            */
+
+            if ( isGreater(num1, num2) ){
+                console.log(" in block 1");
+            }else if (isGreater(num1, num3)){
+                console.log(" in block 2");
+            }
+            else if (isGreater(num1, num4) ){
+                console.log(" in block 3");
+            }else{
+                console.log(" in defaut block");
+            }
+
+
+
+            if (num1 > num2 ){
+                console.log(" in block 1");
+            }else if (num1 > num3){
+                console.log(" in block 2");
+            }
+            else if (num1 > num4 ){
+                console.log(" in block 3");
+            }else{
+                console.log(" in defaut block");
+            }
+
+            if (num1 > num2 ){
+                console.log(" in block 1");
+            } 
+            if (num1 > num3){
+                console.log(" in block 2");
+            }
+            if (num1 > num4 ){
+                console.log(" in block 3");
+            }
+
+            console.log("--------------------------------");
+            
+            // condition ? true block : false block ;
+
+            console.log (num1 > num2 ? "in block 1" : num1 > num3 ? " in block 2": num1 > num4 ? "in block 3" : " in defaut block");
+
+
+
+            if ( (num1 > num2 && num1 > num3) && (num1 > num2 || num1 > num4)){
+                console.log("num1 is hieghest number")
+            }else {
+                console.log("num1 is not hieghest number")
+            }
+
+            if ( num1 > num2 || num1 > num3 || num1 > num4){
+                console.log("num1 is higher than some numbers")
+            }else {
+                console.log("num1 is the lowest number")
+            }
+
+            console.log("--------------------------------");
 
             if (num1 > num2 ){
                 console.log(`difference between ${num1} and ${num2} is ${num1 - num2} `);
@@ -24,7 +108,9 @@
             console.log(`difference between ${num1} and ${num2} is ${num1 > num2 ? num1 - num2 : num2 - num1 } `);
             console.log("--------------------------------");
 
-            let num3 = null;
+            
+
+            num3 = null;
             console.log ( num3 != null ? 'num3 is not null' : ' num3 is null' );
             console.log ( !(num3 != null) ? 'num3 is  null' : ' num3 is not null' );
             console.log("--------------------------------");
@@ -47,6 +133,34 @@
             
             console.log("--------------------------------");
             
+            let avar = "012";
+            let bvar = "12";
+
+            if (avar > bvar ){
+                console.log("avar is greater")
+            }else if (avar < bvar ) {
+                console.log("bvar is greater")
+            }else if (avar === bvar ) {
+                console.log("values are not equals")
+            }else if (avar == bvar ){
+                console.log("both are equals")
+            }
+
+            if (false == 0){
+                console.log("false is equals to 0")
+            }else{
+                console.log("false is not equals to 0")
+            }
+
+            if (null == undefined){
+                console.log("null & undefined are equal")
+            }else{
+                console.log("null & undefined are not equal")
+            }
+            
+        
+
+
 
         }
     </script>

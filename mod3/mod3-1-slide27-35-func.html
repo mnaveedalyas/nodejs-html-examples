@@ -21,19 +21,28 @@
             console.clear();
 
             let age = 10;
-            let status = checkAge(age);
+            let age1 = 20;
+            let age2 = 30;
+            
+            let status  = checkAge(age);
             console.log('person is '+status);
+            console.log('----------------------');
+            checkAge(age);
         }
         function checkAge(age){
             console.log('age to check : '+age);
             
-            //return ;
+            let status = ''; 
             if (age >= 18){
-                return 'adult';
+                status = 'adult';
             }else{
-                return 'non-adult';
+                status =  'non-adult';
             }
-            //return age >= 18 ? 'adult' : 'non-adult';
+
+            //status =  age >= 18 ? 'adult' : 'non-adult';
+
+            return status;
+            
         }
     </script>
     <br><button onclick="testFuncAsExp()">Func as Expression</button>
@@ -43,11 +52,14 @@
 
             const sayhi = function (){
                 console.log('Hello, i am testing it');
+                return 'TESTING';
             }
             let test = sayhi;
             sayhi();
             test();
             console.log("value of variable sayhi : "+sayhi);
+
+            console.log("value of variable sayhi : "+sayhi());
         }
     </script>
     <br><button onclick="testFuncHoist()">Func Hoist</button>
@@ -55,23 +67,33 @@
         
         function testFuncHoist(){
             console.clear();
+
+            let avar = 'it is test variable';
+            console.log(avar);
+
+            console.log(avar1);
+            let avar1 = 'it is test variable';
+            
+
             sayhi("naveed");
-            sayhi1("naveed");
+            sayhi1EXP("naveed");
 
             function sayhi(name){
                 console.log("Hello "+name+"!");
             }
-            sayhi1 = function  (name) {
+            sayhi1EXP = function  (name) {
                 console.log("Hello from expression: "+name+"!");
             }
+            //sayhi1EXP("naveed");
         }
 
         //sayhia("naveed");
-        //sayhi1a("naveed");
+        //sayhi1aEXP("naveed");
+        
         function sayhia(name){
             console.log("Hello "+name+"!");
         }
-        sayhi1a = (name) => {
+        sayhi1aEXP = (name) => {
             console.log("Hello from expression: "+name+"!");
         }
 
@@ -99,6 +121,11 @@
             console.log('multiplicationExp : '+ multiplicationExp(3,5))
 
         }
+        /*
+        function sum (a, b) {
+            return a+b;
+        }
+        */
         sum = (a, b) => (a + b);
         multiply = (a, b) => (a * b);
 
