@@ -19,11 +19,14 @@
     
     function testObjectExpFunc(){
         console.clear();
+
+        
         const user = {
             firstName: "naveed",
             lastName: "alyas",
             age: 20,
-            fullname: function() { return this.firstName + " " + this.lastName}, 
+            isStudent: false,
+            fullname: function() { return this.firstName + " " + this.lastName + " "+ this.tesname}, 
             sayHi: function () { console.log("Hi "+ this.fullname())},
             sayHiMethod() { console.log("Hi, greetings to "+ this.fullname())}
         }
@@ -31,10 +34,18 @@
         
         console.log('--- Testing Expression function -------\n');
         console.log("user.firstName :"+ user.firstName);
+        console.log('----------\n');
+        console.log("user.fullname :"+ user.fullname);
+        console.log('----------\n');
         console.log("user.fullname :"+ user.fullname());
+        console.log('----------\n');
         user.sayHi();
+
+        console.log('-----555-----\n');
         user.sayHiMethod;
+        console.log('------666----\n');
         user.sayHiMethod();
+        console.log('------777----\n');
 
         console.log('----- object properties user obj -----\n');
 
@@ -47,11 +58,11 @@
         user['2f3'] = "i am a value 23";
         user.country = "New Zealand"; 
 
-
+        console.log('------USER PROPERTIES----\n');
         for (key in user){
             console.log(`user.${key}: ${user[key]}\n`);
         }
-
+        console.log('------End of user properties----\n');
         
         delete user[2]; 
         delete user['23'];
