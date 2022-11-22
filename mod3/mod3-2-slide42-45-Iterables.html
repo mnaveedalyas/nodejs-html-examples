@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Iterable Methods</h1>
+
+    <br><button onclick="testingLoops()">Test Loops  </button>
+    <script>
+        function testingLoops(){
+            console.clear();
+            let myList = [1,2,3,4,5,66,77,88,77,89,34,232,556];
+
+            let myListStr = ["apple", "orange", "banana"]
+            
+            let aname = "abcdrfgttt";
+            console.log(aname);
+            let anameList = Array.from(aname);
+            console.log(anameList);
+
+            
+            for(let count = 1;  count < myList.length; count++){
+
+                console.log(count+" -> "+myList[count])
+            
+            }
+            console.log("---------------------------------- ")
+            
+            let itr = 1
+            while (itr < myList.length ){
+                console.log(itr+" -> "+myList[itr])
+                itr++
+            }
+            console.log("---------------------------------- ");
+            
+            myList.forEach((item) => {
+                console.log(item)
+            })
+            
+        }
+    </script>
+
+    <br><button onclick="iterablesMethodsFunc()">Iterables  </button>
+    <script>
+        function iterablesMethodsFunc(){
+            console.clear();
+            const range1 = {
+                from: 1,
+                to: 5
+            }
+            const range = {
+                from: 1,
+                to: 5,
+                [Symbol.iterator](){
+                    this.current = this.from;
+                    return this;
+                },
+                next() {
+                    if(this.current <= this.to){
+                        return {done: false, value: this.current++ };
+                    }else{
+                        return {done: true};
+                    }
+                }
+            }
+            for( let anum of range){    
+                console.log(anum);    
+            }    
+            console.log(" ------------------------- ");
+            let myNumber = {
+                n : 0,
+                increment : function(){
+                    this.n += 10;
+                    return {value: this.n, done: false};
+                }
+            }
+            //const n = myNumber();
+            console.log(myNumber.increment().value);
+            console.log(myNumber.increment().value);
+            console.log(myNumber.increment().value);
+            console.log(" ------------------------- ");
+            
+            
+            let myNumberList ={};
+            myNumberList[Symbol.iterator] = function(){
+                let n=0;
+                done=false;
+                return {
+                    next() {
+                        n += 10;
+                        if (n ==100 ){done = true};
+                        return {value: n, done: done}
+                    }
+                };
+            }
+            for (const num of myNumberList){
+                console.log("num :"+num);
+            }
+        };
+    </script>
+</body>
+</html>

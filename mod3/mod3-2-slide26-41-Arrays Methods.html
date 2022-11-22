@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Arrays Methods</h1>
+
+    <br><button onclick="arrayMethodsFunc()">Array Method </button>
+    <script>
+        function arrayMethodsFunc(){
+            console.clear();
+            console.log("----------- forEach Function ---------");
+            let mylist = ["ab", "cdefrtr", "efgt", "gh", "ijsdff", "gh","klssd", "gh"];
+            let count=0;
+            mylist.forEach( (element, index, mylist) => {
+                console.log("item "+element+" is at index " +index+" in array ["+mylist+"]");
+            });
+
+            console.log("----------- Find Function ---------");
+            let myReVal = mylist.find((element) => {return element == "gh"});
+            console.log("myReVal with find: "+myReVal);
+
+            console.log("----------- filter Function ---------");
+            let filteredList = mylist.filter((element) => {return element == "gh"});
+            console.log("filteredList: "+filteredList);
+
+            console.log("----------- filter Function ---------");
+            let mappedList = mylist.map((element) => {return element.length});
+            console.log("mappedList: "+mappedList);
+
+            console.log("----------- Slice Function ---------");
+            console.log("mylist.slice(1,3): "+mylist.slice(1,3));
+            console.log("mylist.slice(2): "+mylist.slice(2));
+            console.log("mylist.slice(-2): "+mylist.slice(-2));
+
+            console.log("----------- Sort / Reverse Function ---------");
+            let myNumberValues = [10,5,20, 10, 30, 25, 40,5, 50];
+            console.log("myNumberValues.sort(a, b): "+myNumberValues.sort( (a,b) => a - b ) );
+            console.log("myNumberValues.reverse(): "+myNumberValues.reverse() );
+
+            console.log("----------- Reduce Function ---------");
+            let sum = myNumberValues.reduce( (sum, aValue) => {return sum+aValue } , 50);
+            console.log("sum: "+sum);
+
+            console.log("----------- Other Iteration Function ---------");
+            let arrayLikeObject = { 0:1, 1:4, 2: 10, 3:5, 5:50, name:"naveed", age:30, length: 10}
+            let result = Array.prototype.reduce.call(arrayLikeObject,  (sum, aValue) => {return sum+aValue });
+            console.log("Array.prototype.reduce.call : "+result);
+            console.log("Array.prototype.join.call : "+ displayAurgments('bc', 2, 4, 56, 'cf'));
+        }
+        function displayAurgments(a,b,c, d, e, f, g, h){
+            return Array.prototype.join.call(arguments);
+        }
+    </script>
+
+</body>
+</html>

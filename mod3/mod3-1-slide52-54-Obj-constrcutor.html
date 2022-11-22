@@ -45,9 +45,31 @@
 <br><button onclick="testClassConstructor()">Class Constructor</button>
 <script> 
     
+    class User_Class {
+        fname ;
+        lname ;
+        age ;
+        salary = 0 ;
+        fullname ;
+
+        doubleSalary(){
+            this.salary = this.salary * 2;
+            console.log('Salary is :'+this.salary);
+        }
+        constructor(fname, lname, age){
+            this.fname = fname;
+            this.lname = lname;
+            this.age = age;
+            //this.salary = salary;
+            
+            this.fullname = function(){return this.fname+" "+this.lname};
+        }
+    }
+
+    
     function testClassConstructor(){
 
-        const user1 = new User_Class("naveed", "alyas", 45);
+        const user1 = new User_Class("naveed", "alyas", 45, 1000);
         const user2 = new User_Class("derek", "webb", 40);
         
         for (let key in user1) {
@@ -61,20 +83,13 @@
             console.log("user2."+key +" : "+user2[key]);
         }
         console.log("user2.fullname :"+user2.fullname());
+
+        user1.doubleSalary();
+        user2.doubleSalary();
+
     }
 
-    class User_Class {
-        fname = "";
-        lname = "";
-        age = 0;
-        fullname = "";
-        constructor(fname, lname, age){
-            this.fname = fname;
-            this.lname = lname;
-            this.age = age;
-            this.fullname = function(){return this.fname+" "+this.lname};
-        }
-    }
+
     
 </script>
     

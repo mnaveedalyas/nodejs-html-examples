@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Multidimensional Array</h1>
+
+    <br><button onclick="mdarrayFunc()">Multidimensional Array</button>
+    <script>
+        function mdarrayFunc(){
+            console.clear();
+            console.log("\n--------------Test 1------------------");
+            const guestList = [
+                            ['John','Pete', 'Mary'],
+                            ['camel','cat', 'dog'],
+                            ['sparow','dove', 'crook'],
+                            ['apple','orang', 'banana'],
+                        ];
+            console.log(" guestList : "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+            console.log(" guestList[0][0] : "+ guestList[0][0]);
+            console.log(" guestList[0][1] : "+ guestList[0][1]);
+            console.log(" guestList[1][1] : "+ guestList[1][1]);
+            
+            guestList.push(['naveed'], ['kevin']);    
+            console.log(" guestList after push : "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+            let shiftedItem = guestList.shift();    
+            console.log(" guestList after shift: "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+            console.log(" shiftedItem: "+ shiftedItem);
+
+            guestList.unshift(shiftedItem);    
+            console.log(" guestList after unshift: "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+
+            let popedItem = guestList.pop();    
+            console.log(" guestList after pop: "+ guestList);
+            console.log(" popedItem: "+ popedItem);
+            console.log(" guestList.length : "+ guestList.length);
+
+            guestList.push(['mike', 'steve'], ['pasha']);    
+            console.log(" guestList  : "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+
+            guestList.splice(0, 2, ["study","game"],["school"], ["testing"]);
+            console.log(" guestList  : "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+        }
+    </script>
+
+</body>
+</html>

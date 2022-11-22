@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Arrays Methods</h1>
+
+    <br><button onclick="arrayFunc()">Array</button>
+    <script>
+        function arrayFunc(){
+            console.clear();
+            
+            console.log("\n--------------Test 1 - length -------");
+            const guestList = new Array('John','Pete', 'Mary');
+            console.log(" guestList : "+ guestList);
+            console.log(" guestList.includes('John') : "+ guestList.includes('John'));
+            console.log(" guestList.length : "+ guestList.length);
+
+            console.log("\n--------------Test 2 - copied by reference -----");
+            let guestList1 = guestList ; 
+            guestList1.push('mike', 'steve', 'pasha');    
+            console.log(" guestList  : "+ guestList);
+            console.log(" guestList1 : "+ guestList1);
+
+            console.log("\n--------------Test 3 - push / shift / unshift ---------");
+            guestList.push('naveed', 'kevin');    
+            console.log(" guestList after push : "+ guestList);
+            let shiftedItem = guestList.shift();    
+            console.log(" guestList after shift: "+ guestList);
+            console.log(" shiftedItem: "+ shiftedItem);
+
+            guestList.unshift(shiftedItem);    
+            console.log(" guestList after unshift: "+ guestList);
+
+            console.log("\n--------------Test 4 - pop -----------------");
+            let popedItem = guestList.pop();    
+            console.log(" guestList after pop: "+ guestList);
+            console.log(" popedItem: "+ popedItem);
+
+            console.log("\n--------------Test 5 - splice ------------------");
+            guestList.splice(0, 3, "study","game","school", "testing");
+            console.log(" guestList  : "+ guestList);
+            console.log(" guestList.length : "+ guestList.length);
+
+
+        }
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Array Destructing</h1>
+
+    <br><button onclick="arrayDestructionFunc()">Array Destruction</button>
+    <script>
+        function arrayDestructionFunc(){
+            let arr = ['abc-1', 'def-2', 'lmn-3', 'xyz-4'];
+            let [name1, name2, name3, name4] = arr;
+            console.log("name1 :"+name1);
+            console.log("name2 :"+name2);
+            console.log("name3 :"+name3);
+            console.log("name4 :"+name4);
+            console.log(" ----------- ");
+            let [person, desc] = arr;
+            console.log("person :"+person);
+            console.log("desc :"+desc);
+
+            console.log(" ----------- ");
+            let [person2, , desc2] = arr;
+            console.log("person2 :"+person2);
+            console.log("desc2 :"+desc2);
+
+            console.log(" ----------- ");
+            let [person3, ...desc3] = arr;
+            console.log("person3 :"+person3);
+            console.log("desc3 :"+desc3);
+
+            console.log(" ------ from set to variables ----- ");
+            let [one, two, three, others ] = new Set([1,2,3, 4,5,6,7]);
+            console.log("one :"+one);
+            console.log("two :"+two);
+            console.log("three :"+three);
+            console.log("others :"+others);
+
+            console.log(" ------- from map to variables ---- ");
+            let [personname, personage ] = new Map([ ["name","mike"], ["age", 30]]);
+            console.log("personname :"+personname);
+            console.log("personage :"+personage);
+
+            console.log(" --------from String to an object --- ");
+            let user = {};
+            [user.fname, user.lname ] = "Naveed Alyas".split(" ");
+            console.log("user.fname :"+user.fname);
+            console.log("user.lname :"+user.lname);
+            
+            console.log(" ------- swaping ---- ");
+            [user.fname, user.lname ] = [ user.lname, user.fname ]
+            console.log("user.fname :"+user.fname);
+            console.log("user.lname :"+user.lname);
+            
+            let a=10; 
+            let b=20;
+            console.log("a :"+a+"  -- b :"+b);
+            [a, b] = [b, a]
+            console.log("a :"+a+"  -- b :"+b);
+            
+            console.log(" ------- order of values  ---- ");
+            let { height, width, title } = { title: "menu", height: 200, width: 100  }
+            console.log("height :"+height);
+            console.log("width :"+width);
+            console.log("title :"+title);
+            console.log(" ------- renaming of variables  ---- ");
+            let options = {
+                width1: 100,
+                height1: 200
+            }
+            let {height1, width1 } = options;
+            let h = height1;
+            let w = width1;
+            //console.log("height1 :"+height1);
+            console.log("h :"+h);
+            //console.log("width1 :"+width1);
+            console.log("w :"+w);
+
+            let options1 = {
+                width: 100,
+                height: 200,
+                title1:"my testing"
+            }
+
+            let {title1, ...rest1} = options1;
+            console.log("title1 :"+title1);
+            console.log("rest1.width :"+rest1.width);
+            console.log("rest1.height :"+rest1.height);
+        }
+
+    </script>
+
+
+</body>
+</html>

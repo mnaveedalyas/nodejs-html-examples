@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Maps & Weak Maps</h1>
+
+    <br><button onclick="mapsMethodsFunc()">Map & WeakMap</button>
+    <script>
+        function mapsMethodsFunc(){
+
+            console.log(" ------------ Objects ------------- ");
+            let vegies = {
+                id: 1,
+                name: "spanish"
+            }
+                 
+            let userObj = {
+                id : 1,
+                name: "myname",
+                age: 20,
+                favMeals: ['dairy', 'chicken', 'beef'],
+                vegi: vegies,
+                3210: "postcode "
+            }
+            
+            userObj.myinterest = "test";
+
+            for( let key in userObj){
+                console.log(key+" -> "+userObj[key]);
+            }
+            console.log(" ----------- Maps -------------- ");
+
+            let myMap = new Map();
+            myMap.set('id' , 1);
+            myMap.set('name', "myname");
+            myMap.set('age', 20);
+            myMap.set(userObj, userObj);
+            myMap.set(['we3', 'gt5'], "i am testing it");
+            myMap.set(3210, "testing post code");
+            for( let key of myMap.keys()){
+                console.log(key+" -> "+myMap.get(key) +" \n\t-->"+ JSON.stringify(myMap.get(key)));
+            }
+
+            console.log("myMap.has(userObj) -> "+myMap.has(userObj))
+            console.log("myMap.has(3210) -> "+myMap.has(3210))
+            //console.log("myMap.get(3210) -> "+myMap.get(3210))
+            
+
+
+            console.log(" -----2------- ");
+
+            let myMap2 = new Map(Object.entries(userObj));
+            for( let key of myMap2.keys()){
+                console.log(key+" -> "+myMap2.get(key) +" \n\t-->"+ JSON.stringify(myMap2.get(key)));
+            }
+            
+
+            console.log(" -----3------- ");
+
+            let userMap = new Map([
+                ['id' , 1],
+                ["name", "myname"],
+                ["age", 20],
+                [3210,  "testing value"],
+                ["favMeals", ['dairy', 'chicken', 'beef']],
+                ["vegi", vegies],
+                [['hamilton', 'auckland'] , ["3210", "2121"] ]
+            ]);
+            
+            for( let key of userMap.keys()){
+                console.log(key+" -> "+userMap.get(key) +" \n\t-->"+ JSON.stringify(userMap.get(key)));
+            }
+            console.log(" -----3-1 ------- ");
+            for( let entry of userMap){
+                console.log(entry +" \n\t-->"+ JSON.stringify(entry));
+            }
+
+            console.log(" -----WeakMaps ------- ");
+            const myweakMap = new WeakMap();
+            //myweakMap.set('id' , 1); //only objects
+            //myweakMap.set('name', "myname");
+            //myweakMap.set('age', 20);
+            myweakMap.set(userObj, userObj);
+
+            mytestObj ={name:"test"}
+            myweakMap.set(mytestObj, userObj);
+            //myweakMap.set(3210, "testing post code");
+            
+            console.log("myweakMap.has({name:test}) -> "+myweakMap.has(mytestObj))
+            console.log("myweakMap.has(userObj) -> "+myweakMap.has(userObj))
+            userObj = {};
+            console.log("myweakMap.has(userObj) -> "+myweakMap.has(userObj))
+            
+        }
+    </script>
+</body>
+</html>

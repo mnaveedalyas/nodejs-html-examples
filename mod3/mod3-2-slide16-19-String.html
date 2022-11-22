@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Primitive Methods</h1>
+
+    <br><button onclick="stringFunc()">Strings</button>
+        <script>
+            function stringFunc(){
+
+                console.log("\n--------------Test 1------------------");
+                const guestList = "Guests: \n * John\n * Pete\n * Mary";
+                console.log(" guestList : "+ guestList);
+                console.log(" guestList.length : "+ guestList.length);
+                
+                console.log(" def.codePointAt(0) : "+  (   "def".codePointAt(1) )  );
+                console.log(" d.codePointAt(0) : "+ (  "d".codePointAt(0)    ));
+                console.log(" D.codePointAt(0) : "+ (  "D".codePointAt(0)   ));
+                console.log(" Z.codePointAt(0) : "+ (  "Z".codePointAt(0)   ));
+
+                console.log(" String.fromCodePoint(90) : "+ (  String.fromCodePoint(90)   ));
+                console.log(" String.fromCodePoint(70) : "+ (  String.fromCodePoint(70)   ));
+
+                console.log(" '𝒳'.length : "+ (  '𝒳'.length   ));
+                console.log(" '𩷶'.length : "+ (  '𩷶'.length   ));
+     
+            }
+        </script>
+
+</body>
+</html>

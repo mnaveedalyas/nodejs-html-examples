@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>JSON</h1>
+
+    <br><button onclick="jsonFunc()">JSON</button>
+    <script>
+        function jsonFunc(){
+           let user = {
+                sayHi(){
+                    console.log("Hello");
+                },
+                [Symbol("id")]:123,
+                something: undefined,
+                name: "mike"
+           } 
+           console.log(user);
+           console.log(JSON.stringify(user));
+           console.log(" ----------- ");
+
+           let room = {
+            number: 23
+           };
+           let meetup = {
+            title: "Conference",
+            participants: ["mike", "david"]
+           };
+
+           meetup.place = room;
+           //room.occupiedBy = meetup;
+           console.log(JSON.stringify(room));
+           console.log("meetup: "+JSON.stringify(meetup));
+           console.log(" ----------- ");
+
+
+           room.occupiedBy = meetup;
+           console.log("meetup: "+ JSON.stringify(meetup, ['title', 'participants']));
+
+           let meetup1 = {
+            title: "Conference",
+            participants: [ {name: "mike"}, {name: "david"}],
+            place: room
+           };
+           room.occupiedBy = meetup1;
+           console.log("meetup 1: "+ JSON.stringify(meetup1, ['title', 'participants'], 3));
+
+           console.log(" ----------- ");
+           let schedule = `{
+                
+                "meetups": [
+
+                    {"title": "birthday", "date": "2022-08-13T12:00:00.000Z"},
+
+                    {"title": "Party", "date": "2022-08-11T12:22:11.000Z"}
+                ]
+           }`;
+
+           schedule= JSON.parse(schedule, (key, value) => {
+                if (key === 'date'){
+                    return new Date(value);
+                }
+                return value;
+           });
+           console.log("Date of 1st MeetUp: "+schedule.meetups[0].date.getDate());
+           console.log("Date of 1st MeetUp: "+schedule.meetups[1].date.getDate());
+
+           console.log ( "11+12 1: "+ "11+12" );
+           console.log ( "11+12 2: "+ "11"+"12" );
+           console.log ( "11+12 3: "+ 11+12 );
+           console.log ( "11+12 4: "+ (11+12) );
+           
+
+
+        }
+    </script>
+
+
+</body>
+</html>

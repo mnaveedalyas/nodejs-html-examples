@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Primitive Methods</h1>
+
+    <button onclick="methodOfPremitive()">Methods Of Premitive</button>
+    <script>
+        function methodOfPremitive(){
+            console.clear();
+            console.log("--------------Test 1------------------");
+            let anumber = 1.3456674;
+            console.log( " anumber.toFixed(2):  "+ anumber.toFixed(2));
+            console.log( " anumber.toFixed(3):  "+ anumber.toFixed(3));
+            console.log( " anumber.toFixed(4):  "+ anumber.toFixed(4));
+            console.log(" anumber.toPrecision(2):  "+ anumber.toPrecision(2)); 
+            console.log(" anumber.toPrecision(3):  "+ anumber.toPrecision(3)); 
+            console.log(" anumber.toPrecision(4):  "+ anumber.toPrecision(4)); 
+            
+
+            console.log(" anumber.valueOf():  "+ anumber.valueOf()); 
+            console.log(" anumber.toString():  "+ anumber.toString());
+            
+            console.log("\n--------------Test 2-----------------");
+            
+            let str = "Hello World";
+            console.log(" str.valueOf():  "+ str.valueOf()); 
+            console.log(" str.toString():  "+ str.toString());
+            console.log(" str.toUpperCase():  "+ str.toUpperCase()); 
+            console.log(" str.toLowerCase():  "+ str.toLowerCase()); 
+            console.log(" str.toUpperCase():  "+  (new String(str)).toUpperCase()); 
+            
+            console.log("\n---------------Test 3----------------");
+
+            let price = 300;
+            // string like object
+
+            let Shirt = {
+                name: "Shirt",
+                price: "100",
+                qty: 20,
+                model: 2020
+            }
+            console.log(" Shirt.valueOf():  "+  Shirt.valueOf() );             
+            console.log(JSON.stringify ( Shirt.valueOf()  )); 
+            console.log(" Shirt  "+ Shirt ); 
+            console.log(" Shirt.toString():  "+ Shirt.toString());
+            console.log(" Shirt with stringify:  "+ JSON.stringify ( Shirt ));
+            
+            console.log("\n--------------Test 4-----------------");
+
+            let hockey = {
+                name: "hockey",
+                price: 100,
+                qty: 25,
+                model: 2020,
+                valueOf(){
+                    return this.qty * this.price;
+                },
+                toString(){
+                    return this.name+": qty - "+this.qty+" and price - "+this.price;
+                }                
+            }
+            console.log(" hockey.valueOf():  "+ hockey.valueOf()); 
+            console.log(" hockey  "+ hockey  ); 
+            console.log(" hockey.toString():  "+ hockey.toString()); 
+            console.log(" hockey with stringify:  "+ JSON.stringify ( hockey ));
+            
+            console.log("\n--------------Test 5------------------");
+
+            const employee = {
+                fname : 'naveed',
+                lname : 'alyas',
+                salary : 150000,
+                
+                [Symbol.toPrimitive]( hint ){
+                    console.log('hint: '+hint);
+                    return   hint !== 'number'?   '{ name: '+this.fname+' '+this.lname+'}'    :    this.salary;
+                }
+            }
+
+            console.log(" employee: "+ employee);
+            console.log(" (+employee): "+ (+employee));
+            console.log("-------------------------------");
+            console.log(" (employee + 500 ): "+ (   (+employee) + 500    ));
+            console.log(" (employee + 500 ): "+ (   employee + 500    ));
+            console.log("-------------------------------");
+            console.log(" employee.toString(): "+ employee.toString());
+            console.log(" employee.valueOf(): "+ (employee.valueOf()));
+            console.log(" employee*4: "+ employee*4);
+
+
+            console.log("\n----------------Test 6---------------");
+            const user = {
+                fname : 'naveed',
+                lname : 'alyas',
+                salary : 150000
+            }
+            console.log(" user: "+ user);
+            console.log(" user.toString(): "+ user.toString());
+            console.log(" user.valueOf(): "+ user.valueOf());
+            console.log(" JSON.stringify (user): "+ JSON.stringify(user));
+            console.log(" user*4: "+ user*4);
+
+            console.log("\n----------------Test 7----------------");
+            const user1 = {
+                fname : 'naveed',
+                lname : 'alyas',
+                salary : 150000,
+                toString(){
+                    return this.fname+' '+this.lname;
+                },
+                valueOf(){
+                    return this.salary;
+                }
+            }
+            
+            console.log(" user1: "+ user1);
+            console.log(" user1.toString(): "+ user1.toString());
+            console.log(" user1.valueOf(): "+ user1.valueOf());
+            console.log(" user1*4: "+ user1*4);
+            
+            console.log(" JSON.stringify (user1): "+ JSON.stringify (user1));
+            
+            console.log("\n--------------Test 8------------------");
+
+            const user3 = {
+                fname : 'naveed',
+                lname : 'alyas',
+                salary : 150000,
+                
+                [Symbol.toPrimitive]( hint ){
+                    console.log('hint: '+hint);
+                    return   hint !== 'number'?   '{ name: '+this.fname+' '+this.lname+'}'    :    this.salary;
+                }
+            }
+            
+            console.log(" user3: "+ user3);
+            console.log(" (+user3): "+ (+user3));
+            console.log(" (user3 + 500 ): "+ (   user3 + 500    ));
+            
+            console.log(" user3.toString(): "+ user3.toString());
+            console.log(" user3.valueOf(): "+ (user3.valueOf()));
+            console.log(" user3*4: "+ user3*4);
+
+            console.log("\n--------------------------------");
+
+            
+            
+        }
+    </script>
+
+    <br><button onclick="numberCalc()">Number Base</button>
+    <script>
+        function numberCalc(){
+            console.clear();
+            anumber = 1.3456674;
+            console.log(" anumber.toString(2):  "+ anumber.toString(2));
+            console.log(" anumber.toString(10):  "+ anumber.toString(10));
+            console.log(" anumber.toString(16):  "+ anumber.toString(16)) ;
+            console.log(" anumber.toString(36):  "+ anumber.toString(36)) ;
+            console.log("\n-------------------------------");
+            //hexadecimal
+            console.log(" 0xff: "+ 0xff);
+            console.log(" 0xff: "+ 0xFF);
+            console.log(" 0xcc: "+ 0xcc);
+            console.log(" 0xCC: "+ 0xCC);
+            //binary
+            console.log(" 0b1111111: "+ 0b1111111);
+            //octal
+            console.log(" 0o377: "+ 0o377);
+            console.log("\n-------------------------------");
+
+            
+            console.log(" 1e500 : "+ (1e500));
+            console.log(" 1e50 : "+ (1e50));
+            console.log(" 1e5 : "+ (1e5));
+            console.log(" 0.1 + 0.2 : "+ (0.1+0.3));
+            console.log(" 9999 9999 9999 9999 : "+ (9999999999999999));
+
+            
+
+            console.log(" +100px : "+ (      +'100px'     ));
+            console.log(" Number(100px) : "+ (    Number('100px')   ));
+
+            console.log(" parseInt(a100) : "+ (    parseInt('a100')   ));
+            console.log(" parseInt(100px) : "+ (    parseInt('100px')   ));
+            console.log(" parseFloat(100px) : "+ (    parseFloat('100px')   ));
+            console.log(" parseFloat(100.34em) : "+ (    parseFloat('100.34em')   ));
+            console.log(" parseFloat(100.34.45) : "+ (    parseFloat('100.34.45')   ));
+        }
+    </script>
+
+</body>
+</html>

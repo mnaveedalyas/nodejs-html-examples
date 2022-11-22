@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Sets & Weak Sets</h1>
+
+    <br><button onclick="setsMethodsFunc()">Set & WeakSet</button>
+    <script>
+        function setsMethodsFunc(){
+
+            console.log(" ------------ Objects ------------- ");
+            let vegies = {
+                id: 1,
+                name: "spanish"
+            }
+                
+            let userObj = {
+                id : 1,
+                name: "myname",
+                age: 20,
+                favMeals: ['dairy', 'chicken', 'beef'],
+                vegi: vegies
+            }
+            for( let key in userObj){
+                console.log(key+" -> "+userObj[key]);
+            }
+            console.log(" -----Sets ------- ");
+            const visitors = new Set();
+            visitors.add({name:"john"});
+            visitors.add(11);
+            visitors.add(11);
+            visitors.add(true);
+            visitors.add(false);
+            visitors.add(true);
+            visitors.add(userObj);
+            visitors.add(userObj);
+            visitors.add({name:"mike"});
+            visitors.add({name:"dave"});
+            visitors.add({name:"dave"});
+            visitors.add({name:"gary", age: 20});
+            visitors.add({name:"gary", age: 20});
+            for( let entry of visitors){
+                console.log(entry +" \n\t-->"+ JSON.stringify(entry));
+            }
+            console.log("size: "+visitors.size);
+            console.log(" ----------- ");
+            visitors.forEach((entry, entry2, visitors1) => {
+                console.log("entry: "+JSON.stringify(entry));
+                console.log("entry2: "+JSON.stringify(entry2));
+                console.log("visitors1: "+visitors1.size);
+                
+            })
+
+
+            console.log(" -----WeakSets ------- ");
+            const myweakSet = new WeakSet();
+            let dav = {name:"dave"};
+
+            myweakSet.add({name:"john"});
+            //myweakSet.add(11); // only objects
+            //myweakSet.add(11);
+            //myweakSet.add(true);
+            //myweakSet.add(false);
+            //myweakSet.add(true);
+            myweakSet.add({name:"mike"});
+            myweakSet.add({name:"dave"});
+            myweakSet.add({name:"dave"});
+            myweakSet.add({name:"gary", age: 20});
+            myweakSet.add({name:"gary", age: 20});
+            myweakSet.add({name:"dave"});
+            console.log("myweakSet.has({name:dave}): "+myweakSet.has({name:"dave"}));
+            myweakSet.add(dav);
+            console.log("myweakSet.has(dav): "+myweakSet.has(dav));
+            console.log("size: "+myweakSet.size);
+        }
+    </script>
+
+
+</body>
+</html>

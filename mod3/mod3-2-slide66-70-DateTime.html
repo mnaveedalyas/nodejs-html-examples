@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Intermediate</title>
+</head>
+<body>
+    <h1>Date & Time Methods</h1>
+
+    <br><button onclick="dateTimeFunc()">Date & Time</button>
+    <script>
+        function dateTimeFunc(){
+            let now = new Date();
+            console.log("current date/time :"+now);
+
+            let Jan011970 = new Date(0);
+            console.log("Jan 01 1970 date/time :"+Jan011970);
+            let Jan021970 = new Date(24 * 3600 * 1000);
+            console.log("Jan 02 1970 date/time :"+Jan021970);
+
+            let Date20220813 = new Date("2022-08-13");
+            console.log("2022-09-13 date/time :"+Date20220813);
+            console.log(" ----------- ");
+            let Date20220813_a = new Date(2022, 08, 13, 13, 15, 40, 290);
+            console.log("2022-09-13 date/time :"+Date20220813_a);
+
+            console.log("2022-09-13 year :"+Date20220813_a.getFullYear());
+            console.log("2022-09-13 Month :"+Date20220813_a.getMonth());
+            console.log("2022-09-13 Date :"+Date20220813_a.getDate());
+            console.log("2022-09-13 Day :"+Date20220813_a.getDay());
+            console.log("2022-09-13 Hour :"+Date20220813_a.getHours());
+            console.log("2022-09-13 Minute :"+Date20220813_a.getMinutes());
+            console.log("2022-09-13 Second :"+Date20220813_a.getSeconds());
+            console.log("2022-09-13 MilliSeconds :"+Date20220813_a.getMilliseconds());
+            console.log(" ----------- ");
+            console.log("2022-09-13 year - UCT :"+Date20220813_a.getUTCFullYear());
+            console.log("2022-09-13 Month - UCT :"+Date20220813_a.getUTCMonth());
+            console.log("2022-09-13 Date - UCT :"+Date20220813_a.getUTCDate());
+            console.log("2022-09-13 Day - UCT :"+Date20220813_a.getUTCDay());
+            console.log("2022-09-13 Hour - UCT :"+Date20220813_a.getUTCHours());
+            console.log("2022-09-13 Minute - UCT :"+Date20220813_a.getUTCMinutes());
+            console.log("2022-09-13 Second - UCT :"+Date20220813_a.getUTCSeconds());
+            console.log("2022-09-13 MilliSeconds - UCT :"+Date20220813_a.getUTCMilliseconds());
+
+            //number of minutes between local time and UTC time (Coordinated Universal Time )
+            console.log(" ----------- ");
+            console.log("2022-08-13 TimezoneOffset (minutes):"+Date20220813_a.getTimezoneOffset());
+            console.log(" ----------- ");
+            //timestamp, a number of milliseconds passed from jan 1st 1970
+            console.log("2022-08-13 Time (timestamp milliseconds) :"+Date20220813_a.getTime());
+
+        }
+    </script>
+
+
+</body>
+</html>
