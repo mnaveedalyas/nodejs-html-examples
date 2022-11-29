@@ -73,6 +73,9 @@
             }
             console.log(" hockey.valueOf():  "+ hockey.valueOf()); 
             console.log(" hockey  "+ hockey  ); 
+
+            console.log( hockey  ); 
+            
             console.log(" hockey.toString():  "+ hockey.toString()); 
             console.log(" hockey with stringify:  "+ JSON.stringify ( hockey ));
             
@@ -82,10 +85,16 @@
                 fname : 'naveed',
                 lname : 'alyas',
                 salary : 150000,
+                hrsPerWeek: 40,
                 
                 [Symbol.toPrimitive]( hint ){
                     console.log('hint: '+hint);
-                    return   hint !== 'number'?   '{ name: '+this.fname+' '+this.lname+'}'    :    this.salary;
+                    //return   hint !== 'number'?   '{ name: '+this.fname+' '+this.lname+'}'    :    this.salary;
+                    if (hint === 'number' ){
+                        return this.salary;
+                    }else{
+                        return '{ name: '+this.fname+' '+this.lname+'}'
+                    }
                 }
             }
 
@@ -164,14 +173,21 @@
     <script>
         function numberCalc(){
             console.clear();
-            anumber = 1.3456674;
+            anumber = 99;
             console.log(" anumber.toString(2):  "+ anumber.toString(2));
+            console.log(" anumber.toString(2).length:  "+ anumber.toString(2).length );
+            
+
             console.log(" anumber.toString(10):  "+ anumber.toString(10));
             console.log(" anumber.toString(16):  "+ anumber.toString(16)) ;
             console.log(" anumber.toString(36):  "+ anumber.toString(36)) ;
             console.log("\n-------------------------------");
             //hexadecimal
+
             console.log(" 0xff: "+ 0xff);
+            let rest= 255;
+            let hexrest= 0xdd;
+            console.log(" anumber.toString(0xff):  "+ rest.toString(16)) ;
             console.log(" 0xff: "+ 0xFF);
             console.log(" 0xcc: "+ 0xcc);
             console.log(" 0xCC: "+ 0xCC);
@@ -190,11 +206,11 @@
 
             
 
-            console.log(" +100px : "+ (      +'100px'     ));
+            console.log(" +100px : "+  ( +'100px'  )   );
             console.log(" Number(100px) : "+ (    Number('100px')   ));
 
             console.log(" parseInt(a100) : "+ (    parseInt('a100')   ));
-            console.log(" parseInt(100px) : "+ (    parseInt('100px')   ));
+            console.log(" parseInt(100px) : "+ (    parseInt('100px100')   ));
             console.log(" parseFloat(100px) : "+ (    parseFloat('100px')   ));
             console.log(" parseFloat(100.34em) : "+ (    parseFloat('100.34em')   ));
             console.log(" parseFloat(100.34.45) : "+ (    parseFloat('100.34.45')   ));

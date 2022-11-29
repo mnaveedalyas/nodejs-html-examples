@@ -21,13 +21,16 @@
             console.log("----------- forEach Function ---------");
             let mylist = ["ab", "cdefrtr", "efgt", "gh", "ijsdff", "gh","klssd", "gh"];
             let count=0;
-            mylist.forEach( (element, index, mylist) => {
-                console.log("item "+element+" is at index " +index+" in array ["+mylist+"]");
-            });
+
+            mylist.forEach( 
+                (element, index, list) => {
+                    console.log("item "+element+" is at index " +index+" in array ["+list+"]");
+                }
+            );
 
             console.log("----------- Find Function ---------");
-            let myReVal = mylist.find((element) => {return element == "gh"});
-            console.log("myReVal with find: "+myReVal);
+            let myElement = mylist.find((element) => {return element == "gh"});
+            console.log("myElement with find: "+myElement);
 
             console.log("----------- filter Function ---------");
             let filteredList = mylist.filter((element) => {return element == "gh"});
@@ -44,18 +47,38 @@
 
             console.log("----------- Sort / Reverse Function ---------");
             let myNumberValues = [10,5,20, 10, 30, 25, 40,5, 50];
-            console.log("myNumberValues.sort(a, b): "+myNumberValues.sort( (a,b) => a - b ) );
-            console.log("myNumberValues.reverse(): "+myNumberValues.reverse() );
+            
+            console.log("myNumberValues.sort(): "+myNumberValues.sort() );
+
+            console.log("myNumberValues.sort(a, b) - ascending : "+myNumberValues.sort( (a,b) => a - b ) );
+
+            console.log("myNumberValues.sort(a, b) - descending : "+myNumberValues.sort( (a,b) => b - a ) );
+
+            let myNumberValues1 = [10,5,20, 10, 30, 25, 40,5, 50];
+            console.log("myNumberValues.reverse(): "+myNumberValues1.reverse() );
 
             console.log("----------- Reduce Function ---------");
-            let sum = myNumberValues.reduce( (sum, aValue) => {return sum+aValue } , 50);
+            let sum = myNumberValues1.reduce( (sum, currentValue) => {return sum + currentValue } , 50);
             console.log("sum: "+sum);
 
             console.log("----------- Other Iteration Function ---------");
             let arrayLikeObject = { 0:1, 1:4, 2: 10, 3:5, 5:50, name:"naveed", age:30, length: 10}
-            let result = Array.prototype.reduce.call(arrayLikeObject,  (sum, aValue) => {return sum+aValue });
+            let result = Array.prototype.reduce.call(arrayLikeObject,  (sum, aValue) => {
+                console.log('aValue: '+aValue);
+                return sum+aValue 
+            });
             console.log("Array.prototype.reduce.call : "+result);
+            
+            let myNumberValues2 = [10,5,20, 10, 30, 25, 40,5, 50];
+            console.log( "myNumberValues2 :"+ myNumberValues2);
+            console.log( "myNumberValues2.toString() :"+ myNumberValues2.toString());
+            console.log( "myNumberValues2.join() :"+ myNumberValues2.join());
+            console.log( "myNumberValues2.join(;) :"+ myNumberValues2.join(';'));
+            console.log( "myNumberValues2.join(&) :"+ myNumberValues2.join(' & '));
+            console.log( "myNumberValues2.join( ) :"+ myNumberValues2.join('    '));
+            
             console.log("Array.prototype.join.call : "+ displayAurgments('bc', 2, 4, 56, 'cf'));
+
         }
         function displayAurgments(a,b,c, d, e, f, g, h){
             return Array.prototype.join.call(arguments);
