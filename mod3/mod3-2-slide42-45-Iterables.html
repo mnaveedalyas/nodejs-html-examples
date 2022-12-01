@@ -53,10 +53,30 @@
     <script>
         function iterablesMethodsFunc(){
             console.clear();
+
+            let myNumberValues = [10,5,20, 10, 30, 25, 40,5, 50];
+            for (let num in myNumberValues){
+                console.log('a value for :'+num+" -> "+myNumberValues[num]);
+            }
+
+            console.log('----------------------------');
+            for (let num of myNumberValues){
+                console.log('a value for :'+num+" -> ");
+            }
+
+            console.log('----------------------------');
+
             const range1 = {
                 from: 1,
                 to: 5
             }
+            /*
+            for( let anum of range1){    
+                console.log(anum);    
+            } 
+            */
+            console.log('----------------------------');
+
             const range = {
                 from: 1,
                 to: 5,
@@ -97,7 +117,9 @@
                 return {
                     next() {
                         n += 10;
-                        if (n ==100 ){done = true};
+                        if (n ==100 ){
+                            done = true
+                        };
                         return {value: n, done: done}
                     }
                 };

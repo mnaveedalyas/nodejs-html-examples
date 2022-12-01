@@ -36,7 +36,7 @@
             userObj.myinterest = "test";
 
             for( let key in userObj){
-                console.log(key+" -> "+userObj[key]);
+                console.log(key+": "+userObj[key]);
             }
             console.log(" ----------- Maps -------------- ");
 
@@ -48,12 +48,12 @@
             myMap.set(['we3', 'gt5'], "i am testing it");
             myMap.set(3210, "testing post code");
             for( let key of myMap.keys()){
-                console.log(key+" -> "+myMap.get(key) +" \n\t-->"+ JSON.stringify(myMap.get(key)));
+                console.log(key+": "+myMap.get(key) +" -- "+ JSON.stringify(myMap.get(key)));
             }
-
-            console.log("myMap.has(userObj) -> "+myMap.has(userObj))
-            console.log("myMap.has(3210) -> "+myMap.has(3210))
-            //console.log("myMap.get(3210) -> "+myMap.get(3210))
+            console.log(" ---------------- ");
+            console.log("myMap.has(userObj): "+myMap.has(userObj))
+            console.log("myMap.has(3210): "+myMap.has(3210))
+            //console.log("myMap.get(3210): "+myMap.get(3210))
             
 
 
@@ -61,7 +61,7 @@
 
             let myMap2 = new Map(Object.entries(userObj));
             for( let key of myMap2.keys()){
-                console.log(key+" -> "+myMap2.get(key) +" \n\t-->"+ JSON.stringify(myMap2.get(key)));
+                console.log(key+": "+myMap2.get(key) +" -- "+ JSON.stringify(myMap2.get(key)));
             }
             
 
