@@ -39,7 +39,7 @@
             console.log("desc3 :"+desc3);
 
             console.log(" ------ from set to variables ----- ");
-            let [one, two, three, others ] = new Set([1,2,3, 4,5,6,7]);
+            let [one, two, three, ...others ] = new Set([1,2,3, 4,5,6,7]);
             console.log("one :"+one);
             console.log("two :"+two);
             console.log("three :"+three);
@@ -68,7 +68,7 @@
             console.log("a :"+a+"  -- b :"+b);
             
             console.log(" ------- order of values  ---- ");
-            let { height, width, title } = { title: "menu", height: 200, width: 100  }
+            let { height, width, title } = { title1: "menu", height2: 200, width: 100  }
             console.log("height :"+height);
             console.log("width :"+width);
             console.log("title :"+title);

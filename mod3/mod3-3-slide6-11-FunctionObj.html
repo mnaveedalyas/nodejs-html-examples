@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Function Expression (NFE)</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="functionObjects()">Function Objects</button></div>
+        <div class="col"><button onclick="functionTypes()">Function Types</button></div>
+        <div class="col"><button onclick="namedfunctionExpression()">Named Function Exp</button></div>
+    </div>
+    <script>
+
+        function functionObjects(){
+            console.clear();
+
+            let name = "mike";
+            console.log("name.name :"+name.name);
+            let tel="323422";
+            console.log("tel.name :"+tel.name);
+            console.log( " ----------------------- ");
+
+            function myTesting(a,b,c){
+                myTesting.counter++;
+                console.log("i am testing my code");
+                
+            }
+            myTesting.counter = 0;
+
+            console.log("myTesting.name :"+myTesting.name);
+            console.log("myTesting.length :"+myTesting.length);
+            console.log("myTesting.counter 0:"+myTesting.counter);
+            myTesting();
+            console.log("myTesting.counter 1:"+myTesting.counter);
+            myTesting();
+            console.log("myTesting.counter 2:"+myTesting.counter);
+            console.log( " ----------------------- ");
+
+            function myTestingWithName(){
+                name : "myName";
+                console.log("i am testing my code");
+                console.log("myTestingWithName.name 0 :"+myTestingWithName.name);
+            }
+            console.log("myTestingWithName.name 1 :"+myTestingWithName.name);
+            myTestingWithName();
+            console.log( " ----------------------- ");
+
+
+            function sayHi(){
+                console.log("Hi, i am inside sayHi")
+                return 34;
+            }
+            console.log("sayHi.name :"+ sayHi.name);
+            console.log( " ------------ ");
+            console.log("sayHi :"+ sayHi);
+            console.log( " ------------ ");
+            console.log("sayHi() :"+ (sayHi()+30));
+            console.log( " ----------------------- ");
+
+            let sayHi1 = function() {
+                console.log("Hi, I am inside sayHi1  ");
+            };
+            console.log("sayHi1.name :"+ sayHi1.name);
+            console.log( " ------------ ");
+            console.log("sayHi1 :"+ sayHi1);
+            console.log( " ------------ ");
+            console.log("sayHi1() :"+ (sayHi1()+30)); 
+        }
+
+        /* There are 3 ways of writing a function in JavaScript:
+            Function Declaration
+            Function Expression
+            Named Function Expression
+            Arrow Function */
+
+        function functionTypes(){    
+            console.clear();
+
+            //Function Declaration
+            function add_fd(a, b) {        
+                return (a + b);
+            }
+            console.log("calling add_fd(2,3): "+add_fd(2, 3));
+
+            //Function Expression
+            const add_fe = function(a, b) {
+                return(a+b);
+            }
+            console.log("calling add_fe(2,3): "+add_fe(2, 3));
+
+            //Named Function Expression
+            const add_nfe = function add_it(a, b) {
+                return(a+b);
+            }
+            console.log("calling add_nfe(2,3): "+add_nfe(2, 3));
+
+            //Arrow Function
+            let add_af = (a, b) => a + b;
+            console.log("calling add_af(2,3): "+add_af(2, 3));
+
+        }
+
+        function namedfunctionExpression(){
+            console.clear();
+
+            
+            let fibnacci = function _fib(num){
+                if (num < 0)
+                    throw new Error('number must be >= 0');
+                else if (num ===0 || num ===1 )
+                    return 1;
+                else {
+                    //return fibnacci(num-1) + fibnacci(num-2);
+                    return _fib(num-1) + _fib(num-2)
+                }
+            }
+            let mytestfun = fibnacci;
+            //fibnacci = null;
+
+            console.log("fibnacci (5) :"+fibnacci(5));
+            //console.log("fibnacci (5) :"+_fib(5));
+            console.log("mytestfun (5) :"+mytestfun(5));
+        }
+    </script>
+
+</body>
+</html>

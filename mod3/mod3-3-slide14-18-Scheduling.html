@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Scheduling</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="setTimeoutFunc1()">set Timeout 1</button></div>
+        <div class="col"><button onclick="setTimeoutFunc2()">Set Timeout 2</button></div>
+    </div>
+    <script>
+        function setTimeoutFunc1(){
+            console.clear();
+           
+            const myTestFunction = (name) => console.log("Hi "+name);
+           
+            console.log("calling timeout function ........");
+            
+            let timerid =  setTimeout(myTestFunction, 3000, 'Dave');
+
+            console.log('I am testing it ..............');
+            
+            console.log("timerid :"+timerid);
+            //clearTimeout(timerid);
+            //console.log("function ended ........");
+        }
+
+        function setTimeoutFunc2(){
+            console.clear();
+
+            console.log("calling timeout function ........");
+            
+            let timerid =  setTimeout( (name, tel) => {
+                console.log('tick :'+ name + ' tel: '+tel);
+            }, 5000, 'Dave', '445454');
+            
+            console.log("timerid :"+timerid);
+            
+            //clearTimeout(timerid);
+            let timer2 = setTimeout( () => {
+                clearTimeout(timerid);
+                console.log("timerid :"+timerid);
+            } , 2000  );
+            console.log("timer2 :"+timer2);
+
+            console.log("timerid :"+timerid);
+            //console.log("function ended ........");
+        }
+
+
+    </script>
+
+    <div class="row">
+        <div class="col"><button onclick="setIntervalFunc1()">Set Interval 1</button></div>
+        <div class="col"><button onclick="setIntervalFunc2()">Set Interval 2</button></div>
+        <div class="col"><button onclick="zeroDelayFunc()">0 Delay</button></div>
+    </div>
+    <script>
+        function setIntervalFunc1(){
+            console.clear();
+
+            console.log("calling set interval function ........");
+            let counter=0;
+            let timerid =  setInterval( (name, tel) => {
+                counter++;
+                console.log(counter+' -> tick :'+ name + ' tel: '+tel);
+            }, 2000, 'Dave', '445454');
+            
+            console.log("timerid :"+timerid);
+            
+            setTimeout( () => {
+                clearTimeout(timerid);
+                console.log('function is stopped')
+            } , 30000);
+            
+        }
+
+        function setIntervalFunc2(){
+            console.clear();
+
+            console.log("calling set interval function ........");
+            let counter=0;
+            let timerid =  setTimeout(  function tick(name, tel){
+                
+                counter++;
+                console.log(counter+' -> tick :'+ name + ' tel: '+tel+" timerid :"+timerid);
+                
+                if (counter > 10) {
+                    console.log('stoppig it')
+                    clearTimeout(timerid)
+                } else{
+                    timerid = setTimeout(tick, 2000, name, tel);
+                }
+
+            }, 2000, 'Dave', '445454');
+        }
+
+        function zeroDelayFunc(){
+            console.clear();
+
+            console.log("calling set interval function ........");
+            let counter=0;
+            let timerid =  setTimeout(  function tick(name, tel){
+
+                counter++;
+                console.log(counter+' -> tick :'+ name + ' tel: '+tel+" timerid :"+timerid);
+                if (counter > 10) {
+                    console.log('stoppig it')
+                    clearTimeout(timerid)
+                } else{
+                    timerid = setTimeout(tick, 0, name, tel);
+                }
+
+            }, 5000, 'Dave', '445454');
+
+        }
+    </script>
+
+
+
+</body>
+</html>

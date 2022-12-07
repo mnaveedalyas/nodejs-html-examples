@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Function Decoration</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="decorative1()">Decorative 1</button></div>
+        <div class="col"><button onclick="decorative2()">Decorative 2</button></div>
+    </div>
+    <script>
+        function decorative1(){
+            console.clear();
+            function sqrFunc(param){
+                console.log("sqrFunc(param) is called ")
+                return param * param;
+            }
+
+            function cachingDecorator(func_as_param){
+                const cache = new Map();
+                return function(param){
+                    if (cache.has(param)){
+                        console.log("Found in cache - returning value")
+                        return cache.get(param);
+                    }
+                    console.log("Not Found in cache - calculating sqr again")
+                    let result = func_as_param.call(this, param);
+                    console.log("Saving new value in cache : "+param+" -> "+result)
+                    cache.set(param, result)
+                    console.log("returning result ")
+                    return result; 
+                }
+            }
+            console.log("-----------1------------ ");
+            console.log("actual sqrFunc: "+sqrFunc);
+            console.log("-----------2------------ ");
+            decoratedSqrFunc = cachingDecorator(sqrFunc);
+            console.log("decorated sqrFunc: "+ decoratedSqrFunc);
+            console.log("-----------3------------ ");
+            console.log("calling decoratedSqrFunc(2) : "+ decoratedSqrFunc(2));
+            console.log("-----------4------------ ");
+            console.log("calling decoratedSqrFunc(2) : "+ decoratedSqrFunc(2));
+            console.log("-----------5------------ ");
+            console.log("calling decoratedSqrFunc(3) : "+ decoratedSqrFunc(3));
+            console.log("-----------6------------ ");
+            console.log("calling decoratedSqrFunc(3) : "+ decoratedSqrFunc(3));
+            console.log("-----------7------------ ");
+            console.log("calling decoratedSqrFunc(4) : "+ decoratedSqrFunc(4));
+            console.log("-----------8------------ ");
+            console.log("calling decoratedSqrFunc(2) : "+ decoratedSqrFunc(2));
+        }
+
+        function decorative2(){
+            console.clear();
+            function greetCustomer(name, city) {
+                console.log('******* Hello, ' + name +'! from '+city+', welcome to our store *****');
+            }
+
+            function loggingDecorator(wrapped) {
+                let counter=0;
+                return function() {
+                    counter++;
+                    console.log('Customer Number:'+ counter);
+                    console.log('Starting at:'+ (new Date()));
+                    //const result = wrapped.call(this, name);
+                    const result = wrapped.apply(this, arguments);
+                    //const result = greetCustomer.apply(this, arguments);
+                    console.log('Finished by:'+(new Date()));
+                    return result;
+                }
+            }
+
+            const wrapped = loggingDecorator(greetCustomer);
+            wrapped("David", "Auckland");
+            console.log("----------------------- ");
+            wrapped("Mike", "Hamilton");
+            console.log("----------------------- ");
+            wrapped("Julie");
+        }
+    </script>
+
+    <div class="row">
+        <div class="col"><button onclick="lossOfThis()">lossOfThis </button></div>
+        <div class="col"><button onclick="partialFunctionBind()">Partial Funct with Bind</button></div>
+        <div class="col"><button onclick="partialFunctionCall()">Partial Funct with Call</button></div>
+    </div>
+    <script>
+
+        function lossOfThis(){
+            console.clear();
+            const user = {
+                firstName: "john",
+                sayHi() {
+                    console.log('Hello '+this.firstName);
+                }
+            }
+
+
+            console.log('calling user.sayHi()');
+            user.sayHi()
+            console.log('calling user.sayHi : '+ user.sayHi);
+            console.log("----------------------- ");
+
+               setTimeout(user.sayHi, 1000);
+
+               setTimeout(user.sayHi(), 2000);
+
+            let sayHi = user.sayHi.bind(user);
+            setTimeout(sayHi, 1000);
+
+            
+            setTimeout(() => {
+                console.log("----------------------- ");
+                console.log('1 calling user.sayHi() in setTimeout');
+                user.sayHi()
+            }, 3000);
+
+            setTimeout(function(){
+                console.log("----------------------- ");
+                console.log('2 calling user.sayHi() in setTimeout');
+                user.sayHi()
+            }, 4000);
+
+
+        }
+
+        function partialFunctionBind(){  
+            console.clear();
+            function multiply(a,b){
+                return a * b;
+            }
+
+            const triple = multiply.bind(null, 3);
+
+            console.log('triple(3) :'+ triple(3));
+            console.log('triple(4) :'+ triple(4));
+
+            const quadruple = multiply.bind(null, 4);
+            console.log('quadruple(3) :'+ quadruple(3));
+            console.log('quadruple(4) :'+ quadruple(4));
+        }
+
+        function partialFunctionCall(){  
+            console.clear();
+            const user = {
+                firstName : "john",
+                say(time, phrase) {
+                    console.log(` ${time} ${this.firstName}: ${phrase}! `);
+                }
+            };
+
+            function partialFunc(func, ...argList){
+                return function(...args){
+                    return func.call(this, ...argList, ...args);
+                }
+            };
+
+            user.say("10:00 AM", "Hello");
+            console.log("----------------------- ");
+            user.sayNow = partialFunc(user.say, new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds());
+            user.sayNow("Hello");
+
+            setTimeout( () => {
+                console.log("----------in timeout------------- ");
+                user.sayNow("Hello 2");
+            }, 5000)
+        }
+    </script>
+
+
+</body>
+</html>

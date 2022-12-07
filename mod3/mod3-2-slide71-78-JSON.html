@@ -17,36 +17,51 @@
     <br><button onclick="jsonFunc()">JSON</button>
     <script>
         function jsonFunc(){
-           let user = {
+           
+            let user = {
                 sayHi(){
                     console.log("Hello");
                 },
                 [Symbol("id")]:123,
                 something: undefined,
-                name: "mike"
+                name: "mike",
+                age: 22,
+                23 : 'test'
            } 
            console.log(user);
-           console.log(JSON.stringify(user));
            console.log(" ----------- ");
+           console.log("user: "+user);
+           console.log(" ----------- ");
+
+           console.log(JSON.stringify(user));
+           console.log(" -----1------ ");
 
            let room = {
             number: 23
+            
            };
+           console.log(" ----------- ");
+           let roomtest = room;
+           console.log("roomtest :"+roomtest);
+           console.log(" ----------- ");
            let meetup = {
             title: "Conference",
             participants: ["mike", "david"]
+            
            };
 
            meetup.place = room;
            //room.occupiedBy = meetup;
            console.log(JSON.stringify(room));
            console.log("meetup: "+JSON.stringify(meetup));
-           console.log(" ----------- ");
+           console.log(" -------2---- ");
 
 
            room.occupiedBy = meetup;
-           console.log("meetup: "+ JSON.stringify(meetup, ['title', 'participants']));
+           console.log("meetup: "+ JSON.stringify(meetup, ['title', 'participants'], 3));
 
+
+           console.log(" -----3------ ");
            let meetup1 = {
             title: "Conference",
             participants: [ {name: "mike"}, {name: "david"}],
@@ -55,7 +70,7 @@
            room.occupiedBy = meetup1;
            console.log("meetup 1: "+ JSON.stringify(meetup1, ['title', 'participants'], 3));
 
-           console.log(" ----------- ");
+           console.log(" -----4------ ");
            let schedule = `{
                 
                 "meetups": [

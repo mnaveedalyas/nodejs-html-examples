@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Lexical Environment</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="LexicalEnvironment1()">Lexical Environment 1</button></div>
+        <div class="col"><button onclick="LexicalEnvironment2()">Lexical Environment 2</button></div>
+        <div class="col"><button onclick="LexicalEnvironment3()">Lexical Environment 3</button></div>
+    </div>
+    <script>
+        
+        function LexicalEnvironment1(){
+            console.clear();
+            let anum = 45;
+            function a() {
+                var b = 10;
+                c();
+                function c() {
+                    console.log("a number : "+anum);
+                    console.log('displaying b: '+b); //it prints the right value. How? See ans below Summary part
+                }
+            }
+                
+            a();
+            //c();
+            //console.log(b); 
+        }
+        
+        
+        // 2nd function 
+        function LexicalEnvironment2(){
+            console.clear();
+            var a=1;
+
+            function two(){
+                //var a;
+                console.log("value of a inside two() :"+a);
+            }
+            function one(){
+                //var a=2;
+                console.log("value of a inside one() :"+a);
+                two();
+            }
+            //console.log(a);
+            console.log("value of a  outside :"+a);
+            one();
+        }
+
+        // 3rd function 
+        
+        function LexicalEnvironment3(){
+            console.clear();
+            this.a=12;
+
+            function two(){
+                console.log("value of a inside two() :"+a);
+            }
+            function one(){
+                let a=2;
+                console.log("value of global a  :"+ this.a);
+                console.log("value of a inside one() :"+a);
+                two();
+            }
+           
+            console.log("value of a  outside :"+a);
+            one();
+        }
+
+    </script>
+
+</body>
+</html>
