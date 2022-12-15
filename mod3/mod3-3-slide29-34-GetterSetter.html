@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Property Getter & Setter</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="testGetterSetter1()">Getter / Setter </button></div>
+        <div class="col"><button onclick="testGetterSetterWithDescriptor()">Getter / Setter / Descriptor</button></div>
+        <div class="col"><button onclick="testFuncConstructor()">Constructor Functional </button></div>
+        <div class="col"><button onclick="testConstuctor2()"> Constructor Function Vs Object Literal</button></div>
+    </div>
+    <script>
+
+        function testGetterSetter1(){
+            console.clear();
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors
+            const foo = {
+                _bar: 23,
+                bar(){
+                    return this._bar || 1;
+                },
+                bar(value){
+                    this._bar = value;
+                }
+
+            };
+            console.log('foo.bar :'+foo.bar);
+            console.log('foo._bar :'+foo._bar);
+            console.log('foo.bar :'+foo.bar());
+            console.log('---------------------- ')
+            foo.bar(50);
+            console.log('foo._bar :'+foo._bar);
+            console.log('foo.bar :'+foo.bar());            
+            console.log('---------------------- ')
+   
+
+            const fooWithGetSet = {
+                
+                print() {
+                    return this._bar;
+                },
+
+                get bar(){
+                    return this._bar;
+                },
+                
+                set bar(value) {
+                    this._bar = value;
+                }
+            }
+            console.log('fooWithGetSet._bar :'+fooWithGetSet._bar);
+            fooWithGetSet.bar = 20;
+            console.log('fooWithGetSet._bar :'+fooWithGetSet._bar);
+            console.log('fooWithGetSet.bar :'+fooWithGetSet.bar);
+            //console.log('fooWithGetSet.bar() :'+fooWithGetSet.bar());
+            console.log('fooWithGetSet.print() :'+fooWithGetSet.print());
+
+            console.log('---------------------- ')
+            for (key in fooWithGetSet){
+                console.log(key+' --> '+fooWithGetSet[key] + ' --> '+ typeof(fooWithGetSet[key]));
+            }
+        }    
+        
+        function testGetterSetterWithDescriptor(){
+            console.clear();
+
+
+            const user = {
+                _fName: "Dave",
+                _lName: "Hyman",
+                _age: 55,
+
+                get FirstName(){
+                    return this._fName;
+                },
+                set FirstName(fname){
+                    this._fName = fname;
+                },
+                get LastName(){
+                    return this._lName;
+                },
+                set LastName(lname){
+                    this._lName = lname;
+                },
+                get Age(){
+                    return this._age;
+                },
+                set Age(years){
+                    this._age = years
+                },
+
+                greet(){
+                    console.log('Hi! '+this.FirstName+" "+this.LastName);
+                }
+
+            }
+            console.log('user.FirstName : '+user.FirstName);
+            console.log('user.LastName : '+user.LastName);
+            console.log('user.Age : '+user.Age);
+            console.log('---------------------- ')
+            user.FirstName = 'Nelson';
+            user.LastName = 'Medina';
+            user.Age = 44;
+            console.log('user.FirstName : '+user.FirstName);
+            console.log('user.LastName : '+user.LastName);
+            console.log('user.Age : '+user.Age);
+            user.greet();
+
+            console.log('---------------------- ')
+            for (let key in user){
+                console.log( key+ "-->"+ user[key]+" --> "+JSON.stringify(Object.getOwnPropertyDescriptor(user, key)))
+            }
+        }
+         
+  
+        function testFuncConstructor(){
+            console.clear();
+            // constructor function
+            function Person (person_name, person_age, person_gender) {
+
+                // assigning  parameter values to the calling object
+                this.name = person_name,
+                this.age = person_age,
+                this.gender = person_gender,
+
+                this.greet = function () {
+                    return ('Hi' + ' ' + this.name);
+                }
+            }
+            // creating objects
+            const person1 = new Person('John', 23, 'male');
+            const person2 = new Person('Sam', 25, 'female');
+
+            // accessing properties
+            console.log("person1.name: "+person1.name); // "John"
+            console.log("person2.name: "+person2.name); // "Sam"
+
+            console.log("person1.greet: "+person1.greet());
+            console.log("person2.greet: "+person2.greet());
+            console.log("---------------------------------------");
+            for (let key in person1){
+                console.log( key+ "-->"+ person1[key]+" --> "+JSON.stringify(Object.getOwnPropertyDescriptor(person1, key)))
+            }
+            
+        }
+
+        function testConstuctor2(){
+            console.clear();
+
+            // using object lateral
+            let person = {
+                name: 'Sam'
+            }
+            console.log("person.name: "+person.name); //sam 
+            let student = person;
+            // changes the property of an object
+            student.name = 'John';
+            console.log("student.name: "+student.name);  //John
+            console.log("person.name: "+person.name); //John 
+            console.log('---------------------------');
+            // using constructor function
+
+
+            function PersonCon () {
+                this.name = 'Sam'
+            }
+
+            let person1 = new PersonCon();
+            let person2 = new PersonCon();
+            console.log("person1.name: "+person1.name);
+            console.log("person2.name: "+person2.name);
+            console.log('-----------------');
+            person1.name = 'John';
+            console.log("person1.name: "+person1.name);
+            console.log("person2.name: "+person2.name);
+            console.log('-----------------');
+            // adding new property to person1
+            person1.age = 20;
+            console.log("person1.age: "+person1.age);
+            console.log("person2.age: "+person2.age);
+
+            console.log('-----------------');
+            person1.greet = function () {
+                console.log('hello');
+            }
+
+            person1.greet();
+            //person2.greet();
+
+            // adding new property to constructor function
+            PersonCon.prototype.gender = 'Male';
+
+            console.log("person1.gender: "+person1.gender);
+            console.log("person2.gender: "+person2.gender);
+        }
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>__Proto__, Prototype</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="testPrototype()">Prototype</button></div>
+        <div class="col"><button onclick="testProto()">__Proto__</button></div>
+        <div class="col"><button onclick="testFProto()">F.Prototype</button></div>
+    </div>
+    <script>
+        function testPrototype(){
+            console.clear();
+
+            function Person () {
+                this.name = 'John',
+                this.age = 23
+            }
+
+            const person = new Person();
+
+            // checking the prototype value
+            console.log("Person.prototype: "+Person.prototype); // { ... }
+            console.log("Person.prototype-JSON: "+ JSON.stringify(Person.prototype)  );
+
+            
+
+            // adding property to constructor function
+            Person.prototype.gender = 'male';
+            Person.prototype.race = 'human';
+
+
+            // prototype value of Person
+            console.log("Person.prototype: "+Person.prototype);
+            console.log("Person.prototype-JSON: "+ JSON.stringify(Person.prototype)  );
+            console.log('-----------------');
+
+            console.log("person.prototype: "+person.prototype);
+            console.log("person.prototype-JSON: "+ JSON.stringify(person.prototype)  );
+            console.log('-----------------');
+
+            // accessing prototype property
+            console.log("person.__proto__: "+person.__proto__);
+            console.log("person.__proto__: "+JSON.stringify(person.__proto__));
+            console.log('-----------------');
+
+            // creating objects
+            const person1 = new Person();
+            const person2 = new Person();
+            // inheriting the property from prototype
+            console.log("person1.gender: "+person1.gender);
+            console.log("person2.gender: "+person2.gender);
+            //console.log(person1);
+            //console.dir(person1);
+
+        }
+
+        function testProto(){
+            console.clear();
+
+            const animal = {
+                eats: true
+            }
+
+            const rabbit = {
+                jump: true,
+                color: 'white'
+            }
+
+            console.log("animal: "+animal+"  --> "+JSON.stringify(animal));
+            console.log("rabbit: "+rabbit+"  --> "+JSON.stringify(rabbit));
+            console.log('-----------------');
+            rabbit.__proto__ = animal;
+            console.log("rabbit: "+rabbit+"  --> "+JSON.stringify(rabbit));
+            console.log('-----------------');
+            for (let key in rabbit){
+                console.log(key+" --> "+rabbit[key])
+            }
+            
+            console.log('-----------------');
+            console.log("Object.keys(rabbit): "+Object.keys(rabbit));
+            console.log('rabbit.eats: '+rabbit.eats)
+
+        }
+
+        function testFProto(){
+            console.clear();
+            const animal = {
+                eats: true
+            }
+
+            function Rabbit (name) {
+                this.name =  name
+            }
+
+            console.log("animal: "+animal+"  --> "+JSON.stringify(animal));
+            console.log("Rabbit: "+Rabbit+"  --> "+JSON.stringify(Rabbit));
+            console.log("Rabbit.prototype: "+Rabbit.prototype+"  --> "+JSON.stringify(Rabbit.prototype));
+            console.log('-----------------');
+            Rabbit.prototype = animal;
+            console.log("Rabbit: "+Rabbit+"  --> "+JSON.stringify(Rabbit));
+            console.log("Rabbit.prototype: "+Rabbit.prototype+"  --> "+JSON.stringify(Rabbit.prototype));
+            console.log('-----------------');
+            const rabbit = new Rabbit('white rabbit');
+
+            console.log("rabbit: "+rabbit+"  --> "+JSON.stringify(rabbit));
+            console.log("rabbit.prototype: "+rabbit.prototype+"  --> "+JSON.stringify(rabbit.prototype));
+            console.log("rabbit.__proto__: "+rabbit.__proto__+"  --> "+JSON.stringify(rabbit.__proto__));
+            console.log('-----------------');
+            for (let key in rabbit){
+                console.log(key+" --> "+rabbit[key])
+            }
+
+            console.log('-----------------');
+            console.log("Object.keys(rabbit): "+Object.keys(rabbit));
+
+            console.log('-----------------');
+            console.log("rabbit.eats: "+rabbit.eats);
+            console.log("rabbit.__proto__.eats: "+rabbit.__proto__.eats);
+            
+        }
+    </script>
+
+
+</body>
+</html>

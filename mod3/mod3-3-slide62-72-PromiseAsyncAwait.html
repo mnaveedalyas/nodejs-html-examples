@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Promise, Async/Await</h1>
+
+
+    
+
+    <div class="row">
+        <div class="col"><button onclick="testPromise()">Promise</button></div>
+        <div class="col"><button onclick="testAsyncAwait()">async / await</button></div>
+    </div>
+    <script>
+        function testPromise(){
+            let promise = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    console.log('---------------------');
+                    resolve("success")
+                }, 1000);
+            });
+
+            promise.then(
+                result => console.log("result: "+ result), // doesn't run
+                error => console.log("error: "+ error)
+            )
+
+            let promise1 = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    console.log('---------------------');
+                    reject(new Error("Whoops!"))
+                }, 2000);
+            });
+
+            promise1.then(
+                result => console.log("result: "+ result), // doesn't run
+                error => console.log("error: "+ error)
+            )
+
+            let promise2 = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    console.log('---------------------');
+                    resolve("success")
+                }, 3000);
+            }).then(
+                result => console.log("result: "+ result), // doesn't run
+                error => console.log("error: "+ error)
+
+            );
+
+            }
+        function testAsyncAwait(){
+
+            async function myfunc(){
+                console.log(" in progress .... ");
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(()=>{
+                        console.log("inside promise");
+                        resolve ("done");
+                    }, 2000)
+                })
+
+                const result = await promise;
+                console.log("final result: "+result);
+            }
+            myfunc();
+        }
+
+    </script>
+
+</body>
+</html>

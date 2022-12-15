@@ -22,15 +22,16 @@
         function setTimeoutFunc1(){
             console.clear();
            
-            const myTestFunction = (name) => console.log("Hi "+name);
+            const myTestFunction = (name) => console.log("-- Hi "+name);
            
-            console.log("calling timeout function ........");
-            
-            let timerid =  setTimeout(myTestFunction, 3000, 'Dave');
+            console.log("1- calling timeout function ........");
+            myTestFunction("2- Dave444444444444");
 
-            console.log('I am testing it ..............');
+            let timerid =  setTimeout(myTestFunction, 1000, 'Dave');
+
+            console.log('3- I am testing it ..............');
             
-            console.log("timerid :"+timerid);
+            console.log("4- timerid :"+timerid);
             //clearTimeout(timerid);
             //console.log("function ended ........");
         }
@@ -46,14 +47,24 @@
             
             console.log("timerid :"+timerid);
             
-            //clearTimeout(timerid);
-            let timer2 = setTimeout( () => {
-                clearTimeout(timerid);
-                console.log("timerid :"+timerid);
-            } , 2000  );
-            console.log("timer2 :"+timer2);
+            let timerid1 =  setTimeout( (name, tel) => {
+                console.log('tick 1 :'+ name + ' tel: '+tel);
+            }, 5000, 'Dave', '445454');
+            
+            let timerid2 =  setTimeout( (name, tel) => {
+                console.log('tick 2 :'+ name + ' tel: '+tel);
+            }, 5000, 'Dave', '445454');
 
+            //clearTimeout(timerid);
+            let timerstopper = setTimeout( () => {
+                clearTimeout(timerid1);
+                console.log("stopped timerid :"+timerid1);
+            } , 2000  );
             console.log("timerid :"+timerid);
+            console.log("timerid1 :"+timerid1);
+            console.log("timerid2 :"+timerid2);
+
+            console.log("timerid for stopper :"+timerstopper);
             //console.log("function ended ........");
         }
 
@@ -81,7 +92,7 @@
             setTimeout( () => {
                 clearTimeout(timerid);
                 console.log('function is stopped')
-            } , 30000);
+            } , 10000);
             
         }
 
@@ -99,7 +110,7 @@
                     console.log('stoppig it')
                     clearTimeout(timerid)
                 } else{
-                    timerid = setTimeout(tick, 2000, name, tel);
+                    timerid = setTimeout(tick, 0, name, tel);
                 }
 
             }, 2000, 'Dave', '445454');

@@ -65,7 +65,7 @@
             function greetCustomer(name, city) {
                 console.log('******* Hello, ' + name +'! from '+city+', welcome to our store *****');
             }
-
+            
             function loggingDecorator(wrapped) {
                 let counter=0;
                 return function() {
@@ -79,6 +79,10 @@
                     return result;
                 }
             }
+
+            //[].join.call(arguments);
+            //Array.join.call(arguments);
+
 
             const wrapped = loggingDecorator(greetCustomer);
             wrapped("David", "Auckland");
@@ -105,49 +109,57 @@
                 }
             }
 
-
             console.log('calling user.sayHi()');
             user.sayHi()
+      
             console.log('calling user.sayHi : '+ user.sayHi);
             console.log("----------------------- ");
 
-               setTimeout(user.sayHi, 1000);
-
-               setTimeout(user.sayHi(), 2000);
-
+            setTimeout(user.sayHi, 1000);
+            setTimeout(user.sayHi(), 2000);
+            
             let sayHi = user.sayHi.bind(user);
-            setTimeout(sayHi, 1000);
-
+            setTimeout(sayHi, 3000);
             
             setTimeout(() => {
                 console.log("----------------------- ");
                 console.log('1 calling user.sayHi() in setTimeout');
                 user.sayHi()
-            }, 3000);
+            }, 5000);
 
             setTimeout(function(){
                 console.log("----------------------- ");
                 console.log('2 calling user.sayHi() in setTimeout');
                 user.sayHi()
-            }, 4000);
+            }, 6000);
 
 
         }
 
         function partialFunctionBind(){  
             console.clear();
-            function multiply(a,b){
-                return a * b;
+            function multiply(a, b, c){
+                console.log("a: "+a+'  b:'+b+'  c:'+c);
+                return a * b * c;
             }
+            console.log('multiply(6, 3) :'+ multiply(6, 3));
+            console.log('multiply(6) :'+ multiply(6));
+            console.log('-------------------');
+            console.log('multiply :'+ multiply);
+            console.log('-------------------');
+            const triple = multiply.bind(null, 3, 5);
+            
+            console.log('triple :'+ triple);
+            console.log('----------1---------');
 
-            const triple = multiply.bind(null, 3);
-
-            console.log('triple(3) :'+ triple(3));
+            console.log('triple(3) :'+ triple(2));
+            console.log('----------2---------');
             console.log('triple(4) :'+ triple(4));
-
+            console.log('-----------3--------');
             const quadruple = multiply.bind(null, 4);
-            console.log('quadruple(3) :'+ quadruple(3));
-            console.log('quadruple(4) :'+ quadruple(4));
+            console.log('quadruple(3) :'+ quadruple(3, 6));
+            console.log('----------4---------');
+            console.log('quadruple(4) :'+ quadruple(4, 7));
         }
 
         function partialFunctionCall(){  

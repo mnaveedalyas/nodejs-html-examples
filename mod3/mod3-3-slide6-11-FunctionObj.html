@@ -91,11 +91,18 @@
                 return (a + b);
             }
             console.log("calling add_fd(2,3): "+add_fd(2, 3));
+            
+            const avar = "232sdff skfksfsfl sdfsd"
+            const bvar = (avar); 
 
             //Function Expression
             const add_fe = function(a, b) {
                 return(a+b);
             }
+            //const avarfun = add_fe;
+            //add_fe = null;
+            //avarfun();
+
             console.log("calling add_fe(2,3): "+add_fe(2, 3));
 
             //Named Function Expression
@@ -113,8 +120,9 @@
         function namedfunctionExpression(){
             console.clear();
 
-            
+            let counter = 0;
             let fibnacci = function _fib(num){
+                console.log('function call for '+(counter++));
                 if (num < 0)
                     throw new Error('number must be >= 0');
                 else if (num ===0 || num ===1 )
@@ -129,7 +137,7 @@
 
             console.log("fibnacci (5) :"+fibnacci(5));
             //console.log("fibnacci (5) :"+_fib(5));
-            console.log("mytestfun (5) :"+mytestfun(5));
+            //console.log("mytestfun (5) :"+mytestfun(5));
         }
     </script>
 

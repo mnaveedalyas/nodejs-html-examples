@@ -181,6 +181,10 @@
 
             console.log("person1.greet: "+person1.greet());
             console.log("person2.greet: "+person2.greet());
+
+            for (let key in person1){
+                console.log( key+ "-->"+ person1[key]+" --> "+JSON.stringify(Object.getOwnPropertyDescriptor(person1, key)))
+            }
         }
         
         function testConstuctor2(){

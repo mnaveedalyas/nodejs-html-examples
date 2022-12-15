@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+            margin: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScripts Advance - Part 3</title>
+</head>
+<body>
+    <h1>Classes</h1>
+
+    <div class="row">
+        <div class="col"><button onclick="testClass()">Class</button></div>
+        <div class="col"><button onclick="testClassInheritance()">Class Inheritance</button></div>
+        <div class="col"><button onclick="testPrivateClass()">Private Class</button></div>
+    </div>
+    <script>
+        function testClass(){
+            class Person {
+                constructor(fname, lname) {
+                 this.fName = fname;
+                 this.lName = lname; 
+                }
+                // defining method
+                greet() {
+                    console.log(`Hello ${this.fName} ${this.lName}`);
+                }
+            }
+
+            let person1 = new Person('John', 'Dave');
+
+            // accessing property
+            console.log('person1.fName :'+person1.fName); // John
+            console.log('person1.lName :'+person1.lName)
+
+            // accessing method
+            person1.greet(); // Hello John
+        }
+        function testClassInheritance(){
+            console.clear();
+            class Animal{
+
+                NoOfLegs = 4;
+                static Height = 45;
+                constructor(name, weight){
+                    this.name = name;
+                    this.speed = 0;
+                    this.Weight= weight;
+                    //console.log("Weight : "+weight);
+                    //console.log("this.Weight : "+this.Weight)
+                }
+                run(speed){
+                    this.speed = speed;
+                    console.log(`${this.name} runs with speed ${this.speed} `);
+                }
+                stop(){
+                    this.speed = 0;
+                    console.log(`${this.name} stands still`);
+                }
+                weight(){
+                    console.log(`${this.name} has weight of ${this.Weight} Height: ${this.Height}`);
+                }
+                static displayInfo(){
+                    console.log(` Name: ${this.name},  \ncolor: ${this.color}, \nweight: ${this.Weight}, \nNoOfLegs: ${this.NoOfLegs}, \nHeight: ${this.Height}  `);
+                }
+
+            }
+
+            class Rabbit extends Animal {
+                constructor(name, color, weight){
+                    super(name, weight);
+                    this.color = color;
+                }
+                hide(){
+                    console.log(`${this.name} of color ${this.color} hides`);
+                }
+                
+                stop(){
+                    console.log('---------------------');
+                    super.stop();
+                    this.hide();
+                }
+                
+            }
+
+            const rabbit = new Rabbit('Nick-rabbit', 'white', 10);
+            rabbit.run(5);
+            rabbit.stop();
+            console.log('---------------------');
+            rabbit.weight();
+            //rabbit.hide();
+            console.log('---------------------');
+            Animal.displayInfo();
+
+        }
+
+        function testProtectedClass(){
+
+            class CoffeeMachine {
+                _waterAmount = 0;
+
+                set waterAmount(value) {
+                    if (value < 0) {
+                        value = 0;
+                    }
+                    this._waterAmount = value;
+                }
+
+                get waterAmount() {
+                    return this._waterAmount;
+                }
+
+                constructor(power) {
+                    this._power = power;
+                }
+
+            }
+
+            // create the coffee machine
+            let coffeeMachine = new CoffeeMachine(100);
+            console.log('coffeeMachine._waterAmount : '+coffeeMachine._waterAmount);
+            console.log('coffeeMachine.waterAmount : '+coffeeMachine.waterAmount);
+            coffeeMachine.waterAmount = 20; 
+            console.log('coffeeMachine._waterAmount : '+coffeeMachine._waterAmount);
+            console.log('coffeeMachine.waterAmount : '+coffeeMachine.waterAmount);     
+        }
+
+        function testPrivateClass(){
+            console.clear();
+            class CoffeeMachine {
+                #waterLimit = 200;
+
+                #fixWaterAmount(value) {
+                    //console.log('new limit :'+value);
+                    if (value < 0) return 0;
+                    if (value > this.#waterLimit) return value;
+                }
+
+                set WaterAmount(value) {
+                    //console.log('1 new limit :'+value);
+                    this.#waterLimit = this.#fixWaterAmount(value);
+                    //console.log('2 new limit :'+this.#waterLimit);
+                }
+
+                displayInfo(){
+                    console.log('this.#waterLimit :'+this.#waterLimit);
+                }
+
+            }
+
+            let coffeeMachine = new CoffeeMachine();
+
+            // can't access privates from outside of the class
+            //coffeeMachine.#fixWaterAmount(123); // Error
+            //console.log( coffeeMachine.#waterLimit);
+            coffeeMachine.WaterAmount = 1000; 
+            coffeeMachine.displayInfo();
+        }
+    </script>
+
+</body>
+</html>
