@@ -18,10 +18,57 @@
     
 
     <div class="row">
+        <div class="col"><button onclick="testCallback()">CallBack</button></div>
         <div class="col"><button onclick="testPromise()">Promise</button></div>
         <div class="col"><button onclick="testAsyncAwait()">async / await</button></div>
     </div>
     <script>
+        function testCallback(){
+            console.clear()
+            
+            function calledbackfun(param){
+                console.log("call back function is executed with param:"+param);
+            }
+
+            function executeClock(processNo, delayTime, callback) {
+                setTimeout( ()=>{
+                    console.log("-------------------------------");
+                    console.log("I am inside executeClock :"+processNo);
+                    calcResult = parseInt(processNo)+100;
+                    if (callback){
+                        callback(calcResult);
+                    }
+                        
+                }, delayTime, processNo)
+            }
+            
+            executeClock(4, 1000, calledbackfun);
+            executeClock(5, 2000, calledbackfun);
+            executeClock(6, 3000);
+
+            
+            let paramVal = 0;
+            executeClock(11, 5000, function(paramVal){
+                //console.log("-------------------------------");
+                paramVal = paramVal + 200;
+                console.log("I am inside callback "+paramVal);
+                
+                executeClock(12, 2000, function(paramVal){
+                    paramVal = paramVal + 200;
+                    console.log("I am inside callback "+paramVal);
+                    
+                    executeClock(13, 5000, (paramVal) =>{
+                        paramVal = paramVal + 200;
+                        console.log("I am inside callback "+paramVal);
+                        
+                    });
+
+                });
+            });
+            
+        }
+
+
         function testPromise(){
             let promise = new Promise(function(resolve, reject) {
                 setTimeout(() => {

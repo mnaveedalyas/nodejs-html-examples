@@ -16,19 +16,23 @@
 
     <div class="row">
         <div class="col"><button onclick="testClass()">Class</button></div>
-        <div class="col"><button onclick="testClassInheritance()">Class Inheritance</button></div>
-        <div class="col"><button onclick="testPrivateClass()">Private Class</button></div>
+        <div class="col"><button onclick="testClassInheritance()"> Static Props</button></div>
+        <div class="col"><button onclick="testProtectedClass()">Protected Props</button></div>
+        
+        <div class="col"><button onclick="testPrivateClass()">Private Props</button></div>
     </div>
     <script>
         function testClass(){
+
             class Person {
+                city = 'Hamilton';
                 constructor(fname, lname) {
                  this.fName = fname;
                  this.lName = lname; 
                 }
                 // defining method
                 greet() {
-                    console.log(`Hello ${this.fName} ${this.lName}`);
+                    console.log(`Hello ${this.fName} ${this.lName} from city : ${this.city}`);
                 }
             }
 
@@ -38,8 +42,12 @@
             console.log('person1.fName :'+person1.fName); // John
             console.log('person1.lName :'+person1.lName)
 
+            console.log('----------person1.greet()-----------');
             // accessing method
             person1.greet(); // Hello John
+
+            //console.log('----------Person.greet()-----------');
+            //Person.greet();
         }
         function testClassInheritance(){
             console.clear();
@@ -51,8 +59,8 @@
                     this.name = name;
                     this.speed = 0;
                     this.Weight= weight;
-                    //console.log("Weight : "+weight);
-                    //console.log("this.Weight : "+this.Weight)
+                    console.log("Weight : "+weight);
+                    console.log("this.Weight : "+this.Weight)
                 }
                 run(speed){
                     this.speed = speed;
@@ -65,8 +73,11 @@
                 weight(){
                     console.log(`${this.name} has weight of ${this.Weight} Height: ${this.Height}`);
                 }
+                static staticWeight(){
+                    console.log(`${this.name} has weight of ${this.Weight} Height: ${this.Height}`);
+                }
                 static displayInfo(){
-                    console.log(` Name: ${this.name},  \ncolor: ${this.color}, \nweight: ${this.Weight}, \nNoOfLegs: ${this.NoOfLegs}, \nHeight: ${this.Height}  `);
+                    console.log(` Name: ${this.name},  \ncolor: ${this.color}, \nweight: ${this.Weight}, \nNoOfLegs: ${this.NoOfLegs},  \nHeight: ${this.Height}  `);
                 }
 
             }
@@ -91,16 +102,23 @@
             const rabbit = new Rabbit('Nick-rabbit', 'white', 10);
             rabbit.run(5);
             rabbit.stop();
-            console.log('---------------------');
+            console.log('----------rabbit.hide()-----------');
+            rabbit.hide();
+            console.log('---------rabbit.weight()------------');
             rabbit.weight();
-            //rabbit.hide();
-            console.log('---------------------');
+            console.log('----------rabbit.staticWeight()-----------');
+            //rabbit.staticWeight();
+            console.log('----------Animal.staticWeight()-----------');
+            Animal.staticWeight();
+            
+            
+            console.log('----------Animal.displayInfo()-----------');
             Animal.displayInfo();
 
         }
 
         function testProtectedClass(){
-
+            console.clear();
             class CoffeeMachine {
                 _waterAmount = 0;
 
@@ -155,9 +173,10 @@
 
             let coffeeMachine = new CoffeeMachine();
 
-            // can't access privates from outside of the class
+            //can't access privates from outside of the class
             //coffeeMachine.#fixWaterAmount(123); // Error
             //console.log( coffeeMachine.#waterLimit);
+            //console.log( "CoffeeMachine.#waterLimit:"+CoffeeMachine.#waterLimit);
             coffeeMachine.WaterAmount = 1000; 
             coffeeMachine.displayInfo();
         }
