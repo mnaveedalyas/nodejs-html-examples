@@ -23,7 +23,20 @@
     </div>
     <script>
         function testClass(){
+            /*
+            let PersonObj = {
+                city: "Hamilton",
+                greet() {
+                    consolelog("display obj city "+this.city);
+                } 
+            }
 
+            function PersonFunc () {
+                this.name = 'John',
+                this.age = 23
+            }
+            const personfunc = new PersonFunc();
+            */
             class Person {
                 city = 'Hamilton';
                 constructor(fname, lname) {
@@ -35,7 +48,6 @@
                     console.log(`Hello ${this.fName} ${this.lName} from city : ${this.city}`);
                 }
             }
-
             let person1 = new Person('John', 'Dave');
 
             // accessing property
@@ -52,7 +64,6 @@
         function testClassInheritance(){
             console.clear();
             class Animal{
-
                 NoOfLegs = 4;
                 static Height = 45;
                 constructor(name, weight){
@@ -77,9 +88,13 @@
                     console.log(`${this.name} has weight of ${this.Weight} Height: ${this.Height}`);
                 }
                 static displayInfo(){
-                    console.log(` Name: ${this.name},  \ncolor: ${this.color}, \nweight: ${this.Weight}, \nNoOfLegs: ${this.NoOfLegs},  \nHeight: ${this.Height}  `);
+                    console.log(` 
+                    Name: ${this.name},  
+                    \ncolor: ${this.color}, 
+                    \nweight: ${this.Weight}, 
+                    \nNoOfLegs: ${this.NoOfLegs},  
+                    \nHeight: ${this.Height}  `);
                 }
-
             }
 
             class Rabbit extends Animal {
@@ -107,7 +122,7 @@
             console.log('---------rabbit.weight()------------');
             rabbit.weight();
             console.log('----------rabbit.staticWeight()-----------');
-            //rabbit.staticWeight();
+            rabbit.staticWeight();
             console.log('----------Animal.staticWeight()-----------');
             Animal.staticWeight();
             
@@ -121,22 +136,18 @@
             console.clear();
             class CoffeeMachine {
                 _waterAmount = 0;
-
                 set waterAmount(value) {
                     if (value < 0) {
                         value = 0;
                     }
                     this._waterAmount = value;
                 }
-
                 get waterAmount() {
                     return this._waterAmount;
                 }
-
                 constructor(power) {
                     this._power = power;
                 }
-
             }
 
             // create the coffee machine
@@ -176,7 +187,7 @@
             //can't access privates from outside of the class
             //coffeeMachine.#fixWaterAmount(123); // Error
             //console.log( coffeeMachine.#waterLimit);
-            //console.log( "CoffeeMachine.#waterLimit:"+CoffeeMachine.#waterLimit);
+            console.log( "CoffeeMachine.#waterLimit:"+CoffeeMachine.#waterLimit);
             coffeeMachine.WaterAmount = 1000; 
             coffeeMachine.displayInfo();
         }
