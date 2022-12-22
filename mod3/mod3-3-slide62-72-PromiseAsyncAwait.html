@@ -82,6 +82,7 @@
                 setTimeout(() => {
                     console.log('----------1-----------');
                     resolve("success")
+                    reject("test");
                 }, 1000);
             });
 
@@ -94,7 +95,7 @@
                 setTimeout(() => {
                     console.log('---------2------------');
                     reject(new Error("Whoops!"))
-                }, 2000);
+                }, 800);
             });
 
             promise2.then( 
@@ -186,16 +187,16 @@
 
         function PromiseChain(){
             console.clear()
-            let calc = 0;
+            let calc = 10;
             
             setTimeout( () => {
                 calc = 10;
                 
             }, 1000);
             
-            calc += calc*2;
-            calc += calc*2;
-            calc += calc*2;
+            calc = calc*2;  
+            calc = calc*2;
+            calc = calc*2;
             console.log("Calc without promise :"+calc);
             console.log('---------------------');
 
