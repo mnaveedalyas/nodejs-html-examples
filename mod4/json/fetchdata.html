@@ -4,11 +4,13 @@
     </head>
     <body>
         <h1>Hello world</h1>
+        <div id="myData"></div>
     </body>
     <script>
         fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
             .then((response) => response.json())
-            .then((json) => console.log(json));
+            //.then((json) => console.log(json))
+            .then( (json) => document.getElementById("myData").innerText = JSON.stringify(json));
        
     </script>
 </html>
